@@ -6,6 +6,7 @@ import AccessDenied from "../components/access-denied"
 export default function ProtectedPage() {
   const { data: session } = useSession()
   const [content, setContent] = useState()
+  console.log(session)
 
   // Fetch content from protected route
   useEffect(() => {
@@ -18,7 +19,7 @@ export default function ProtectedPage() {
     }
     fetchData()
   }, [session])
- 
+
 
   // If no session exists, display access denied message
   if (!session) {
