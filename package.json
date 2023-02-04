@@ -9,6 +9,8 @@
   },
   "author": "Dawkaka <yousiph77@gmail.com>",
   "dependencies": {
+    "@next-auth/prisma-adapter": "^1.0.5",
+    "@prisma/client": "^4.9.0",
     "autoprefixer": "^10.4.13",
     "next": "latest",
     "next-auth": "latest",
