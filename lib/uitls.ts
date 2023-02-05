@@ -3,7 +3,6 @@ type QuestionsErrors = string[][]
 export function validateQuestions(questions: any[]): QuestionsErrors {
     const errors: QuestionsErrors = new Array(25).fill([]).map(arr => [])
     let hasError = false
-    console.log(questions, questions.length)
     for (let i = 0; i < questions.length; i++) {
         const question = questions[i];
         if (!question.question || typeof question.question !== "string" || question.question.length > 256) {
@@ -19,4 +18,15 @@ export function validateQuestions(questions: any[]): QuestionsErrors {
         return errors
     }
     return []
+}
+
+
+export function generateLink(): string {
+    const alphabets = "abc8debg7hijkl0mn6GH5IJKLMNo9pq1rstuv2wxy3zABCD4EFOPQRSTUVWSYZ"
+    let id = ""
+    for (let i = 0; i < 15; i++) {
+        let ind = Math.floor(Math.random() * 61)
+        id += alphabets[ind]
+    }
+    return id
 }
