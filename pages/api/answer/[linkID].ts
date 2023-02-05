@@ -46,7 +46,9 @@ export default async function AnswerHandler(req: NextApiRequest, res: NextApiRes
                 console.log(mapedQandA)
                 const answered = await prisma.customAnswer.createMany({ data: mapedQandA })
                 if (answered.count > 0) {
-                    await prisma.user.update({ where: { id: questionsOwner.id }, data: { currentLinkID: null, currentLinkLabel: null } })
+                    const qLinks = Array.isArray(questionsOwner.questionsLinks) ? questionsOwner.questionsLinks : [] as any[]
+                    const updatedLinks = [{ linkID: linkID, label: questionsOwner.currentLinkLabel }].concat(qLinks)
+                    await prisma.user.update({ where: { id: questionsOwner.id }, data: { currentLinkID: null, currentLinkLabel: null, questionsLinks: updatedLinks } })
                 }
                 return res.json(answered)
 
