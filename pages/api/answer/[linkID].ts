@@ -1,11 +1,26 @@
 import type { NextApiRequest, NextApiResponse } from "next"
+import { getServerSession } from "next-auth"
 import prisma from "../../../lib/prismadb"
 import { mapQuestionsAndAnswers, validateAnswers } from "../../../lib/uitls"
+import { authOptions } from "../auth/[...nextauth]"
 
 export default async function AnswerHandler(req: NextApiRequest, res: NextApiResponse) {
     const { query, method } = req
     const linkID = Array.isArray(query) ? query[0].linkID : query.linkID
     switch (method) {
+        case "GET":
+            const session = await getServerSession(req, res, authOptions)
+            if (!session) {
+                return res.status(401).json({ message: "login required" })
+            }
+            const user = await prisma.user.findUnique({ where: { email: session?.user?.email! } })
+            if (!user) {
+                return res.status(404).json({ message: "User not found" })
+            }
+            const QandA = await prisma.customAnswer.findMany({ where: { questionLinkID: linkID, questionBy: user.id } })
+            res.status(200).json(QandA)
+            break
+
         case "POST":
             try {
                 const questionsOwner = await prisma.user.findFirst({ where: { currentLinkID: linkID } })
@@ -38,9 +53,9 @@ export default async function AnswerHandler(req: NextApiRequest, res: NextApiRes
             } catch (error) {
                 console.log(error)
             }
-
+            break
         default:
-            res.setHeader('Allow', ['POST'])
+            res.setHeader('Allow', ['POST', 'GET'])
             res.status(405).end(`Method ${method} Not Allowed`)
     }
 }
