@@ -25,10 +25,10 @@ export default async function questionsHandler(req: NextApiRequest, res: NextApi
                     return res.status(403).json({ message: "Delete existing link before creating  a new one" })
                 }
                 let newLink = generateLink()
-                let linkExists = prisma.customAnswer.findFirst({ where: { questionLinkID: newLink } })
+                let linkExists = await prisma.customAnswer.findFirst({ where: { questionLinkID: newLink } })
                 while (linkExists) {
                     newLink = generateLink()
-                    linkExists = prisma.customAnswer.findFirst({ where: { questionLinkID: newLink } })
+                    linkExists = await prisma.customAnswer.findFirst({ where: { questionLinkID: newLink } })
                 }
                 await prisma.user.update({
                     where: { email: session.user?.email! },
