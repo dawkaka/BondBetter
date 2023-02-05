@@ -5,11 +5,9 @@ import { generateLink, validateQuestions } from "../../lib/uitls"
 import { authOptions } from "./auth/[...nextauth]"
 
 
-export default async function questionsHandler(req: NextApiRequest, res: NextApiResponse) {
+export default async function LinkHandler(req: NextApiRequest, res: NextApiResponse) {
     const session = await getServerSession(req, res, authOptions)
-
     const { method } = req
-
     if (!session) {
         return res.status(401).json({ message: "Login required" })
     }
