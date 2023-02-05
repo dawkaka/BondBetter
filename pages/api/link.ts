@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from "next"
 import { getServerSession } from "next-auth"
 import prisma from "../../lib/prismadb"
-import { generateLink, validateQuestions } from "../../lib/uitls"
+import { generateLink } from "../../lib/uitls"
 import { authOptions } from "./auth/[...nextauth]"
 
 
