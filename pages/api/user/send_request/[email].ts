@@ -39,7 +39,7 @@ export default async function requestHandler(req: NextApiRequest, res: NextApiRe
                     prisma.user.update({ where: { email: email }, data: { recievedRequest: session.user?.email } }),
                 ])
                 console.log(val)
-                return res.status
+                return res.json({ messaeg: "Request sent" })
 
             } catch (error) {
                 res.status(500).json({ message: "Something went wrong" })
