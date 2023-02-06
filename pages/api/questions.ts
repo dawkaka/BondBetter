@@ -21,7 +21,6 @@ export default async function questionsHandler(req: NextApiRequest, res: NextApi
                 if (!userQuestions) {
                     return res.status(404).json({ message: "user not found" })
                 }
-
                 res.status(200).json(userQuestions.questions)
 
             } catch (error) {

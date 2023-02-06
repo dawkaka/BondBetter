@@ -23,6 +23,8 @@ model User {
   questionsLinks     Json?
   questions          Json?
   partnerID          String?
+  recievedRequest    String?
+  sendRequest        String?
   currentStreak      Int            @default(0)
   highestStreak      Int            @default(0)
   lastAnswered       DateTime?
