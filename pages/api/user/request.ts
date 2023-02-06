@@ -55,7 +55,7 @@ export default async function requestHandler(req: NextApiRequest, res: NextApiRe
                 if (!partner) {
                     return res.status(400).json({ message: "Something went wrong" })
                 }
-                const couple = await await prisma.$transaction([
+                const couple = await prisma.$transaction([
                     prisma.couple.create({ data: { initiated: partner.id, accepted: user.id } }),
                     prisma.user.update({ where: { email: user.email }, data: { partnerID: partner.id } }),
                     prisma.user.update({ where: { email: partner?.email }, data: { partnerID: user.id } }),
@@ -65,7 +65,7 @@ export default async function requestHandler(req: NextApiRequest, res: NextApiRe
             } catch (error) {
                 res.status(500).json({ message: "Something went wrong" })
             }
-
+            break;
         case "DELETE":
             try {
                 const user = await prisma.user.findUnique({ where: { email: session.user?.email! } })
