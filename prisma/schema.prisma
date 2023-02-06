@@ -11,20 +11,44 @@ datasource db {
 }
 
 model User {
-  id                String         @id @default(cuid())
-  name              String
-  email             String         @unique
-  emailVerified     DateTime?
-  createdAt         DateTime       @default(now())
-  updatedAt         DateTime       @updatedAt
-  image             String?
-  currentLinkID     String?
-  currentLinkLabel  String?        @db.VarChar(50)
-  questionsLinks    Json?
-  questions         Json?
-  accounts          Account[]
-  sessions          Session[]
-  AnsweredQuestions CustomAnswer[]
+  id                 String         @id @default(cuid())
+  name               String
+  email              String         @unique
+  emailVerified      DateTime?
+  createdAt          DateTime       @default(now())
+  updatedAt          DateTime       @updatedAt
+  image              String?
+  currentLinkID      String?
+  currentLinkLabel   String?        @db.VarChar(69)
+  questionsLinks     Json?
+  questions          Json?
+  partnerID          String?
+  currentStreak      Int            @default(0)
+  highestStreak      Int            @default(0)
+  lastAnswered       DateTime?
+  timeOfLastAnswered DateTime?
+  accounts           Account[]
+  sessions           Session[]
+  AnsweredQuestions  CustomAnswer[]
+}
+
+model Couple {
+  id            Int      @id @default(autoincrement())
+  initiated     String
+  accepted      String
+  questionIndex Int      @default(0)
+  startDate     DateTime @default(now())
+}
+
+model CoupleAnswer {
+  id            Int      @id @default(autoincrement())
+  coupleID      Int
+  questionID    String
+  answer        String
+  questionIndex Int
+  time          DateTime @default(now())
+  day           DateTime
+  userID        String
 }
 
 model CustomAnswer {
@@ -34,6 +58,14 @@ model CustomAnswer {
   answer         String @db.VarChar(256)
   user           User   @relation(fields: [questionBy], references: [id])
   questionBy     String
+}
+
+model QuestionBank {
+  id        Int      @id @default(autoincrement())
+  question  String   @db.VarChar(256)
+  options   Json
+  hasInput  Boolean
+  createdAt DateTime @default(now())
 }
 
 model Account {

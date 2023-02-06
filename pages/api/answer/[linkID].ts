@@ -43,7 +43,6 @@ export default async function AnswerHandler(req: NextApiRequest, res: NextApiRes
                     return res.status(400).json(errs)
                 }
                 const mapedQandA = mapQuestionsAndAnswers(questions, answers, questionsOwner.id, linkID)
-                console.log(mapedQandA)
                 const answered = await prisma.customAnswer.createMany({ data: mapedQandA })
                 if (answered.count > 0) {
                     const qLinks = Array.isArray(questionsOwner.questionsLinks) ? questionsOwner.questionsLinks : [] as any[]
