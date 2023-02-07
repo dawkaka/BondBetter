@@ -2,6 +2,7 @@
 import type { NextApiRequest, NextApiResponse } from "next"
 import { getServerSession } from "next-auth"
 import prisma from "../../lib/prismadb"
+import { SampleQuestions } from "../../text"
 import { authOptions } from "./auth/[...nextauth]"
 
 
@@ -13,6 +14,7 @@ export default async function handler(
     if (!session) {
         return res.status(401).json({ message: "login required" })
     }
-    const users = await prisma.user.findUnique({ where: { email: session?.user?.email! } })
+
+    const users = await prisma.user.findMany({ where: {} })
     res.json(users)
 }

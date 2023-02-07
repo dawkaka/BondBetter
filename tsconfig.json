@@ -25,7 +25,7 @@
     "next-auth.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "text.js"
+    "text.ts"
   ],
   "exclude": [
     "node_modules"

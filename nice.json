@@ -1,0 +1,142 @@
+[
+    {
+        "question": "What is something you have always wanted to try but have not yet?",
+        "suggestion": [
+            "Skydiving",
+            "Learning a new language",
+            "Backpacking through a foreign country"
+        ]
+    },
+    {
+        "question": "What is your biggest fear?",
+        "suggestion": [
+            "Heights",
+            "Spiders",
+            "Public speaking"
+        ]
+    },
+    {
+        "question": "What is a childhood memory that has had a lasting impact on you?",
+        "suggestion": [
+            "A family vacation",
+            "A special birthday celebration",
+            "A memorable summer camp experience"
+        ]
+    },
+    {
+        "question": "What is something that you have changed your mind about in the past?",
+        "suggestion": [
+            "Political beliefs",
+            "Career goals",
+            "Life priorities"
+        ]
+    },
+    {
+        "question": "What is a belief or value that you have held on to even though it may be unpopular?",
+        "suggestion": [
+            "Belief in equality for all individuals regardless of race or gender",
+            "Support for a controversial political figure or party",
+            "Disagreement with the popular opinion on a controversial social issue"
+        ]
+    },
+    {
+        "question": "What is a situation or event that has challenged your beliefs or values?",
+        "suggestion": [
+            "A personal tragedy or loss",
+            "A conflict with a friend or family member",
+            "A disagreement with a co-worker or employer"
+        ]
+    },
+    {
+        "question": "What is a talent or skill that you have that most people do not know about?",
+        "suggestion": [
+            "Ability to play a musical instrument",
+            "Proficiency in a foreign language",
+            "Artistic ability such as drawing or painting"
+        ]
+    },
+    {
+        "question": "What is a personal accomplishment that you are most proud of?",
+        "suggestion": [
+            "Graduating from a higher education institution",
+            "Overcoming a significant personal challenge",
+            "Achieving a personal fitness or health goal"
+        ]
+    },
+    {
+        "question": "What is a place you have always wanted to visit but haven't?",
+        "suggestion": [
+            "Paris, France",
+            "Santorini, Greece",
+            "Bali, Indonesia"
+        ]
+    },
+    {
+        "question": "What is something you are currently learning or want to learn in the future?",
+        "suggestion": [
+            "A new language",
+            "A new skill or trade",
+            "A new hobby or recreational activity"
+        ]
+    },
+    {
+        "question": "What is the most spontaneous thing you have ever done?",
+        "suggestion": [
+            "Booking a last-minute trip or vacation",
+            "Quitting a job without a backup plan",
+            "Making a impulsive purchase or financial decision"
+        ]
+    },
+    {
+        "question": "What is the most adventurous food you have ever tried?",
+        "suggestion": [
+            "Fugu (Japanese blowfish)",
+            "Hákarl (Fermented shark meat from Iceland)",
+            "Escamoles (Ant larvae found in Mexico)"
+        ]
+    },
+    {
+        "question": "What is the best advice you have ever received?",
+        "suggest": []
+    },
+    {
+        "question": "What is your biggest fear or insecurity?",
+        "suggestion": [
+            "Losing loved ones",
+            "Failure or not living up to expectations",
+            "Financial instability or insecurity"
+        ]
+    },
+    {
+        "question": "What is your favorite childhood memory?",
+        "suggestion": [
+            "Playing with friends and family",
+            "Going on vacation or trips",
+            "Achievements or accomplishments in school or sports"
+        ]
+    },
+    {
+        "question": "What is your most prized possession?",
+        "suggestion": [
+            "Sentimental items such as photographs or keepsakes",
+            "Valuable possessions such as jewelry or collectibles",
+            "Technology such as a phone or laptop"
+        ]
+    },
+    {
+        "question": "What is your biggest pet peeve?",
+        "suggestion": [
+            "People talking loudly in public places",
+            "People who are constantly late",
+            "People who litter or don't clean up after themselves"
+        ]
+    },
+    {
+        "question": "What makes you feel most loved and appreciated?",
+        "suggestion": [
+            "Physical affection such as hugs or kisses",
+            "Verbal affirmations or compliments",
+            "Gestures of thoughtfulness or acts of service"
+        ]
+    }
+]

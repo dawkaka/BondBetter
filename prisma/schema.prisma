@@ -22,8 +22,8 @@ model User {
   currentLinkLabel   String?   @db.VarChar(69)
   questionsLinks     Json?
   questions          Json?
-  couple             Couple    @relation(fields: [coupleID], references: [id])
-  coupleID           Int
+  couple             Couple?   @relation(fields: [coupleID], references: [id])
+  coupleID           Int?
   partnerID          String?
   recievedRequest    String?
   sendRequest        String?
@@ -66,9 +66,7 @@ model CustomAnswer {
 
 model QuestionBank {
   id        Int      @id @default(autoincrement())
-  question  String   @db.VarChar(256)
-  options   Json
-  hasInput  Boolean
+  question  String
   createdAt DateTime @default(now())
 }
 

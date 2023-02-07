@@ -1,6 +1,4 @@
-const fs = require("fs")
-
-const SampleQuestions = `What is something you have always wanted to try but have not yet?
+export const SampleQuestions = `What is something you have always wanted to try but have not yet?
 What is your biggest fear?
 What is a childhood memory that has had a lasting impact on you?
 What is something that you have changed your mind about in the past?
@@ -298,15 +296,3 @@ Do you prefer red or white wine?
 Do you like your pizza with pineapple or without?
 Do you like your eggs scrambled or sunny-side up?
 Do you like ketchup or mustard on your hotdog?`
-
-function mer() {
-    const arr = SampleQuestions.split("\n")
-    const m = arr.map(q => {
-        return {
-            question: q.trim(),
-            sampleAnswers: []
-        }
-    })
-    fs.writeFileSync('fm.json', JSON.stringify(m, null, 2), 'utf-8');
-}
-mer()
