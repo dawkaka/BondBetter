@@ -1,4 +1,4 @@
-import { QandA, Question } from "../types";
+import { DailyAnswer, QandA, Question } from "../types";
 
 type QuestionsErrors = string[][]
 
@@ -99,4 +99,29 @@ export function yesterday(): Date {
 export function isMoreThan24Hours(date1: Date, date2: Date): boolean {
     let difference = date2.getTime() - date1.getTime();
     return difference >= 24 * 60 * 60 * 1000;
+}
+
+
+export function parseDailyAnswers(userID: string, coupleID: number, answeredQuestions: any[]): [string[][], DailyAnswer[]] {
+    const answers: DailyAnswer[] = []
+    const errs: string[][] = []
+    const today = getCurrentDate()
+
+    for (let item of answeredQuestions) {
+        let err = []
+
+        if (!item.answer || !item.questionID) {
+            err.push("answer body is incomplete, missing answer or question id")
+        } else if (item.answer.length > 256) {
+            err.push("Answer can not be longer than 256 characters")
+        } else if (typeof item.questionID !== "number") {
+            err.push("Wrong questions id format")
+        } else {
+            const a: DailyAnswer = { questionID: item.questonID as number, answer: item.answer.trim() as string, userID, coupleID, day: today }
+            answers.push(a)
+        }
+        errs.push(err)
+    }
+
+    return [errs, answeredQuestions]
 }

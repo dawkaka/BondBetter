@@ -10,3 +10,11 @@ export interface QandA {
     answer: string,
     questionBy: string
 }
+
+export interface DailyAnswer {
+    questionID: number,
+    userID: string,
+    coupleID: number,
+    answer: string,
+    day: Date
+}

@@ -52,6 +52,8 @@ model CoupleAnswer {
   time       DateTime @default(now())
   day        DateTime
   userID     String
+
+  @@unique([id, userID])
 }
 
 model CustomAnswer {
