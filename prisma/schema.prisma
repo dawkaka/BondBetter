@@ -11,27 +11,28 @@ datasource db {
 }
 
 model User {
-  id                 String         @id @default(cuid())
+  id                 String    @id @default(cuid())
   name               String
-  email              String         @unique
+  email              String    @unique
   emailVerified      DateTime?
-  createdAt          DateTime       @default(now())
-  updatedAt          DateTime       @updatedAt
+  createdAt          DateTime  @default(now())
+  updatedAt          DateTime  @updatedAt
   image              String?
   currentLinkID      String?
-  currentLinkLabel   String?        @db.VarChar(69)
+  currentLinkLabel   String?   @db.VarChar(69)
   questionsLinks     Json?
   questions          Json?
+  couple             Couple    @relation(fields: [coupleID], references: [id])
+  coupleID           Int
   partnerID          String?
   recievedRequest    String?
   sendRequest        String?
-  currentStreak      Int            @default(0)
-  highestStreak      Int            @default(0)
+  currentStreak      Int       @default(0)
+  highestStreak      Int       @default(0)
   lastAnswered       DateTime?
   timeOfLastAnswered DateTime? //Used for notifications
   accounts           Account[]
   sessions           Session[]
-  AnsweredQuestions  CustomAnswer[]
 }
 
 model Couple {
@@ -40,6 +41,7 @@ model Couple {
   accepted      String
   questionIndex Int      @default(0)
   startDate     DateTime @default(now())
+  User          User[]
 }
 
 model CoupleAnswer {
@@ -54,12 +56,12 @@ model CoupleAnswer {
 }
 
 model CustomAnswer {
-  id             Int    @id @default(autoincrement())
+  id             Int     @id @default(autoincrement())
   questionLinkID String
-  question       String @db.VarChar(256)
-  answer         String @db.VarChar(256)
-  user           User   @relation(fields: [questionBy], references: [id])
+  question       String  @db.VarChar(256)
+  answer         String  @db.VarChar(256)
   questionBy     String
+  userId         String?
 }
 
 model QuestionBank {

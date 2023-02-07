@@ -1,0 +1,1194 @@
+[
+  {
+    "question": "What is something you have always wanted to try but have not yet?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What is your biggest fear?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What is a childhood memory that has had a lasting impact on you?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What is something that you have changed your mind about in the past?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What is a belief or value that you have held on to even though it may be unpopular?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What is a situation or event that has challenged your beliefs or values?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What is a talent or skill that you have that most people do not know about?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What is a personal accomplishment that you are most proud of?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What is a place you have always wanted to visit but haven't?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What is something you are currently learning or want to learn in the future?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What is the most spontaneous thing you have ever done?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What is the most adventurous food you have ever tried?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What is the best advice you have ever received?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What is a book, movie, or TV show that had a significant impact on you?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What is a cause or issue that you are passionate about?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What is a random act of kindness that you have done or someone has done for you?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What is a fear or phobia that you have overcome or still struggle with?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What is a unique personal quirk or characteristic that you have?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What is a memorable experience from your childhood?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What is something that you are grateful for in your life?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What is a challenge that you have faced and how did you overcome it?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What is a hobby or interest that you have that most people don't know about?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What is the most meaningful gift you have ever received or given?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What is something that makes you feel fulfilled or content?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What is a personal accomplishment that you never expected to achieve?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What is something that you learned about yourself through a relationship or past experience?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What is a lesson that you learned the hard way?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What is a piece of advice you would give to your younger self?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What is your favorite color and why?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "Who is your favorite famous person and why?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What is your favorite genre of music and why?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What is your favorite movie and why?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What is your favorite book and why?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What is your favorite type of food and why?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What is your favorite hobby and why?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What is your favorite place to go on vacation and why?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What is your favorite holiday and why?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What is your favorite season and why?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "Would you rather live in the city or in the countryside?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "Would you rather travel to a new place or revisit an old favorite?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "Would you rather spend a night in or go out for a night on the town?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "Would you rather have a relaxing day at home or an action-packed day of adventure?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "Would you rather have a sweet dessert or a savory snack?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "Would you rather listen to music or watch a movie?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "Would you rather spend a day at the beach or in the mountains?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "Would you rather go camping or stay in a luxurious hotel?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "Would you rather spend a night under the stars or indoors with a cozy fire?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "Would you rather have a big, elaborate party or a small, intimate gathering with close friends?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "Liberal or conservative: which do you lean more towards?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "Individual rights or collective good: which is more important to you?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "Science or religion: which guides your beliefs more?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "Pro-choice or pro-life: where do you stand on the issue of abortion?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "Government intervention or minimal government: which do you support more?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "Free market or regulated market: which do you believe is a better economic system?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "Equality or meritocracy: which do you believe is a fairer system?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "Privacy or security: which do you value more in society?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "Traditional values or progressive values: which do you align with more?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "Nationalism or globalism: which do you believe is a better approach to international relations?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "How do you like to spend your weekends?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What is your favorite hobby or pastime?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What is your favorite type of food?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What is your favorite movie or book?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What are your goals and aspirations for the future?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What is your biggest fear or insecurity?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What is your favorite childhood memory?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What is your most prized possession?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What is your biggest pet peeve?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What makes you feel most loved and appreciated?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What is your ideal way to spend a romantic evening together?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What is your favorite place that we have been to together?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "How do you handle stress or difficult situations?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What is your favorite holiday or special occasion and why?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "How do you like to be affectionate with each other?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What are your spiritual or religious beliefs?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What is your favorite thing about yourself?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What is your favorite thing about our relationship?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What are your long-term career aspirations?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What are your long-term personal aspirations?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What is your favorite family tradition?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What is your favorite holiday tradition?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What is your favorite thing about our family?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What is your favorite thing about our friends?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What is your favorite romantic getaway we have taken together?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What are your favorite ways to show affection to each other?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What is your favorite physical aspect of our relationship?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What is your favorite non-physical aspect of our relationship?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What are your favorite ways to spend time together?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What is your favorite thing about the home we share?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What is your favorite thing about the life we share?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What is your favorite shared interest or activity?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What is your favorite shared memory?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What is your favorite shared accomplishment?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What are your favorite shared values?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What are your favorite shared beliefs?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What is your favorite shared goal?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What is your favorite shared dream?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What is your favorite shared responsibility?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What is your favorite shared decision?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What is your favorite shared experience?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "Are you more introverted or extroverted?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What is your opinion on having children and starting a family?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What are your political beliefs and how important is it for your partner to share those beliefs?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What is your opinion on religion and spirituality?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "Are you a neat freak or do you have a more relaxed approach to tidiness?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What are your views on spending and saving money?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "How important is it for you to have alone time in a relationship?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "Do you like to plan things in advance or be more spontaneous?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What is your preferred method of communication (e.g. phone, email, face-to-face, etc.)?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "Are you more of a risk taker or do you prefer to play it safe?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "Do you believe in love at first sight or do you think love grows over time?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What's a moment in your life that you're particularly proud of?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "If you could relive any moment in your life, what would it be and why?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "Are you a dog person or a cat person?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "Do you prefer hot or cold weather?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "Are you an adventurous traveler or do you prefer to stick to familiar places?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "Do you like to plan activities ahead of time or be spontaneous?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "Are you more of an optimist or a pessimist?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "Do you prefer to make decisions based on logic or based on your gut feeling?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "Do you like to be in the center of attention or prefer to blend in the background?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "Are you a goal-oriented person or do you take things as they come?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What is your love language?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "Have you ever cheated on a past partner?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "Have you ever lied to someone close to you?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "Have you ever stolen anything, no matter how small?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "Have you ever been in a physically or emotionally abusive relationship?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "Have you ever had any major financial difficulties, such as bankruptcy?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "Have you ever struggled with addiction, whether it be drugs, alcohol, or something else?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "Have you ever been arrested or spent time in jail?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "Have you ever had a one night stand?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "Have you ever been in love with two people at the same time?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "Have you ever had to cut ties with a friend or family member?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "Have you ever been in a serious accident or survived a life-threatening experience?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "Do you believe in an afterlife?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "Do you believe in ghosts or paranormal activities?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "Do you believe in fate or free will?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "Do you believe in a higher power or divine being?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "Do you believe in extraterrestrial life?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "Do you believe that the universe was created by a god or by chance?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "Do you believe in the existence of soulmates or that there's one perfect person for everyone?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "Do you believe in astrology or horoscopes?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "Do you believe in the power of positive thinking or do you think life is mostly out of our control?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "Do you believe in reincarnation or that death is final?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "Do you believe in the importance of religion or spirituality in one's life?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "Who is your celebrity crush?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What's your favorite movie genre?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What's your favorite type of music?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What's your favorite food?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "Do you like to dance?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "Do you prefer books or movies?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "Do you have a favorite TV show?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "Who is your favorite athlete or sports team?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What's the best concert you have ever attended?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What's the best vacation you have ever taken?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What's the most meaningful gift you have ever given someone?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What's the most meaningful gift you have ever received?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What's the most spontaneous thing you have ever done?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What’s my best physical feature?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What do you appreciate most about my personality?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What's your favorite memory of us together?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What's the sweetest thing I have ever done for you?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What's the most attractive trait you see in me?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What's the most valuable thing I bring to our relationship?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What's the most fun thing we have done together?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What's your favorite thing about being with me?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What's the most endearing thing I do?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What's the most important quality you look for in a partner?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What's the most unique and special thing about our relationship?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "How long do you think people should wait before having kids?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "Do you want to get married in the future?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What's your ideal timeline for starting a family?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "Do you believe in living together before getting married?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What's your ideal number of children?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "How important is it for you to own a home in the future?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What's your preferred method of raising children?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "How do you feel about long distance relationships?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "How would you like to spend your retirement years?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What's your opinion on supporting elderly parents?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "How important is religion in a relationship for you?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "Have you ever been in a long-term relationship before?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "How would you describe your relationship with your family?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "Have you experienced heartbreak in the past?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "Have you traveled extensively? If so, where was your favorite trip?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What is your favorite childhood memory?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What is the most difficult thing you have ever gone through?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What do you consider your biggest accomplishment in life so far?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What do you value most in a friendship?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What are your hobbies and interests outside of work?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What are your long-term career goals?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What did you learn about marriage/relationship from your parents?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What’s your favorite memory with your mom?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What’s your favorite memory with your dad?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What’s the happiest you ever felt?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What’s the most anxious you ever felt?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What’s the angriest you ever felt?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What is your favorite position?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "If you got sick, do you think I would be there to care for you?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "Do you believe that I love you?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "When did you know you wanted to kiss me?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What’s your favorite activity that we do together?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "Do you ever think about me during the day?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "Do you have any deal-breakers, things that would make you seriously reconsider our relationship?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What was your first favorite book as a child?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What was your first favorite toy?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "Do you prefer sweet or savory food?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "Are you a beach person or a mountain person?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "Do you prefer hot or cold drinks?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "Do you enjoy cooking or eating out more?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "Are you an indoor or outdoor person?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "Do you prefer spending time alone or with others?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What is your favorite animal?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What was your favorite subject in school?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What do you want to be remembered for after you die?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What was the biggest lesson from your worst breakup?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What's something you used to believe about relationships but no longer do?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What's something surprising that you were afraid of as a child?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "Do you believe in soul mates?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "If you believe in soul mates, do you think you've met yours?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "Do you think it's more important to be smart or to be kind?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "Would you rather be loved, respected, or admired?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "Does your family have any traditions?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "Would you want to create any traditions in your family going forward?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What do you find sexiest about me?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "Have you ever been cheated on?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "How old were you when you lost your virginity?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What was your first sexual experience like?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "Do you think infidelity is always a deal breaker, no matter what?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "Is there a personality trait that always ticks you off?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "How do you express anger?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "How do you hide anger when you don't want it to show?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "How do you talk yourself down from anger or frustration?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "Who is more of a risk-taker—you or me?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "Do you have a bucket list, if yes, what would is on it?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "Would you rather be an amazing singer or an incredible dancer?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What superpower do you wish you could have?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What activity makes you feel the most joyful when you're doing it?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What would you do with your life if you suddenly became a billionaire?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "Do you think there's such a thing as luck, or do we create our own outcomes?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What's something not obviously sexual that turns you on?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "Do you have a sexual fantasy you've never shared with me before?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "If we could have sex anywhere, where would you choose?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "Would you rather have only morning sex for the rest of your life or strictly sex at night?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What was your very first orgasm like?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "Have you ever faked an orgasm—not necessarily with me, but in general?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "Have you ever thought about me while masturbating?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "Does the idea of getting caught during sex excite you?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "Does the thought of someone watching us have sex excite you?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "When did you first want to kiss me?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "Is there a type of outfit or clothes you find sexy that you'd like to see me in?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "Do you like playing with sex toys, or would you like to try them as a couple?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "How old were you when you stopped believing in Santa?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "Would you rather be a vampire or a werewolf?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What historical era would you most, and least, want to go to?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "Which musical artist would you want me to commission a love song from?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "Which song describes our love story best?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "Is there a song that makes you think of me?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What animal would you choose to be in another life?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What animal do you think I'd be?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "Do you think people can really have psychic abilities?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "If you had the option to live forever, would you choose to?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What's your favorite movie of all time?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What's a song you could sing by heart to me, right now?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "Do you like to be surprised?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "Do you believe in astrological compatibility?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "How many times have you been in love?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "Have you ever been in a physical fight?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "Is there a personal goal you'd like to achieve in the next five years or so?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "Do you consider yourself good with money?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "Do you think there's such a thing as a \"harmless\" lie?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "Do you have a personal flaw you'd fix, if you could?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "Is there anything you've always wondered about me but have hesitated to ask?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What is the weirdest reason you ever broke up with someone?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What is the horniest thing you've ever done?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "Any pet peeves?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "Do you have any medical conditions?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What's your favorite type of food?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "Are you comfortable with trying new foods?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "Do you have any fears or anxieties?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What's your favorite type of exercise or sport?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "Do you have any physical limitations?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "Are you comfortable with public speaking or performing in front of a crowd?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What are your political beliefs?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What's your opinion on religion?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "Do you prefer to live in a rural or urban area?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "Do you have any pets?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "Who Would Be your Dream Dinner Guest?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "Do you Like Mustard Or Mayo?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "What Is your Favorite Topic Of All Time?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "Do you Love Or Hate Their Birthday?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "Do you prefer sweet or salty foods?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "Do you like your steak well done or rare?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "Do you prefer coffee or tea?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "Do you like your sandwiches with lettuce or without?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "Do you prefer dark or milk chocolate?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "Do you like spicy food or mild food?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "Do you prefer red or white wine?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "Do you like your pizza with pineapple or without?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "Do you like your eggs scrambled or sunny-side up?",
+    "sampleAnswers": []
+  },
+  {
+    "question": "Do you like ketchup or mustard on your hotdog?",
+    "sampleAnswers": []
+  }
+]

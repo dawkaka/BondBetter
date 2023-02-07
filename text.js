@@ -1,4 +1,6 @@
-What is something you have always wanted to try but have not yet?
+const fs = require("fs")
+
+const SampleQuestions = `What is something you have always wanted to try but have not yet?
 What is your biggest fear?
 What is a childhood memory that has had a lasting impact on you?
 What is something that you have changed your mind about in the past?
@@ -269,3 +271,42 @@ Do you think there's such a thing as a "harmless" lie?
 Do you have a personal flaw you'd fix, if you could?
 Is there anything you've always wondered about me but have hesitated to ask?
 What is the weirdest reason you ever broke up with someone?
+What is the horniest thing you've ever done?
+Any pet peeves?
+Do you have any medical conditions?
+What's your favorite type of food?
+Are you comfortable with trying new foods?
+Do you have any fears or anxieties?
+What's your favorite type of exercise or sport?
+Do you have any physical limitations?
+Are you comfortable with public speaking or performing in front of a crowd?
+What are your political beliefs?
+What's your opinion on religion?
+Do you prefer to live in a rural or urban area?
+Do you have any pets?
+Who Would Be your Dream Dinner Guest?
+Do you Like Mustard Or Mayo?
+What Is your Favorite Topic Of All Time?
+Do you Love Or Hate Their Birthday?
+Do you prefer sweet or salty foods?
+Do you like your steak well done or rare?
+Do you prefer coffee or tea?
+Do you like your sandwiches with lettuce or without?
+Do you prefer dark or milk chocolate?
+Do you like spicy food or mild food?
+Do you prefer red or white wine?
+Do you like your pizza with pineapple or without?
+Do you like your eggs scrambled or sunny-side up?
+Do you like ketchup or mustard on your hotdog?`
+
+function mer() {
+    const arr = SampleQuestions.split("\n")
+    const m = arr.map(q => {
+        return {
+            question: q.trim(),
+            sampleAnswers: []
+        }
+    })
+    fs.writeFileSync('fm.json', JSON.stringify(m, null, 2), 'utf-8');
+}
+mer()
