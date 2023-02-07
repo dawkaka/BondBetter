@@ -45,14 +45,13 @@ model Couple {
 }
 
 model CoupleAnswer {
-  id            Int      @id @default(autoincrement())
-  coupleID      Int
-  questionID    String
-  answer        String
-  questionIndex Int
-  time          DateTime @default(now())
-  day           DateTime
-  userID        String
+  id         Int      @id @default(autoincrement())
+  coupleID   Int
+  questionID Int
+  answer     String
+  time       DateTime @default(now())
+  day        DateTime
+  userID     String
 }
 
 model CustomAnswer {

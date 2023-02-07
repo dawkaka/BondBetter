@@ -65,3 +65,38 @@ export function mapQuestionsAndAnswers(questions: Question[], answers: string[],
     }
     return maped
 }
+
+
+export function getCurrentDateAndTime(): Date {
+    return new Date(Date.UTC(new Date().getUTCFullYear(), new Date().getUTCMonth(), new Date().getUTCDate()));
+}
+
+export function getCurrentDate(): Date {
+    return new Date(Date.UTC(new Date().getUTCFullYear(), new Date().getUTCMonth(), new Date().getUTCDate(), new Date().getUTCHours(), new Date().getUTCMinutes()));
+}
+
+
+export function yesterday(): Date {
+    let now = new Date();
+    let year = now.getUTCFullYear();
+    let month = now.getUTCMonth();
+    let date = now.getUTCDate();
+    let hour = now.getUTCHours();
+    let minute = now.getUTCMinutes();
+
+    if (date === 1) {
+        month -= 1;
+        if (month < 0) {
+            year -= 1;
+            month = 11;
+        }
+        date = new Date(Date.UTC(year, month + 1, 0)).getUTCDate();
+    }
+
+    return new Date(Date.UTC(year, month, date - 1, hour, minute));
+}
+
+export function isMoreThan24Hours(date1: Date, date2: Date): boolean {
+    let difference = date2.getTime() - date1.getTime();
+    return difference >= 24 * 60 * 60 * 1000;
+}
