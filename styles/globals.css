@@ -1,0 +1,12 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+:root {
+    --primary-lighter: #faecd2;
+    --primary-light: #fde68a;
+    --primary: #ffbf24;
+    --primary-dark: #f59e0b;
+    --primary-darker: #d97706;
+}
