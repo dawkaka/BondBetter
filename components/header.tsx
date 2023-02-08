@@ -12,8 +12,8 @@ export default function Header() {
 
   return (
     <header className="w-full flex items-center justify-center px-3 border-b">
-      <nav>
-        <ul className="flex gap-10 py-3 items-center">
+      <nav className="w-full flex items-center justify-center">
+        <ul className="flex justify-between w-[min(100%,500px)] py-3 items-center">
           <NavLink href="/" label="Home" icon={HomeIcon()} />
           <NavLink href="/client" label="Answers" icon={AnswerSVG()} />
           <NavLink href="/server" label="Custom Questions" icon={AnswerSVG()} />
