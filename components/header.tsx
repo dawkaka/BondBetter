@@ -11,7 +11,7 @@ export default function Header() {
   const loading = status === "loading"
 
   return (
-    <header className="w-full flex items-center justify-center px-3 border-b">
+    <header className="fixed top-0  bg-white w-full flex items-center justify-center px-3 border-b">
       <nav className="w-full flex items-center justify-center">
         <ul className="flex justify-between w-[min(100%,500px)] py-3 items-center">
           <NavLink href="/" label="Home" icon={HomeIcon()} />
