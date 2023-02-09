@@ -1,11 +1,12 @@
 import { useSession } from "next-auth/react"
+import Container from "../components/container"
 import Layout from "../components/layout"
 
 export default function MePage() {
   const { data } = useSession()
   return (
     <Layout>
-      <div className="w-full flex flex-col items-center mt-[60px]">
+      <Container>
         <div className="flex flex-col w-[min(100%,700px)] px-3">
           <div className="flex flex-col items-center w-full py-16 border-b">
             <div className="flex flex-col sm:flex-row items-center gap-10">
@@ -20,12 +21,12 @@ export default function MePage() {
             <h3 className="font-extrabold text-2xl text-center">Statistics</h3>
             <div className="flex flex-wrap py-8 gap-16 justify-center">
               <ProfileStat count={100} label={"Current streak"} bg="bg-amber-500" />
-              <ProfileStat count={100} label={"Q. answered"} bg="bg-purple-500" />
-              <ProfileStat count={100} label={"Q. responses"} bg="bg-green-500" />
+              <ProfileStat count={250} label={"Q. answered"} bg="bg-purple-500" />
+              <ProfileStat count={0} label={"Q. responses"} bg="bg-green-500" />
             </div>
           </div>
         </div>
-      </div>
+      </Container>
     </Layout>
   )
 }
@@ -35,7 +36,7 @@ function ProfileStat({ count, label, bg }: { count: number, label: string, bg: s
   return (
     <div className="flex flex-col gap-3 items-center">
       <div className={`flex items-center justify-center w-24 h-24 rounded-full ${bg}`}>
-        <p className="text-white font-semibold">{count}</p>
+        <p className="text-white font-semibold text-xl">{count}</p>
       </div>
       <p className="font-bold text-[var(--accents-7)]">{label}</p>
     </div>
