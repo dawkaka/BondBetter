@@ -1,12 +1,15 @@
 import Header from "./header"
 import Footer from "./footer"
 import type { ReactNode } from "react"
+import Container from "./container"
 
 export default function Layout({ children }: { children: ReactNode }) {
   return (
     <>
       <Header />
-      <main>{children}</main>
+      <Container>
+        <main className="w-full flex flex-col items-center">{children}</main>
+      </Container>
       <Footer />
     </>
   )

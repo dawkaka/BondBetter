@@ -16,7 +16,7 @@ export default function Header() {
         <ul className="flex justify-between w-[min(100%,500px)] py-3 items-center">
           <NavLink href="/" label="Home" icon={HomeIcon()} />
           <NavLink href="/client" label="Answers" icon={AnswerSVG()} />
-          <NavLink href="/server" label="Custom Questions" icon={CreateQuestionIcon()} />
+          <NavLink href="/custom-questions" label="Custom Questions" icon={CreateQuestionIcon()} />
           <NavLink href="/admin" label="Custom Q asnwers" icon={AnswerSVG()} />
           <NavLink href="/me" label="Profile" icon={ProfileIcon()} />
         </ul>
