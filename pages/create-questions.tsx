@@ -6,7 +6,11 @@ import { CreateQuestion } from "../types"
 
 
 export default function CreateQuestions() {
-    const [questions, setQuestion] = useAtom(QuestionsState)
+    const [questions, setQuestions] = useAtom(QuestionsState)
+    function addQuestion() {
+        if (questions.length === 25) return
+        setQuestions([...questions, { question: "", hasInput: true, options: ["", ""], deleted: false }])
+    }
     return (
         <div className="w-full flex flex-col pt-[30px] px-3  items-center">
             <Container>
@@ -25,18 +29,25 @@ export default function CreateQuestions() {
                             )
                         })
                     }
-                    <button className="rounded-full bg-[var(--primary-darker)] px-4 py-2 shadow mb-10 self-start flex items-center gap-2">
-                        <svg width="18px" height="18px" viewBox="0 0 24 24" fill="var(--primary-darker)" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
-                            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier">
-                                <path
-                                    fill="white"
-                                    d="M13.5 3C13.5 2.44772 13.0523 2 12.5 2H11.5C10.9477 2 10.5 2.44772 10.5 3V10.5H3C2.44772 10.5 2 10.9477 2 11.5V12.5C2 13.0523 2.44772 13.5 3 13.5H10.5V21C10.5 21.5523 10.9477 22 11.5 22H12.5C13.0523 22 13.5 21.5523 13.5 21V13.5H21C21.5523 13.5 22 13.0523 22 12.5V11.5C22 10.9477 21.5523 10.5 21 10.5H13.5V3Z"
-                                >
-                                </path>
-                            </g>
-                        </svg>
-                        <span className="text-white">Add Question</span>
-                    </button>
+                    {
+                        questions.length < 25 && (
+                            <button
+                                className="rounded-full bg-[var(--primary-darker)] px-4 py-2 shadow mb-10 self-start flex items-center gap-2"
+                                onClick={addQuestion}
+                            >
+                                <svg width="18px" height="18px" viewBox="0 0 24 24" fill="var(--primary-darker)" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
+                                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier">
+                                        <path
+                                            fill="white"
+                                            d="M13.5 3C13.5 2.44772 13.0523 2 12.5 2H11.5C10.9477 2 10.5 2.44772 10.5 3V10.5H3C2.44772 10.5 2 10.9477 2 11.5V12.5C2 13.0523 2.44772 13.5 3 13.5H10.5V21C10.5 21.5523 10.9477 22 11.5 22H12.5C13.0523 22 13.5 21.5523 13.5 21V13.5H21C21.5523 13.5 22 13.0523 22 12.5V11.5C22 10.9477 21.5523 10.5 21 10.5H13.5V3Z"
+                                        >
+                                        </path>
+                                    </g>
+                                </svg>
+                                <span className="text-white">Add Question</span>
+                            </button>
+                        )
+                    }
                 </div>
             </Container >
         </div >
