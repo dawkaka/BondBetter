@@ -24,3 +24,10 @@ export interface Stats {
     responses: number;
     answered: number
 }
+
+export interface CreateQuestion {
+    question: string,
+    deleted: boolean,
+    hasInput: boolean,
+    options: string[]
+}
