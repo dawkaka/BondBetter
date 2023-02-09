@@ -18,3 +18,9 @@ export interface DailyAnswer {
     answer: string,
     day: Date
 }
+
+export interface Stats {
+    currentStreak: number;
+    responses: number;
+    answered: number
+}
