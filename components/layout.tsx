@@ -7,9 +7,9 @@ export default function Layout({ children }: { children: ReactNode }) {
   return (
     <>
       <Header />
-      <Container>
+      <div className="flex flex-col items-center h-full pt-[60px]">
         <main className="w-full flex flex-col items-center h-full">{children}</main>
-      </Container>
+      </div>
     </>
   )
 }
