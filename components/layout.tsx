@@ -8,9 +8,8 @@ export default function Layout({ children }: { children: ReactNode }) {
     <>
       <Header />
       <Container>
-        <main className="w-full flex flex-col items-center">{children}</main>
+        <main className="w-full flex flex-col items-center h-full">{children}</main>
       </Container>
-      <Footer />
     </>
   )
 }
