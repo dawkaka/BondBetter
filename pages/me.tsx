@@ -11,7 +11,6 @@ export default function MePage() {
     return <h1>Login required</h1>
   }
   const { image, name, email } = session.user
-  console.log(data)
   return (
     <Layout>
       <Container>
@@ -29,13 +28,17 @@ export default function MePage() {
             <h3 className="font-extrabold text-2xl text-center">Statistics</h3>
             <div className="flex flex-wrap py-8 gap-16 justify-center">
               {
-                data ? (<>
+                !!data && <>
                   <ProfileStat count={data.currentStreak || 0} label={"Current streak"} bg="bg-amber-500" />
                   <ProfileStat count={data.answered || 0} label={"Q. answered"} bg="bg-purple-500" />
                   <ProfileStat count={data.responses || 0} label={"Q. responses"} bg="bg-green-500" />
-                </>)
-                  :
-                  <h3>Something went wrong</h3>
+                </>
+              }
+              {
+                isLoading && <h3>Loading...</h3>
+              }
+              {
+                (!isLoading && !data) && <h3>Something went wrong</h3>
               }
 
             </div>
