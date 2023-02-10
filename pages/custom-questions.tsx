@@ -10,18 +10,10 @@ import { QuestionsState } from "../jotai"
 import { CreateQuestion } from "../types"
 import { useMemo } from "react"
 import DisplayQuestion from "../components/DisplayQuestion"
+import { isValidQuestion } from "../lib/uitls"
+import { useQuery } from "react-query"
+import axios from "axios"
 
-
-function isValidQuestion(q: CreateQuestion) {
-  if (q.question.length === 0 || q.question.length > 69 || q.deleted) false
-  if (q.options.length < 2 && !q.hasInput) false
-  for (let p of q.options) {
-    if (p.length === 0 || p.length > 30) {
-      return false
-    }
-  }
-  return true
-}
 export default function ServerSidePage({ session }: { session: Session }) {
   const [questions, setQuestions] = useAtom(QuestionsState)
   useMemo(() => {
@@ -30,6 +22,11 @@ export default function ServerSidePage({ session }: { session: Session }) {
     })
     setQuestions(filtered)
   }, [])
+  const { data } = useQuery("custom-questions", () => axios.get("/api/questions").then(res => res.data), { staleTime: Infinity, retry: 3 })
+
+  if (data) {
+    setQuestions(data)
+  }
 
   if (questions.length === 0) {
     return (
@@ -107,7 +104,7 @@ export default function ServerSidePage({ session }: { session: Session }) {
         {
           questions.map((q, indx) => {
             return (
-              <DisplayQuestion {...q} num={indx + 1} />
+              <DisplayQuestion {...q} num={indx + 1} key={indx} />
             )
           })
         }

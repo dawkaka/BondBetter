@@ -1,4 +1,4 @@
-import { DailyAnswer, QandA, Question } from "../types";
+import { CreateQuestion, DailyAnswer, QandA, Question } from "../types";
 
 type QuestionsErrors = string[][]
 
@@ -26,6 +26,16 @@ export function validateQuestions(questions: any[]): QuestionsErrors {
     return []
 }
 
+export function isValidQuestion(q: CreateQuestion) {
+    if (q.question.length === 0 || q.question.length > 69 || q.deleted) false
+    if (q.options.length < 2 && !q.hasInput) false
+    for (let p of q.options) {
+        if (p.length === 0 || p.length > 30) {
+            return false
+        }
+    }
+    return true
+}
 
 export function generateLink(): string {
     const alphabets = "abc8debg7hijkl0mn6GH5IJKLMNo9pq1rstuv2wxy3zABCD4EFOPQRSTUVWSYZ"

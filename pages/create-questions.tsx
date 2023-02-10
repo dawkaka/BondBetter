@@ -4,13 +4,35 @@ import Container from "../components/container"
 import { QuestionsState } from "../jotai"
 import { CreateQuestion } from "../types"
 import Link from "next/link"
+import { useMutation, useQueryClient } from "react-query"
+import axios, { AxiosError, AxiosResponse } from "axios"
+import { isValidQuestion } from "../lib/uitls"
 
 
 export default function CreateQuestions() {
     const [questions, setQuestions] = useAtom(QuestionsState)
+    const [saved, setSaved] = useState(false)
+    const client = useQueryClient()
     function addQuestion() {
         if (questions.length === 25) return
         setQuestions([...questions, { question: "", hasInput: true, options: ["", ""], deleted: false }])
+    }
+
+    const saveMutation = useMutation<AxiosResponse, AxiosError<{ message: string }, any>, CreateQuestion[]>(
+        (data) => axios.put("/api/questions", data).then(res => res.data),
+        {
+            onSuccess: () => {
+                setSaved(true)
+                client.invalidateQueries("custom-questions")
+            },
+            onError: (err) => {
+                alert(err.message)
+            }
+        }
+    )
+    function saveQuestions() {
+        const validQ = questions.filter(q => isValidQuestion(q))
+        saveMutation.mutate(validQ)
     }
     return (
         <div className="w-full flex flex-col px-3  items-center">
@@ -24,14 +46,29 @@ export default function CreateQuestions() {
                                 {' '}  Questions
                             </span>
                         </h3>
-                        <Link href="/custom-questions" >
-                            <button
-                                className="rounded-full bg-purple-50 sm:text-xl py-1 px-3 text-purple-500 shadow"
-                                title="remove question"
-                            >
-                                Preview
-                            </button>
-                        </Link>
+                        {
+                            saved ? (
+                                <Link href="/custom-questions" >
+                                    <button
+                                        className="rounded-full bg-purple-50 sm:text-lg py-1 px-3 text-purple-500 shadow"
+                                        title="remove question"
+                                    >
+                                        Preview
+                                    </button>
+                                </Link>
+                            )
+                                :
+                                (
+                                    <button
+                                        className="rounded-full bg-green-100 sm:text-lg py-1 px-3 text-green-500 shadow"
+                                        title="remove question"
+                                        onClick={saveQuestions}
+                                    >
+                                        Save
+                                    </button>
+                                )
+                        }
+
 
                     </div>
                 </Container>
@@ -41,7 +78,7 @@ export default function CreateQuestions() {
                     {
                         questions.map((q, ind) => {
                             return (
-                                <Question {...q} num={ind + 1} />
+                                <Question {...q} num={ind + 1} key={ind} />
                             )
                         })
                     }
@@ -178,7 +215,7 @@ function Question({ hasInput, question, options, deleted, num }: CreateQuestion 
                                     Cutom answer
                                 </label>
                                 {
-                                    options.map((o, ind) => <Option option={o} onChange={(val: string) => optionChange(ind, val)} remove={() => removeOption(ind)} />)
+                                    options.map((o, ind) => <Option key={ind} option={o} onChange={(val: string) => optionChange(ind, val)} remove={() => removeOption(ind)} />)
                                 }
                                 {
                                     options.length < 4 && (
