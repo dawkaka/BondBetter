@@ -66,7 +66,7 @@ export default function ServerSidePage({ session }: { session: Session }) {
 
   return (
     <Layout>
-      <div className="w-[min(100%,500px)] px-2 py-5 h-full">
+      <div className="w-[min(100%,500px)] px-2 py-5 pb-16 flex flex-col gap-8">
         {
           questions.map((q, indx) => {
             return (
