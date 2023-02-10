@@ -8,11 +8,21 @@ import { authOptions } from "./auth/[...nextauth]"
 export default async function LinkHandler(req: NextApiRequest, res: NextApiResponse) {
     const session = await getServerSession(req, res, authOptions)
     const { method } = req
-    if (!session) {
+    if (!session || !session.user) {
         return res.status(401).json({ message: "Login required" })
     }
 
     switch (method) {
+        case 'GET':
+            try {
+                const user = await prisma.user.findUnique({ where: { email: session.user.email! } })
+                if (!user) {
+                    return res.status(404).json({ message: "user not found" })
+                }
+                return res.json({ linkID: user.currentLinkID, label: user.currentLinkLabel })
+            } catch (error) {
+                return res.status(400).json({ message: "Something went wrong" });
+            }
         case 'PUT':
             try {
                 const user = await prisma.user.findUnique({ where: { email: session.user?.email! } })
@@ -34,11 +44,10 @@ export default async function LinkHandler(req: NextApiRequest, res: NextApiRespo
                 });
                 return res.status(200).json({ message: "New link created successfully" });
             } catch (error: any) {
-                return res.status(400).json({ error: error.message });
+                return res.status(400).json({ message: "Something went wrong" });
             }
 
         case 'DELETE':
-
             try {
                 await prisma.user.update({
                     where: { email: session.user?.email! },
@@ -53,7 +62,7 @@ export default async function LinkHandler(req: NextApiRequest, res: NextApiRespo
 
             break
         default:
-            res.setHeader('Allow', ['GET', 'PUT'])
+            res.setHeader('Allow', ['GET', 'PUT', 'DELETE'])
             res.status(405).end(`Method ${method} Not Allowed`)
     }
 }

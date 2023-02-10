@@ -13,6 +13,7 @@ import DisplayQuestion from "../components/DisplayQuestion"
 import { isValidQuestion } from "../lib/uitls"
 import { useQuery } from "react-query"
 import axios from "axios"
+import LinkModal from "../components/creatLinkModal"
 
 export default function ServerSidePage({ session }: { session: Session }) {
   const [questions, setQuestions] = useAtom(QuestionsState)
@@ -23,7 +24,6 @@ export default function ServerSidePage({ session }: { session: Session }) {
     setQuestions(filtered)
   }, [])
   const { data } = useQuery("custom-questions", () => axios.get("/api/questions").then(res => res.data), { staleTime: Infinity, retry: 3 })
-
   if (data) {
     setQuestions(data)
   }
@@ -63,6 +63,7 @@ export default function ServerSidePage({ session }: { session: Session }) {
   return (
     <Layout>
       <div className="w-[min(100%,500px)] px-2 py-5 pb-16 flex flex-col gap-8">
+        <LinkModal />
         <div className="grid grid-cols-3 gap-5">
           <button
             className="rounded-full mt-3 bg-purple-100 px-4 py-2 self-start flex justify-center items-center gap-2 shadow"
@@ -109,7 +110,6 @@ export default function ServerSidePage({ session }: { session: Session }) {
           })
         }
       </div>
-
     </Layout >
   )
 }

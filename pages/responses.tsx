@@ -96,7 +96,7 @@ function ResponseBody({ linkID }: { linkID: string }) {
       {
         r.map((item, ind) => {
           return (
-            <div className="mb-8">
+            <div className="mb-8" key={ind}>
               <div className="flex gap-3 mb-3">
                 <h3 className="font-bold text-gray-600">Q{ind + 1}.</h3>
                 <p className="text-lg font-medium text-gray-700"> {item.question}</p>

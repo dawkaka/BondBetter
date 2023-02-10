@@ -1,10 +1,10 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useAtom } from 'jotai'
 import Container from "../components/container"
 import { QuestionsState } from "../jotai"
 import { CreateQuestion } from "../types"
 import Link from "next/link"
-import { useMutation, useQueryClient } from "react-query"
+import { useMutation, useQuery, useQueryClient } from "react-query"
 import axios, { AxiosError, AxiosResponse } from "axios"
 import { isValidQuestion } from "../lib/uitls"
 
@@ -17,6 +17,12 @@ export default function CreateQuestions() {
         if (questions.length === 25) return
         setQuestions([...questions, { question: "", hasInput: true, options: ["", ""], deleted: false }])
     }
+    const { data } = useQuery("custom-questions", () => axios.get("/api/questions").then(res => res.data), { staleTime: Infinity, retry: 3 })
+    useEffect(() => {
+        if (data) {
+            setQuestions(data)
+        }
+    }, [data])
 
     const saveMutation = useMutation<AxiosResponse, AxiosError<{ message: string }, any>, CreateQuestion[]>(
         (data) => axios.put("/api/questions", data).then(res => res.data),
@@ -31,8 +37,11 @@ export default function CreateQuestions() {
         }
     )
     function saveQuestions() {
-        const validQ = questions.filter(q => isValidQuestion(q))
-        saveMutation.mutate(validQ)
+        if (confirm("Saving will invalidate previous links, continue?")) {
+            const validQ = questions.filter(q => isValidQuestion(q))
+            saveMutation.mutate(validQ)
+        }
+
     }
     return (
         <div className="w-full flex flex-col px-3  items-center">
