@@ -3,6 +3,7 @@ import "../styles/globals.css"
 import { QueryClientProvider, QueryClient } from 'react-query'
 import type { AppProps } from "next/app"
 import type { Session } from "next-auth"
+import { Provider } from 'jotai'
 const queryClient = new QueryClient();
 
 // Use of the <SessionProvider> is mandatory to allow components that call
@@ -14,7 +15,9 @@ export default function App({
   return (
     <SessionProvider session={session}>
       <QueryClientProvider client={queryClient}>
-        <Component {...pageProps} />
+        <Provider>
+          <Component {...pageProps} />
+        </Provider>
       </QueryClientProvider>
     </SessionProvider>
   )
