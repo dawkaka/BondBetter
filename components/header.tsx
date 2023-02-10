@@ -11,13 +11,13 @@ export default function Header() {
   const loading = status === "loading"
 
   return (
-    <header className="fixed top-0  bg-white w-full flex items-center justify-center px-3 border-b">
+    <header className="fixed top-0 z-10 bg-white w-full flex items-center justify-center px-3 border-b">
       <nav className="w-full flex items-center justify-center">
         <ul className="flex justify-between w-[min(100%,500px)] py-3 items-center">
           <NavLink href="/" label="Home" icon={HomeIcon()} />
           <NavLink href="/client" label="Answers" icon={AnswerSVG()} />
           <NavLink href="/custom-questions" label="Custom Questions" icon={CreateQuestionIcon()} />
-          <NavLink href="/admin" label="Custom Q asnwers" icon={AnswerSVG()} />
+          <NavLink href="/responses" label="Custom Q asnwers" icon={ResponsesIcon()} />
           <NavLink href="/me" label="Profile" icon={ProfileIcon()} />
         </ul>
       </nav>
@@ -36,6 +36,22 @@ function NavLink({ href, label, icon }: { href: string, label: string, icon: JSX
     >
       <Link href={href} title={label} className="w-full h-full p-2">{icon}</Link>
     </li>
+  )
+}
+
+
+function ResponsesIcon() {
+  return (
+
+    <svg id="ey6Fqg2VepZ1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" viewBox="0 0 48 48"
+      shape-rendering="geometricPrecision" text-rendering="geometricPrecision"><g transform="matrix(1 0 0 1.8825 0-21.18)"><g>
+        <polygon points="15.706,15.353 15.706,11.251 0.021,23.45 15.706,35.649 15.706,31.548 5.294,23.45" fill="currentColor" />
+        <path d="M47.979,29.074c0-6.212-5.038-11.25-11.251-11.25h-.001-11.248v-6.573L9.794,23.45L25.48,35.649v-6.575h14.232c3.106,0,5.625,2.52,5.625,5.625c0,.725-.148,1.413-.399,2.05c1.881-2.01,3.041-4.704,3.041-7.675Z"
+          fill="currentColor"
+        />
+      </g>
+      </g>
+    </svg>
   )
 }
 
