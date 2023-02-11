@@ -39,6 +39,7 @@ export default async function AnswerHandler(req: NextApiRequest, res: NextApiRes
                     return res.status(400).json({ message: "Number of questions or number of answer don't match" })
                 }
                 let errs = validateAnswers(questions, answers)
+                console.log(answers)
                 if (errs.length > 0) {
                     return res.status(400).json(errs)
                 }

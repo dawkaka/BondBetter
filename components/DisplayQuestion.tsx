@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { CreateQuestion } from "../types";
 
 
-export default function DisplayQuestion({ question, hasInput, options, num }: Omit<CreateQuestion, "deleted"> & { num: number }) {
+export default function DisplayQuestion({ question, hasInput, options, num, updateAnswer }: Omit<CreateQuestion, "deleted"> & { num: number, updateAnswer?: (answer: string) => void }) {
     const [selected, setSelected] = useState(-1)
     const [answer, setAnswer] = useState("")
     useEffect(() => {
@@ -10,18 +10,23 @@ export default function DisplayQuestion({ question, hasInput, options, num }: Om
             setAnswer(options[selected])
         }
     }, [selected])
+    useEffect(() => {
+        if (answer !== "" && updateAnswer) {
+            updateAnswer(answer)
+        }
+    }, [answer])
     const selectedClass = "bg-green-400 border-none text-white shadow-lg font-bold"
     return (
         <div className="flex flex-col">
             <div className="flex gap-3 text-xl">
-                <h3 className="font-bold">Q{num}.</h3>
-                <p className="">{question}</p>
+                <h3 className="font-medium text-gray-600">Q{num}.</h3>
+                <p className="text-gray-700 font-medium">{question}</p>
             </div>
             <form className="px-5 mt-5 flex flex-col gap-2 w-max-content">
                 {
                     options.map((o, ind) => {
                         return (
-                            <div className={`${selected === ind ? selectedClass : ""} flex items-center border border rounded-full w-fit-content overflow-hidden`} key={o}>
+                            <div className={`${selected === ind ? selectedClass : "text-gray-600"} flex items-center border border rounded-full w-fit-content overflow-hidden`} key={o}>
                                 <input type="radio" name="answer" className="ml-5 h-5 w-5 accent-amber-600"
                                     id={String(ind) + String(num)} checked={selected === ind}
                                     onChange={() => setSelected(ind)}
