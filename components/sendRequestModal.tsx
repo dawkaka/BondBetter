@@ -1,3 +1,5 @@
+import { CheckMark } from "./checkmark";
+
 export default function RequestModal() {
     return (
         <div id="authentication-modal" aria-hidden="true" className="fixed top-0 left-0 right-0 flex flex-col items-center justify-center z-50 bg-[rgba(0,0,0,0.1)] h-full w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 md:h-full">

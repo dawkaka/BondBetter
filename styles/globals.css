@@ -31,3 +31,40 @@ body {
 #__next {
     height: 100%;
 }
+
+.checkanime {
+    -webkit-animation: fric 1s ease-out;
+    animation: fric 1s ease-out;
+}
+
+@keyframes fric {
+    0% {
+        -webkit-transform: scale(1.5);
+        transform: scale(1.5);
+    }
+
+    20% {
+        -webkit-transform: scale(.5);
+        transform: scale(.5);
+    }
+
+    40% {
+        -webkit-transform: scale(1.2);
+        transform: scale(1.2);
+    }
+
+    60% {
+        -webkit-transform: scale(.8);
+        transform: scale(.8);
+    }
+
+    80% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+
+    100% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+}
