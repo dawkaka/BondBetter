@@ -4,17 +4,21 @@ import { useQuery } from 'react-query'
 import axios from 'axios'
 import { Stats } from "../types"
 import RequestModal from "../components/sendRequestModal"
+import { useState } from "react"
 export default function MePage() {
   const { data: session } = useSession()
+  const [open, setOpen] = useState(false)
   const { data, isLoading } = useQuery<Stats>({ queryFn: () => axios.get("/api/hello").then(res => res.data), queryKey: "userProfile", staleTime: Infinity })
   if (!session || !session.user) {
-    signIn("google")
+
     return
   }
   const { image, name, email } = session.user
   return (
     <Layout>
-      <RequestModal />
+      {
+        open ? <RequestModal close={() => setOpen(false)} /> : null
+      }
       <div className="flex flex-col w-[min(100%,700px)] px-3">
         <div className="flex flex-col gap-16 items-center w-full py-16 border-b">
           <div className="flex flex-col sm:flex-row items-center gap-10">
@@ -24,7 +28,10 @@ export default function MePage() {
               <p>{email}</p>
             </div>
           </div>
-          <button className="block bg-green-500 flex items-center gap-4 text-white rounded-full px-4 py-3">
+          <button
+            className="block bg-green-500 flex items-center gap-4 text-white rounded-full px-4 py-3"
+            onClick={() => setOpen(true)}
+          >
             <svg height="22px" width="22px" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" strokeWidth="5" stroke="white" fill="none"><g id="SVGRepo_bgCarrier" stroke-width="0"></g>
               <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><circle cx="29.22" cy="16.28" r="11.14"></circle>
                 <path d="M41.32,35.69c-2.69-1.95-8.34-3.25-12.1-3.25h0A22.55,22.55,0,0,0,6.67,55h29.9"></path><circle cx="45.38" cy="46.92" r="11.94"></circle>
