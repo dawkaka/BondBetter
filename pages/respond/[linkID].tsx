@@ -20,10 +20,10 @@ export default function RespondPage() {
 
     useEffect(() => {
         if (data) {
-            setAnswers(new Array(data.length).fill("-- NO ANSWER ---"))
+            setAnswers(new Array(data.length).fill("-- NO ANSWER --"))
         }
     }, [data])
-    console.log(answers)
+
     const answerMutation = useMutation(
         (answers: string[]) => axios.post(`/api/answer/${query.linkID}`, { answers: answers }),
         {
@@ -51,23 +51,27 @@ export default function RespondPage() {
                                 {' '} Logo
                             </span>
                         </h3>
-                        <button
-                            className="rounded-full bg-green-100 py-1 px-3 text-green-500 shadow"
-                            title="remove question"
-                            onClick={() => answerMutation.mutate(answers)}
-                        >
-                            Done
-                        </button>
+                        {
+                            answerMutation.isLoading ? <Loading /> : (
+                                <button
+                                    className="rounded-full bg-green-100 py-1 px-3 text-green-500 shadow"
+                                    title="remove question"
+                                    onClick={() => answerMutation.mutate(answers)}
+                                >
+                                    Done
+                                </button>
+                            )
+                        }
                     </div>
                 </Container>
             </div>
             <Container>
                 <div className="px-2 py-5 pb-16 self-start flex w-full flex-col gap-8 mt-[68px]">
                     {
-                        isLoading && <Loading />
+                        isLoading ? <Loading /> : null
                     }
                     {
-                        isError && <InvalidLink />
+                        isError ? <InvalidLink /> : null
                     }
                     {
                         data?.map((q, ind) => {
