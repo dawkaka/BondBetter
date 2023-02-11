@@ -1,20 +1,27 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { CreateQuestion } from "../types";
 
 
 export default function DisplayQuestion({ question, hasInput, options, num, updateAnswer }: Omit<CreateQuestion, "deleted"> & { num: number, updateAnswer?: (answer: string) => void }) {
-    const [selected, setSelected] = useState(-1)
-    const [answer, setAnswer] = useState("")
-    useEffect(() => {
-        if (selected >= 0 && selected < options.length) {
-            setAnswer(options[selected])
+    const [answer, setAnswer] = useState("-- NO ANSWER --")
+    const inputRef = useRef<HTMLTextAreaElement>(null)
+
+    function handleAnswer(ind: number | string) {
+        let ans = ""
+        if (typeof ind === "number" && ind >= 0 && ind < options.length) {
+            ans = options[ind]
+            if (inputRef.current) {
+                inputRef.current.value = ""
+            }
         }
-    }, [selected])
-    useEffect(() => {
-        if (answer !== "" && updateAnswer) {
-            updateAnswer(answer)
+        if (typeof ind === "string") {
+            ans = ind
         }
-    }, [answer])
+        if (ans !== "" && updateAnswer) {
+            updateAnswer(ans)
+        }
+        setAnswer(ans)
+    }
     const selectedClass = "bg-green-400 border-none text-white shadow-lg font-bold"
     return (
         <div className="flex flex-col">
@@ -26,10 +33,10 @@ export default function DisplayQuestion({ question, hasInput, options, num, upda
                 {
                     options.map((o, ind) => {
                         return (
-                            <div className={`${selected === ind ? selectedClass : "text-gray-600"} flex items-center border border rounded-full w-fit-content overflow-hidden`} key={o}>
+                            <div className={`${answer === o ? selectedClass : "text-gray-600"} flex items-center border border rounded-full w-fit-content overflow-hidden`} key={o}>
                                 <input type="radio" name="answer" className="ml-5 h-5 w-5 accent-amber-600"
-                                    id={String(ind) + String(num)} checked={selected === ind}
-                                    onChange={() => setSelected(ind)}
+                                    id={String(ind) + String(num)} checked={answer === o}
+                                    onChange={() => handleAnswer(ind)}
                                 />
                                 <label
                                     htmlFor={String(ind) + String(num)}
@@ -45,8 +52,14 @@ export default function DisplayQuestion({ question, hasInput, options, num, upda
                     hasInput && (
                         <textarea
                             placeholder="Type answer"
+                            ref={inputRef}
                             rows={1}
-                            className="block mt-5 bg-transparent p-2  border-b w-full text-gray-900 outline-none focus:border-green-400"
+                            onChange={(e) => handleAnswer(e.target.value)}
+                            className={`${answer === inputRef.current?.value ? "border rounded-full px-5 border-green-400" :
+                                ""}
+                            block mt-5 bg-transparent p-2  border-b w-full 
+                            text-gray-900 outline-none focus:border-green-400`
+                            }
                         >
 
                         </textarea>

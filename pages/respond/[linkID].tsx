@@ -22,7 +22,7 @@ export default function RespondPage() {
             setAnswers(new Array(data.length).fill("-- NO ANSWER ---"))
         }
     }, [data])
-
+    console.log(answers)
     const answerMutation = useMutation(
         (answers: string[]) => axios.post(`/api/answer/${query.linkID}`, { answers: answers }),
         {
