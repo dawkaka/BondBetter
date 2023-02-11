@@ -4,15 +4,17 @@ import { useEffect, useState } from "react";
 import { useMutation, useQuery } from "react-query";
 import Container from "../../components/container";
 import DisplayQuestion from "../../components/DisplayQuestion";
+import { InvalidLink } from "../../components/errors";
 import { CreateQuestion } from "../../types";
 
 export default function RespondPage() {
     const { query } = useRouter()
     const [answers, setAnswers] = useState<string[]>([])
-    const { data } = useQuery<CreateQuestion[]>({
+    const { data, isLoading, isError } = useQuery<CreateQuestion[]>({
         queryFn: () => axios.get(`/api/questions/${query.linkID}`).then(res => res.data),
         queryKey: "responses",
-        enabled: !!query.linkID
+        enabled: !!query.linkID,
+        retry: 3
     })
 
     useEffect(() => {
@@ -59,7 +61,13 @@ export default function RespondPage() {
                 </Container>
             </div>
             <Container>
-                <div className="px-2 py-5 pb-16 self-start flex flex-col gap-8 mt-[68px]">
+                <div className="px-2 py-5 pb-16 self-start flex w-full flex-col gap-8 mt-[68px]">
+                    {
+                        isLoading && <h3>Loading...</h3>
+                    }
+                    {
+                        isError && <InvalidLink />
+                    }
                     {
                         data?.map((q, ind) => {
                             return (
