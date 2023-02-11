@@ -5,6 +5,7 @@ import { useMutation, useQuery } from "react-query";
 import Container from "../../components/container";
 import DisplayQuestion from "../../components/DisplayQuestion";
 import { InvalidLink } from "../../components/errors";
+import { Loading } from "../../components/loading";
 import { CreateQuestion } from "../../types";
 
 export default function RespondPage() {
@@ -63,7 +64,7 @@ export default function RespondPage() {
             <Container>
                 <div className="px-2 py-5 pb-16 self-start flex w-full flex-col gap-8 mt-[68px]">
                     {
-                        isLoading && <h3>Loading...</h3>
+                        isLoading && <Loading />
                     }
                     {
                         isError && <InvalidLink />

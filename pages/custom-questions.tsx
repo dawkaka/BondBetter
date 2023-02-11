@@ -13,6 +13,8 @@ import { isValidQuestion } from "../lib/uitls"
 import { useQuery } from "react-query"
 import axios from "axios"
 import LinkModal from "../components/creatLinkModal"
+import { Loading } from "../components/loading"
+import { InvalidLink } from "../components/errors"
 
 export default function ServerSidePage({ session }: { session: Session }) {
   const [questions, setQuestions] = useAtom(QuestionsState)
@@ -23,7 +25,7 @@ export default function ServerSidePage({ session }: { session: Session }) {
     })
     setQuestions(filtered)
   }, [])
-  const { data } = useQuery("custom-questions", () => axios.get("/api/questions").then(res => res.data), { staleTime: Infinity, retry: 3 })
+  const { data, isLoading, isError } = useQuery("custom-questions", () => axios.get("/api/questions").then(res => res.data), { staleTime: Infinity, retry: 3 })
   if (data) {
     setQuestions(data)
   }
@@ -105,6 +107,12 @@ export default function ServerSidePage({ session }: { session: Session }) {
             <span className="text-red-500 text-sm whitespace-nowrap overflow-hidden">Delete all</span>
           </button>
         </div>
+        {
+          isLoading && <Loading />
+        }
+        {
+          isError && <InvalidLink />
+        }
         {
           questions.map((q, indx) => {
             return (

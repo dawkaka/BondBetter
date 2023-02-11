@@ -2,10 +2,12 @@ import axios from "axios"
 import { useState } from "react"
 import { useQuery } from "react-query"
 import Container from "../components/container"
+import { InvalidLink } from "../components/errors"
 import Layout from "../components/layout"
+import { Loading } from "../components/loading"
 
 export default function ResponsesPage() {
-  const { data } = useQuery<{ label: string, linkID: string }[]>({
+  const { data, isError, isLoading } = useQuery<{ label: string, linkID: string }[]>({
     queryFn: () => axios.get("/api/user/links").then(res => res.data),
     queryKey: "responses"
   })
@@ -26,6 +28,12 @@ export default function ResponsesPage() {
       </div>
       <div className="w-[min(100%,700px)] px-2 py-5 pb-16 flex flex-col gap-8">
         {
+          isLoading && <Loading />
+        }
+        {
+          isError && <InvalidLink />
+        }
+        {
           data?.map(item => <Response {...item} key={item.linkID} />)
         }
       </div>
@@ -37,7 +45,7 @@ function Response({ label, linkID }: { label: string, linkID: string }) {
   const [open, setOpen] = useState(false)
   const cls = open ? "text-amber-500 bg-amber-100" : "text-green-500 bg-green-100"
 
-  const { data } = useQuery<{ question: string, answer: string }[]>({
+  const { data, isLoading, isError } = useQuery<{ question: string, answer: string }[]>({
     queryFn: () => axios.get(`/api/answer/${linkID}`).then(res => res.data),
     queryKey: `response-${linkID}`,
     staleTime: Infinity
@@ -61,6 +69,12 @@ function Response({ label, linkID }: { label: string, linkID: string }) {
       {
         open && (
           <div className="px-2 py-3 sm:px-5">
+            {
+              isLoading && <Loading />
+            }
+            {
+              isError && <InvalidLink />
+            }
             {
               data?.map((item, ind) => <ResponseBody {...item} ind={ind} key={ind} />)
             }
