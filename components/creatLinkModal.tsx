@@ -1,11 +1,22 @@
-import axios from "axios"
-import { useEffect, useState } from "react"
-import { useQuery } from "react-query"
+import axios, { AxiosError, AxiosResponse } from "axios"
+import { useEffect, useRef, useState } from "react"
+import { useMutation, useQuery, useQueryClient } from "react-query"
 
-export default function LinkModal() {
+export default function LinkModal({ close }: { close: () => void }) {
     const [linkID, setLinkID] = useState(null)
     const [label, setLabel] = useState(null)
     const { data } = useQuery("link", () => axios.get("/api/link").then(res => res.data), { staleTime: Infinity, retry: 3 })
+    const inpRef = useRef<HTMLInputElement>(null)
+    const queryClient = useQueryClient()
+    const linkMutation = useMutation<AxiosResponse, AxiosError<any, any>, string>(
+        (label) => axios.put("/api/link", { label }),
+        {
+            onSuccess: () => {
+                queryClient.invalidateQueries("link")
+            }
+        }
+    )
+
 
     useEffect(() => {
         if (data) {
@@ -13,6 +24,8 @@ export default function LinkModal() {
             setLabel(data.label)
         }
     }, [data])
+
+    console.log(linkMutation)
 
     return (
         <div className="fixed top-0 bottom-0 left-0 right-0 z-20 min-h-screen bg-[rgba(0,0,0,0.3)] flex items-center justify-center">
@@ -25,12 +38,13 @@ export default function LinkModal() {
                     </div>
 
                     <div
+                        onClick={close}
                         className="bg-gray-300 hover:bg-gray-500 cursor-pointer hover:text-gray-300 font-sans text-gray-500 w-8 h-8 flex items-center justify-center rounded-full"
                     >
                         x
                     </div>
                 </div>
-                {linkID && <SocialShare />}
+                {(linkID && label) && <SocialShare linkID={linkID} label={label} />}
                 <div className="flex gap-5 items-center w-full justify-center">
                     {
                         linkID && (
@@ -51,13 +65,17 @@ export default function LinkModal() {
                 {
                     !linkID && (
                         <div className="mt-8 flex flex-col items-center justify-center">
+                            <label htmlFor="link" className="self-start  text-gray-700">Link label <small>eg. name of the person</small></label>
                             <input type="text" placeholder="enter link label"
-                                className="w-full text-sm border flex-stretch rounded-lg py-2 px-3 outline-none focus:border-[var(--primary)]"
+                                id="link"
+                                className="w-full text-sm border flex-stretch rounded-lg py-2 px-3 outline-none focus:border-purple-500"
+                                ref={inpRef}
                             />
                             <button
-                                className="rounded-full mt-3 bg-purple-100 px-4 py-2 flex justify-center items-center gap-2 shadow"
+                                className="rounded-full mt-3 bg-purple-500 px-4 py-2 flex justify-center items-center gap-2 shadow"
+                                onClick={() => linkMutation.mutate(inpRef.current!.value)}
                             >
-                                <span className="text-purple-500 text-sm whitespace-nowrap overflow-hidden">Get new link</span>
+                                <span className="text-white text-sm whitespace-nowrap overflow-hidden">Create link</span>
                             </button>
                         </div>
 
@@ -70,10 +88,18 @@ export default function LinkModal() {
 }
 
 
-function SocialShare() {
+function SocialShare({ linkID, label }: { linkID: string, label: string }) {
+    const linkURL = `http://localhost:3000/respond/${linkID}`
+    async function copyLink() {
+        try {
+            await navigator.clipboard.writeText(linkURL)
+        } catch (err) {
+            console.error('Failed to copy link: ', err)
+        }
+    }
     return (
         <div className="my-4">
-            <p className="text-sm">Share this link via</p>
+            <p className="text-sm">Share <strong>{label}</strong> link via</p>
 
             <div className="flex justify-around my-4">
                 <div
@@ -173,9 +199,9 @@ function SocialShare() {
                     ></path>
                 </svg>
 
-                <input className="w-full outline-none bg-transparent" type="text" placeholder="link" value="https://boxicons.com/?query=link" />
+                <input className="w-full outline-none bg-transparent text-sm" readOnly type="text" placeholder="link" value={linkURL} />
 
-                <button className="bg-purple-500 text-white rounded text-sm py-2 px-5 mr-2 hover:bg-purple-600">
+                <button className="bg-purple-500 text-white rounded text-sm py-2 px-5 mr-2 hover:bg-purple-600" onClick={copyLink}>
                     Copy
                 </button>
             </div>

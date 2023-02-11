@@ -8,7 +8,7 @@ import type { Session } from "next-auth"
 import Link from "next/link"
 import { QuestionsState } from "../jotai"
 import { CreateQuestion } from "../types"
-import { useMemo } from "react"
+import { useMemo, useState } from "react"
 import DisplayQuestion from "../components/DisplayQuestion"
 import { isValidQuestion } from "../lib/uitls"
 import { useQuery } from "react-query"
@@ -17,6 +17,7 @@ import LinkModal from "../components/creatLinkModal"
 
 export default function ServerSidePage({ session }: { session: Session }) {
   const [questions, setQuestions] = useAtom(QuestionsState)
+  const [openModal, setOpenModal] = useState(false)
   useMemo(() => {
     let filtered = questions.filter(q => {
       return isValidQuestion(q)
@@ -63,9 +64,12 @@ export default function ServerSidePage({ session }: { session: Session }) {
   return (
     <Layout>
       <div className="w-[min(100%,500px)] px-2 py-5 pb-16 flex flex-col gap-8">
-        <LinkModal />
+        {
+          openModal && <LinkModal close={() => setOpenModal(false)} />
+        }
         <div className="grid grid-cols-3 gap-5">
           <button
+            onClick={() => setOpenModal(true)}
             className="rounded-full mt-3 bg-purple-100 px-4 py-2 self-start flex justify-center items-center gap-2 shadow"
           >
             <svg width="18px" height="18px" viewBox="0 0 24 24" className="shrink-0 fill-purple-500" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g>
