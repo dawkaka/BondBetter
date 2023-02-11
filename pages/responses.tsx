@@ -1,8 +1,14 @@
+import axios from "axios"
 import { useState } from "react"
+import { useQuery } from "react-query"
 import Container from "../components/container"
 import Layout from "../components/layout"
 
-export default function Page() {
+export default function ResponsesPage() {
+  const { data } = useQuery<{ label: string, linkID: string }[]>({
+    queryFn: () => axios.get("/api/user/links").then(res => res.data),
+    queryKey: "responses"
+  })
   return (
     <Layout>
       <div className="bg-white w-full flex flex-col items-center py-3 px-2">
@@ -19,21 +25,24 @@ export default function Page() {
         </Container>
       </div>
       <div className="w-[min(100%,700px)] px-2 py-5 pb-16 flex flex-col gap-8">
-        <Response label="Salima" linkID="Xanwoeja" />
-        <Response label="Salima" linkID="Xanwoeja" />
-        <Response label="Salima" linkID="Xanwoeja" />
-        <Response label="Salima" linkID="Xanwoeja" />
-        <Response label="Salima" linkID="Xanwoeja" />
+        {
+          data?.map(item => <Response {...item} key={item.linkID} />)
+        }
       </div>
-
     </Layout>
   )
 }
 
-
 function Response({ label, linkID }: { label: string, linkID: string }) {
   const [open, setOpen] = useState(false)
   const cls = open ? "text-amber-500 bg-amber-100" : "text-green-500 bg-green-100"
+
+  const { data } = useQuery<{ question: string, answer: string }[]>({
+    queryFn: () => axios.get(`/api/answer/${linkID}`).then(res => res.data),
+    queryKey: `response-${linkID}`,
+    staleTime: Infinity
+  })
+
   return (
     <div className="w-full border-b px-5 py-3 rounded-lg">
       <button
@@ -51,7 +60,11 @@ function Response({ label, linkID }: { label: string, linkID: string }) {
       </button>
       {
         open && (
-          <ResponseBody linkID={linkID} />
+          <div className="px-2 py-3 sm:px-5">
+            {
+              data?.map((item, ind) => <ResponseBody {...item} ind={ind} key={ind} />)
+            }
+          </div>
         )
       }
     </div>
@@ -59,53 +72,15 @@ function Response({ label, linkID }: { label: string, linkID: string }) {
   )
 }
 
-function ResponseBody({ linkID }: { linkID: string }) {
-  const r = [
-    {
-      question: "What is the name of my dog hat is the name of my dog hat is the name of my dog hat is the name of my dog hat is the name of my dog ?",
-      response: "Burna Boy"
-    },
-    {
-      question: "What is the name of my dog",
-      response: "Burna Boy"
-    },
-    {
-      question: "What is the name of my dog hat is the name of my dog hat is the name of my dog hat is the name of my dog hat is the name of my dog ?",
-      response: "Burna Boy"
-    },
+function ResponseBody({ question, answer, ind }: { question: string, answer: string, ind: number }) {
 
-    {
-      question: "What is the name of my dog",
-      response: "Burna Boy"
-    },
-    {
-      question: "What is the name of my dog hat is the name of my dog hat is the name of my dog hat is the name of my dog hat is the name of my dog ?",
-      response: "Burna Boy"
-    },
-    {
-      question: "What is the name of my dog",
-      response: "Burna Boy"
-    },
-    {
-      question: "What is the name of my dog",
-      response: "Burna Boy"
-    },
-  ]
   return (
-    <div className="px-2 py-3 sm:px-5">
-      {
-        r.map((item, ind) => {
-          return (
-            <div className="mb-8" key={ind}>
-              <div className="flex gap-3 mb-3">
-                <h3 className="font-bold text-gray-600">Q{ind + 1}.</h3>
-                <p className="text-lg font-medium text-gray-700"> {item.question}</p>
-              </div>
-              <p className="border-l border-purple-500 border-l-4 px-2 ml-10 text-gray-500">{item.response}</p>
-            </div>
-          )
-        })
-      }
+    <div className="mb-8">
+      <div className="flex gap-3 mb-3 items-start">
+        <h3 className="text-lg font-medium text-gray-600">Q{ind + 1}.</h3>
+        <p className="text-lg font-medium text-gray-600"> {question}</p>
+      </div>
+      <p className="border-l border-purple-500 border-l-4 px-2 ml-10 text-gray-500">{answer}</p>
     </div>
   )
 }

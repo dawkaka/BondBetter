@@ -17,7 +17,7 @@ export default async function AnswerHandler(req: NextApiRequest, res: NextApiRes
             if (!user) {
                 return res.status(404).json({ message: "User not found" })
             }
-            const QandA = await prisma.customAnswer.findMany({ where: { questionLinkID: linkID, questionBy: user.id } })
+            const QandA = await prisma.customAnswer.findMany({ where: { questionLinkID: linkID, questionBy: user.id }, select: { question: true, answer: true } })
             res.status(200).json(QandA)
             break
 

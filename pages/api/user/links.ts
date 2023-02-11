@@ -7,13 +7,16 @@ import { authOptions } from "../auth/[...nextauth]";
 export default async function UserLinkHandler(req: NextApiRequest, res: NextApiResponse) {
     const { method } = req
     const session = await getServerSession(req, res, authOptions)
-    if (!session) {
+    if (!session || !session.user) {
         return res.status(401).json({ message: "Login required" })
     }
     switch (method) {
         case "GET":
-            const user = await prisma.user.findUnique({ where: { email: session.user?.email! } })
-            res.json(user?.questionsLinks)
+            const user = await prisma.user.findUnique({ where: { email: session.user.email! } })
+            if (!user) {
+                return res.status(404).json({ message: "User not found" })
+            }
+            res.json(user.questionsLinks)
             break
         default:
             res.setHeader('Allow', ['GET', 'PUT'])

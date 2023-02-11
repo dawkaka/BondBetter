@@ -8,6 +8,7 @@ export default function LinkModal({ close }: { close: () => void }) {
     const { data } = useQuery("link", () => axios.get("/api/link").then(res => res.data), { staleTime: Infinity, retry: 3 })
     const inpRef = useRef<HTMLInputElement>(null)
     const queryClient = useQueryClient()
+
     const linkMutation = useMutation<AxiosResponse, AxiosError<any, any>, string>(
         (label) => axios.put("/api/link", { label }),
         {
@@ -17,6 +18,21 @@ export default function LinkModal({ close }: { close: () => void }) {
         }
     )
 
+    const deleteLinkMutation = useMutation<AxiosResponse, AxiosError<any, any>>(
+        () => axios.delete("/api/link"),
+        {
+            onSuccess: () => {
+                queryClient.invalidateQueries("link")
+                setLinkID(null)
+                setLabel(null)
+            },
+            onError: (err) => {
+                alert(err.message)
+            }
+        }
+    )
+
+
 
     useEffect(() => {
         if (data) {
@@ -25,7 +41,6 @@ export default function LinkModal({ close }: { close: () => void }) {
         }
     }, [data])
 
-    console.log(linkMutation)
 
     return (
         <div className="fixed top-0 bottom-0 left-0 right-0 z-20 min-h-screen bg-[rgba(0,0,0,0.3)] flex items-center justify-center">
@@ -50,6 +65,7 @@ export default function LinkModal({ close }: { close: () => void }) {
                         linkID && (
                             <button
                                 className="rounded-full mt-3 bg-red-100 px-4 py-2 flex justify-center items-center gap-2 shadow"
+                                onClick={() => deleteLinkMutation.mutate()}
                             >
                                 <svg width="18px" height="18px" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" className="shrink-0 fill-red-500"><g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                                     <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier">
