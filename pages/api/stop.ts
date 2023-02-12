@@ -21,10 +21,10 @@ export default async function stopHandler(req: NextApiRequest, res: NextApiRespo
                     return res.status(401).json({ message: "Single already" })
                 }
                 const couple = await prisma.$transaction([
-                    prisma.user.update({ where: { email: user.email }, data: { partnerID: null } }),
-                    prisma.user.update({ where: { id: user.partnerID }, data: { partnerID: null } }),
+                    prisma.user.update({ where: { email: user.email }, data: { partnerID: null, coupleID: null } }),
+                    prisma.user.update({ where: { id: user.partnerID }, data: { partnerID: null, coupleID: null } }),
                 ])
-                res.json({ couple })
+                res.json({ message: "Stopped successfully" })
             } catch (error) {
                 res.status(500).json({ message: "Something went wrong" })
             }

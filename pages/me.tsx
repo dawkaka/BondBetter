@@ -4,7 +4,7 @@ import { useMutation, useQuery } from 'react-query'
 import axios, { AxiosError, AxiosResponse } from 'axios'
 import { Partner, Stats } from "../types"
 import RequestModal from "../components/sendRequestModal"
-import { use, useState } from "react"
+import { useState } from "react"
 import { Loading } from "../components/loading"
 import { Error } from "../components/errors"
 import { CheckMark } from "../components/checkmark"
@@ -16,7 +16,7 @@ export default function MePage() {
     signIn("google")
     return
   }
-
+  console.log(data)
   return (
     <Layout>
       {
@@ -33,10 +33,10 @@ export default function MePage() {
           </div>
 
           {
-            data?.sendRequest ? <PartnerSent {...data.partner!} /> : null
+            data?.sendRequest && !data.hasPartner ? <PartnerSent {...data.partner!} /> : null
           }
           {
-            data?.recievedRequest ? <PartnerRequest {...data.partner!} /> : null
+            data?.recievedRequest && !data.hasPartner ? <PartnerRequest {...data.partner!} /> : null
           }
           {
             data?.hasPartner ? <PartnerBox {...data.partner!} /> : null
@@ -87,7 +87,7 @@ export default function MePage() {
 
 function PartnerRequest(partner: Partner) {
   const accept = useMutation<any, AxiosError<any, any>>(
-    () => axios.put(`/api/user/requet`).then(res => res.data),
+    () => axios.put(`/api/user/request`).then(res => res.data),
   )
 
   const reject = useMutation<any, AxiosError<any, any>>(
