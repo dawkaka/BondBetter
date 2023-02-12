@@ -11,10 +11,10 @@ import { useMemo, useState } from "react"
 import DisplayQuestion from "../components/DisplayQuestion"
 import { isValidQuestion } from "../lib/uitls"
 import { useQuery } from "react-query"
-import axios from "axios"
+import axios, { AxiosError } from "axios"
 import LinkModal from "../components/creatLinkModal"
 import { Loading } from "../components/loading"
-import { InvalidLink } from "../components/errors"
+import { Error } from "../components/errors"
 
 export default function ServerSidePage({ session }: { session: Session }) {
   const [questions, setQuestions] = useAtom(QuestionsState)
@@ -25,7 +25,7 @@ export default function ServerSidePage({ session }: { session: Session }) {
     })
     setQuestions(filtered)
   }, [])
-  const { data, isLoading, isError } = useQuery("custom-questions", () => axios.get("/api/questions").then(res => res.data), { staleTime: Infinity, retry: 3 })
+  const { data, isLoading, isError, error } = useQuery<any, AxiosError<any, any>>("custom-questions", () => axios.get("/api/questions").then(res => res.data), { staleTime: Infinity, retry: 3 })
   if (data) {
     setQuestions(data)
   }
@@ -111,7 +111,7 @@ export default function ServerSidePage({ session }: { session: Session }) {
           isLoading && <Loading />
         }
         {
-          isError && <InvalidLink />
+          isError && <Error message={error.response?.data.message || "Something went wrong"} />
         }
         {
           questions.map((q, indx) => {

@@ -1,17 +1,17 @@
 import { signIn, useSession } from "next-auth/react"
 import Layout from "../components/layout"
 import { useMutation, useQuery } from 'react-query'
-import axios from 'axios'
+import axios, { AxiosError, AxiosResponse } from 'axios'
 import { Partner, Stats } from "../types"
 import RequestModal from "../components/sendRequestModal"
 import { use, useState } from "react"
 import { Loading } from "../components/loading"
-import { InvalidLink } from "../components/errors"
+import { Error } from "../components/errors"
 import { CheckMark } from "../components/checkmark"
 
 export default function MePage() {
   const [open, setOpen] = useState(false)
-  const { data, isLoading, isError } = useQuery<Stats>({ queryFn: () => axios.get("/api/hello").then(res => res.data), queryKey: "userProfile", staleTime: Infinity })
+  const { data, isLoading, isError, error } = useQuery<Stats, AxiosError<any, any>>({ queryFn: () => axios.get("/api/hello").then(res => res.data), queryKey: "userProfile", staleTime: Infinity })
   if (!data && !isLoading) {
     signIn("google")
     return
@@ -75,7 +75,7 @@ export default function MePage() {
               isLoading && <Loading />
             }
             {
-              isError && <InvalidLink />
+              isError && <Error message={error.response?.data.message} />
             }
 
           </div>
@@ -86,32 +86,24 @@ export default function MePage() {
 }
 
 function PartnerRequest(partner: Partner) {
-  const [action, setAction] = useState<"Accepted" | "Rejected" | undefined>()
-  const accept = useMutation(
-    () => axios.put(`/api/user/request`),
-    {
-      onSuccess: () => {
-        setAction("Accepted")
-      }
-    }
+  const accept = useMutation<any, AxiosError<any, any>>(
+    () => axios.put(`/api/user/requet`).then(res => res.data),
   )
 
-  const reject = useMutation(
-    () => axios.delete(`/api/user/request`),
-    {
-      onSuccess: () => {
-        setAction("Rejected")
-      }
-    }
+  const reject = useMutation<any, AxiosError<any, any>>(
+    () => axios.delete(`/api/user/request`).then(res => res.data),
   )
-  if (action === "Accepted") {
+  if (reject.isSuccess) {
     return (
-      <CheckMark size={30} />
+      <CheckMark size={30} message={reject.data.message} />
     )
   }
-  if (action === "Rejected") {
-    return <InvalidLink />
+  if (accept.isSuccess) {
+    return (
+      <CheckMark size={30} message={accept.data.message} />
+    )
   }
+
   return (
     <div className="w-[min(100%,400px)] flex flex-col items-center">
       <p className="text-sm text-center  text-gray-500 mb-4">You've received a request from:</p>
@@ -124,6 +116,9 @@ function PartnerRequest(partner: Partner) {
           </div>
         </div>
       </div>
+      {
+        reject.isError || accept.isError ? <Error message={reject.error?.response?.data.message || accept.error?.response?.data.message || "Something went wrong"} /> : null
+      }
       <div className="flex gap-4">
         <button
           onClick={() => reject.mutate()}
@@ -144,20 +139,15 @@ function PartnerRequest(partner: Partner) {
 
 
 function PartnerSent(partner: Partner) {
-  const [action, setAction] = useState(false)
-  const reject = useMutation(
-    () => axios.delete(`/api/user/request`),
-    {
-      onSuccess: () => {
-        setAction(true)
-      }
-    }
+  const reject = useMutation<any, AxiosError<any, any>>(
+    () => axios.delete(`/api/user/request`).then(res => res.data),
   )
-  if (action) {
+  if (reject.isSuccess) {
     return (
-      <CheckMark size={30} />
+      <CheckMark size={30} message={reject.data.message} />
     )
   }
+
 
   return (
     <div className="w-[min(100%,400px)] flex flex-col items-center">
@@ -171,6 +161,9 @@ function PartnerSent(partner: Partner) {
           </div>
         </div>
       </div>
+      {
+        reject.isError ? <Error message={reject.error?.response?.data.message || "Something went wrong"} /> : null
+      }
       <div className="flex gap-4">
         <button
           onClick={() => reject.mutate()}

@@ -1,14 +1,14 @@
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { useState } from "react";
 import { useMutation } from "react-query";
 import { CheckMark } from "./checkmark";
-import { InvalidLink } from "./errors";
+import { Error } from "./errors";
 import { Loading } from "./loading";
 
 export default function RequestModal({ close }: { close: () => void }) {
     const [email, setEmail] = useState("")
-    const requestMutation = useMutation(
-        () => axios.post(`/api/user/send_request/${email}`)
+    const requestMutation = useMutation<any, AxiosError<any, any>>(
+        () => axios.post(`/api/user/send_request/${email}`).then(res => res.data)
     )
     return (
         <div id="authentication-modal"
@@ -30,7 +30,7 @@ export default function RequestModal({ close }: { close: () => void }) {
                         <p className="tex-sm text-gray-600">Enter your partner's email and click send, once they accept, we'll begin sending you daily questions to help you know each other more</p>
                         <div className="space-y-6 mt-4">
                             {
-                                requestMutation.isError && <InvalidLink />
+                                requestMutation.isError && <Error message={requestMutation.error?.response?.data.message || "Something went wrong"} />
                             }
                             <div>
                                 <label htmlFor="p-email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your partner's email</label>
@@ -49,7 +49,7 @@ export default function RequestModal({ close }: { close: () => void }) {
                                     </button>
                                 )
                                 :
-                                <CheckMark size={50} />
+                                <CheckMark size={50} message={requestMutation.data.message} />
                             }
                         </div>
                     </div>

@@ -1,8 +1,8 @@
-import axios from "axios"
+import axios, { AxiosError } from "axios"
 import { useState } from "react"
 import { useQuery } from "react-query"
 import Container from "../components/container"
-import { InvalidLink } from "../components/errors"
+import { Error, InvalidLink } from "../components/errors"
 import Layout from "../components/layout"
 import { Loading } from "../components/loading"
 
@@ -45,7 +45,7 @@ function Response({ label, linkID }: { label: string, linkID: string }) {
   const [open, setOpen] = useState(false)
   const cls = open ? "text-amber-500 bg-amber-100" : "text-green-500 bg-green-100"
 
-  const { data, isLoading, isError } = useQuery<{ question: string, answer: string }[]>({
+  const { data, isLoading, isError, error } = useQuery<{ question: string, answer: string }[], AxiosError<any, any>>({
     queryFn: () => axios.get(`/api/answer/${linkID}`).then(res => res.data),
     queryKey: `response-${linkID}`,
     staleTime: Infinity
@@ -73,7 +73,7 @@ function Response({ label, linkID }: { label: string, linkID: string }) {
               isLoading && <Loading />
             }
             {
-              isError && <InvalidLink />
+              isError && <Error message={error.response?.data.message} />
             }
             {
               data?.map((item, ind) => <ResponseBody {...item} ind={ind} key={ind} />)

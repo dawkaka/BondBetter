@@ -7,6 +7,8 @@ import Link from "next/link"
 import { useMutation, useQuery, useQueryClient } from "react-query"
 import axios, { AxiosError, AxiosResponse } from "axios"
 import { isValidQuestion } from "../lib/uitls"
+import { CheckMark } from "../components/checkmark"
+import { Error } from "../components/errors"
 
 
 export default function CreateQuestions() {
@@ -24,16 +26,13 @@ export default function CreateQuestions() {
         }
     }, [data])
 
-    const saveMutation = useMutation<AxiosResponse, AxiosError<{ message: string }, any>, CreateQuestion[]>(
+    const saveMutation = useMutation<{ message: string }, AxiosError<{ message: string }, any>, CreateQuestion[]>(
         (data) => axios.put("/api/questions", data).then(res => res.data),
         {
             onSuccess: () => {
                 setSaved(true)
                 client.invalidateQueries("custom-questions")
             },
-            onError: (err) => {
-                alert(err.message)
-            }
         }
     )
     function saveQuestions() {
@@ -84,6 +83,12 @@ export default function CreateQuestions() {
             </div>
             <Container>
                 <div className="w-full mt-[80px] flex flex-col gap-10">
+                    {
+                        saveMutation.isSuccess && <CheckMark size={30} message={saveMutation.data.message} />
+                    }
+                    {
+                        saveMutation.isError && <Error message={saveMutation.error?.response?.data.message || "Something went wrong"} />
+                    }
                     {
                         questions.map((q, ind) => {
                             return (

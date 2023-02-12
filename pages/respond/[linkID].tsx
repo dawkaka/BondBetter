@@ -1,17 +1,18 @@
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { useMutation, useQuery } from "react-query";
+import { CheckMark } from "../../components/checkmark";
 import Container from "../../components/container";
 import DisplayQuestion from "../../components/DisplayQuestion";
-import { InvalidLink } from "../../components/errors";
+import { Error } from "../../components/errors";
 import { Loading } from "../../components/loading";
 import { CreateQuestion } from "../../types";
 
 export default function RespondPage() {
     const { query } = useRouter()
     const [answers, setAnswers] = useState<string[]>([])
-    const { data, isLoading, isError } = useQuery<CreateQuestion[]>({
+    const { data, isLoading, isError, error } = useQuery<CreateQuestion[], AxiosError<any, any>>({
         queryFn: () => axios.get(`/api/questions/${query.linkID}`).then(res => res.data),
         queryKey: "responses",
         enabled: !!query.linkID,
@@ -24,16 +25,8 @@ export default function RespondPage() {
         }
     }, [data])
 
-    const answerMutation = useMutation(
-        (answers: string[]) => axios.post(`/api/answer/${query.linkID}`, { answers: answers }),
-        {
-            onSuccess: () => {
-                console.log("success")
-            },
-            onError: (err) => {
-                console.log(err)
-            }
-        }
+    const answerMutation = useMutation<any, AxiosError<any, any>, string[]>(
+        (answers) => axios.post(`/api/answer/${query.linkID}`, { answers: answers }).then(res => res.data)
     )
 
     function answerChange(val: string, ind: number) {
@@ -68,10 +61,16 @@ export default function RespondPage() {
             <Container>
                 <div className="px-2 py-5 pb-16 self-start flex w-full flex-col gap-8 mt-[68px]">
                     {
+                        answerMutation.isSuccess && <CheckMark size={30} message={answerMutation.data.message} />
+                    }
+                    {
+                        answerMutation.isError && <Error message={answerMutation.error?.response?.data.message || "Something went wrong"} />
+                    }
+                    {
                         isLoading ? <Loading /> : null
                     }
                     {
-                        isError ? <InvalidLink /> : null
+                        isError ? <Error message={error.response?.data.message || "Something went wrong"} /> : null
                     }
                     {
                         data?.map((q, ind) => {
