@@ -19,15 +19,24 @@ export interface DailyAnswer {
     day: Date
 }
 
+export interface Partner { name: string, email: string, image: string }
 export interface Stats {
     currentStreak: number;
     responses: number;
-    answered: number
+    answered: number;
+    partner: Partner | null,
+    sendRequest: string,
+    recievedRequest: string,
+    name: string,
+    image: string,
+    email: string,
+    hasPartner: boolean
 }
 
 export interface CreateQuestion {
     question: string,
     deleted: boolean,
     hasInput: boolean,
-    options: string[]
+    options: string[],
 }
+
