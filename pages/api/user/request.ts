@@ -12,6 +12,7 @@ export default async function requestHandler(req: NextApiRequest, res: NextApiRe
     if (!session || !session.user) {
         return res.status(401).json({ message: "Login required" })
     }
+    console.log(method)
     switch (method) {
         case "GET":
             try {

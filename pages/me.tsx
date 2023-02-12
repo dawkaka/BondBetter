@@ -1,22 +1,21 @@
 import { signIn, useSession } from "next-auth/react"
 import Layout from "../components/layout"
-import { useQuery } from 'react-query'
+import { useMutation, useQuery } from 'react-query'
 import axios from 'axios'
 import { Partner, Stats } from "../types"
 import RequestModal from "../components/sendRequestModal"
-import { useState } from "react"
+import { use, useState } from "react"
 import { Loading } from "../components/loading"
 import { InvalidLink } from "../components/errors"
+import { CheckMark } from "../components/checkmark"
 
 export default function MePage() {
-  const { data: session, status } = useSession()
   const [open, setOpen] = useState(false)
   const { data, isLoading, isError } = useQuery<Stats>({ queryFn: () => axios.get("/api/hello").then(res => res.data), queryKey: "userProfile", staleTime: Infinity })
   if (!data && !isLoading) {
     signIn("google")
     return
   }
-  console.log(data)
 
   return (
     <Layout>
@@ -87,6 +86,32 @@ export default function MePage() {
 }
 
 function PartnerRequest(partner: Partner) {
+  const [action, setAction] = useState<"Accepted" | "Rejected" | undefined>()
+  const accept = useMutation(
+    () => axios.put(`/api/user/request`),
+    {
+      onSuccess: () => {
+        setAction("Accepted")
+      }
+    }
+  )
+
+  const reject = useMutation(
+    () => axios.delete(`/api/user/request`),
+    {
+      onSuccess: () => {
+        setAction("Rejected")
+      }
+    }
+  )
+  if (action === "Accepted") {
+    return (
+      <CheckMark size={30} />
+    )
+  }
+  if (action === "Rejected") {
+    return <InvalidLink />
+  }
   return (
     <div className="w-[min(100%,400px)] flex flex-col items-center">
       <p className="text-sm text-center  text-gray-500 mb-4">You've received a request from:</p>
@@ -101,11 +126,13 @@ function PartnerRequest(partner: Partner) {
       </div>
       <div className="flex gap-4">
         <button
+          onClick={() => reject.mutate()}
           className="block bg-red-50 flex items-center gap-4 text-red-700 rounded-full px-4 py-1 shadow"
         >
           Reject
         </button>
         <button
+          onClick={() => accept.mutate()}
           className="block bg-green-500 flex items-center gap-4 text-white rounded-full px-4 py-1 shadow"
         >
           Accept
@@ -117,6 +144,21 @@ function PartnerRequest(partner: Partner) {
 
 
 function PartnerSent(partner: Partner) {
+  const [action, setAction] = useState(false)
+  const reject = useMutation(
+    () => axios.delete(`/api/user/request`),
+    {
+      onSuccess: () => {
+        setAction(true)
+      }
+    }
+  )
+  if (action) {
+    return (
+      <CheckMark size={30} />
+    )
+  }
+
   return (
     <div className="w-[min(100%,400px)] flex flex-col items-center">
       <p className="text-sm text-center  text-gray-500 mb-4">You send a request to:</p>
@@ -131,6 +173,7 @@ function PartnerSent(partner: Partner) {
       </div>
       <div className="flex gap-4">
         <button
+          onClick={() => reject.mutate()}
           className="block bg-purple-500 flex items-center gap-4 text-white rounded-full px-4 py-1"
         >
           Cancel request
