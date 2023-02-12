@@ -8,6 +8,7 @@ import { useState } from "react"
 import { Loading } from "../components/loading"
 import { Error } from "../components/errors"
 import { CheckMark } from "../components/checkmark"
+import ConfirmDangerAction from "../components/dConfirm"
 
 export default function MePage() {
   const [open, setOpen] = useState(false)
@@ -177,10 +178,19 @@ function PartnerSent(partner: Partner) {
 }
 
 function PartnerBox(partner: Partner) {
+  const stop = useMutation<any, AxiosError<any, any>>(
+    () => axios.post(`/api/stop`).then(res => res.data),
+  )
+  if (stop.isSuccess) {
+    return (
+      <CheckMark size={30} message={stop.data.message} />
+    )
+  }
   return (
-    <div className="w-[min(100%,400px)]">
+    <div className="w-[min(100%,400px)] flex flex-col items-center gap-6">
+      <ConfirmDangerAction heading="hi" message="hello" close={() => { }} action={() => { }} />
       <p className="text-sm text-center  text-gray-500 mb-4">Daily questions with</p>
-      <div className="w-full rounded-lg bg-amber-50 px-8 py-4">
+      <div className="w-full flex flex-col items-center rounded-lg bg-amber-50 px-8 py-4">
         <div className="flex flex-row items-center gap-5">
           <img src={partner.image} alt="" className="rounded-full w-12 h-12" />
           <div className="flex flex-col">
@@ -188,7 +198,18 @@ function PartnerBox(partner: Partner) {
             <p className="text-gray-500 break-all">{partner.email}</p>
           </div>
         </div>
+        <div className="flex  self-center mt-6">
+          <button
+            onClick={() => stop.mutate()}
+            className="block bg-red-500 flex items-center gap-4 text-white rounded-full px-4 py-1"
+          >
+            Stop
+          </button>
+        </div>
       </div>
+      {
+        stop.isError ? <Error message={stop.error?.response?.data.message || "Something went wrong"} /> : null
+      }
     </div>
 
   )
