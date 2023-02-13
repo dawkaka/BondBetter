@@ -1,7 +1,7 @@
 export default function ConfirmDangerAction({ heading, message, action, close }: { heading: string, message: string, action: () => void, close: () => void }) {
     return (
         <div className="fixed top-0 bottom-0 left-0 flex justify-center items-center right-0 z-50 text-gray-900">
-            <div className="flex px-4 py-8 sm:px-8 w-[min(80%,500px)] flex-col gap-4 items-center bg-white rounded-lg shadow-lg">
+            <div className="flex px-4 py-8 sm:px-8 w-[min(80%,500px)] flex-col gap-4 items-center bg-white rounded-lg shadow">
                 <div className="flex flex-col items-center sm:flex-row">
                     <div className="rounded-full border border-gray-300 p-3 flex items-center justify-center w-16 h-16 flex-shrink-0">
                         <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g>
@@ -22,12 +22,12 @@ export default function ConfirmDangerAction({ heading, message, action, close }:
                 <div className="w-full sm:px-10 flex flex-col sm:flex-row gap-4">
                     <button
                         onClick={close}
-                        className="w-full px-4 py-2 shadow rounded-full">
+                        className="w-full px-4 border py-2 rounded-full">
                         Cancel
                     </button>
                     <button
                         onClick={action}
-                        className="w-full rounded-full px-4 py-2 shadow rounded-full bg-red-100 text-red-500">
+                        className="w-full rounded-full px-4 py-2 rounded-full bg-red-500 text-white">
                         Confirm
                     </button>
                 </div>
