@@ -1,28 +1,35 @@
 export default function ConfirmDangerAction({ heading, message, action, close }: { heading: string, message: string, action: () => void, close: () => void }) {
     return (
-        <div className="fixed top-0 bottom-0 left-0 right-0 z-50 bg-[rgba(0,0,0,0.01)] text-gray-900 font-sans overflow-x-hidden">
-            <div className="relative px-4 min-h-screen md:flex md:items-center md:justify-center">
-                <div className="bg-black opacity-25 w-full h-full absolute z-10 inset-0"></div>
-                <div className="bg-white rounded-lg md:max-w-md md:mx-auto p-4 fixed inset-x-0 bottom-0 z-50 mb-4 mx-4 md:relative">
-                    <div className="md:flex items-center">
-                        <div className="rounded-full border border-gray-300 flex items-center justify-center w-16 h-16 flex-shrink-0 mx-auto">
-                            <i className="bx bx-error text-3xl"></i>
-                        </div>
-                        <div className="mt-4 md:mt-0 md:ml-6 text-center md:text-left">
-                            <p className="font-bold">{heading}</p>
-                            <p className="text-sm text-gray-700 mt-1">{message}
-                            </p>
-                        </div>
+        <div className="fixed top-0 bottom-0 left-0 flex justify-center items-center right-0 z-50 text-gray-900">
+            <div className="flex px-4 py-8 sm:px-8 w-[min(80%,500px)] flex-col gap-4 items-center bg-white rounded-lg shadow-lg">
+                <div className="flex flex-col items-center sm:flex-row">
+                    <div className="rounded-full border border-gray-300 p-3 flex items-center justify-center w-16 h-16 flex-shrink-0">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier">
+                                <path d="M12 9V14" stroke="red" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                <path d="M12.0001 21.41H5.94005C2.47005 21.41 1.02005 18.93 2.70005 15.9L5.82006 10.28L8.76006 5.00003C10.5401 1.79003 13.4601 1.79003 15.2401 5.00003L18.1801 10.29L21.3001 15.91C22.9801 18.94 21.5201 21.42 18.0601 21.42H12.0001V21.41Z"
+                                    stroke="red" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                <path d="M11.9945 17H12.0035" stroke="red" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                            </g>
+                        </svg>
                     </div>
-                    <div className="text-center md:text-right mt-4 md:flex md:justify-end">
-                        <button
-                            onClick={action}
-                            className="block w-full md:inline-block md:w-auto px-4 py-3 md:py-2 bg-red-200 text-red-700 rounded-lg font-semibold text-sm md:ml-2 md:order-2">
-                            Confirm</button>
-                        <button
-                            onClick={close}
-                            className="block w-full md:inline-block md:w-auto px-4 py-3 md:py-2 bg-gray-200 rounded-lg font-semibold text-sm mt-4md:mt-0 md:order-1">Cancel</button>
+                    <div className="mt-4 md:mt-0 md:ml-6 text-center md:text-left">
+                        <p className="font-bold">{heading}</p>
+                        <p className="text-sm text-gray-700 mt-1">{message}
+                        </p>
                     </div>
+                </div>
+                <div className="w-full sm:px-10 flex flex-col sm:flex-row gap-4">
+                    <button
+                        onClick={close}
+                        className="w-full px-4 py-2 shadow rounded-full">
+                        Cancel
+                    </button>
+                    <button
+                        onClick={action}
+                        className="w-full rounded-full px-4 py-2 shadow rounded-full bg-red-100 text-red-500">
+                        Confirm
+                    </button>
                 </div>
             </div>
         </div>
