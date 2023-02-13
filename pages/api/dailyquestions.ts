@@ -11,25 +11,31 @@ export default async function dailyQuestoinsHandler(req: NextApiRequest, res: Ne
     if (!session || !session.user) {
         return res.status(401).json({ message: "Login required" })
     }
-
     switch (method) {
         case 'GET':
             try {
-                const user = await prisma.user.findUnique({ where: { email: session.user.email! }, select: { coupleID: true, partnerID: true, lastAnswered: true } })
+                const user = await prisma.user.findUnique({ where: { email: session.user.email! }, select: { sendRequest: true, recievedRequest: true, coupleID: true, partnerID: true, lastAnswered: true } })
                 if (!user) {
                     return res.status(404).json({ message: "Something went wrong" })
                 }
-                if (!user.coupleID || !user.partnerID) {
-                    return res.status(401).json({ message: "You need a partner to answer daily questions with." })
+                if (!user.coupleID) {
+                    let t = user.sendRequest ? { t: user.sendRequest, m: "SendRequest" } : user.recievedRequest ? { t: user.recievedRequest, m: "receivedRequest" } : undefined
+                    let partner
+                    if (t) {
+                        partner = await prisma.user.findUnique({ where: { email: t.t } })
+                    }
+                    return res.status(401).json({ type: t?.m, partner })
                 }
                 const couple = await prisma.couple.findUnique({ where: { id: user.coupleID } })
                 if (!couple) {
                     return res.status(401).json({ message: "You need a partner to answer daily questions with." })
                 }
+
                 const now = getCurrentDateAndTime()
-                if (user.lastAnswered && !isMoreThan24Hours(now, user.lastAnswered)) {
-                    return res.status(401).json({ message: "Can't not get new questions now, come back later and check." })
+                if (user.lastAnswered && !isMoreThan24Hours(user.lastAnswered, now)) {
+                    return res.status(401).json({ type: "Answered", partner: null })
                 }
+
                 const questions = await prisma.questionBank.findMany({
                     where: {
                         id: {
