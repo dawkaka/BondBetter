@@ -178,6 +178,7 @@ function PartnerSent(partner: Partner) {
 }
 
 function PartnerBox(partner: Partner) {
+  const [open, setOpen] = useState(false)
   const stop = useMutation<any, AxiosError<any, any>>(
     () => axios.post(`/api/stop`).then(res => res.data),
   )
@@ -188,7 +189,12 @@ function PartnerBox(partner: Partner) {
   }
   return (
     <div className="w-[min(100%,400px)] flex flex-col items-center gap-6">
-      <ConfirmDangerAction heading="Stop answering daily questions?" message="Clicking confirm will stopped you and your partner from getting daily questions, this action can not be undone" close={() => { }} action={() => { }} />
+      {
+        open ? <ConfirmDangerAction heading="Stop answering daily questions?"
+          message="Clicking confirm will stopped you and your partner from getting daily questions, this action can not be undone"
+          close={() => setOpen(false)} action={() => stop.mutate()}
+        /> : null
+      }
       <p className="text-sm text-center  text-gray-500 mb-4">Daily questions with</p>
       <div className="w-full flex flex-col items-center rounded-lg bg-amber-50 px-8 py-4">
         <div className="flex flex-row items-center gap-5">
@@ -200,7 +206,7 @@ function PartnerBox(partner: Partner) {
         </div>
         <div className="flex  self-center mt-6">
           <button
-            onClick={() => stop.mutate()}
+            onClick={() => setOpen(true)}
             className="block bg-red-500 flex items-center gap-4 text-white rounded-full px-4 py-1"
           >
             Stop
