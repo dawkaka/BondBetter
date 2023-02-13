@@ -78,11 +78,11 @@ export function mapQuestionsAndAnswers(questions: Question[], answers: string[],
 
 
 export function getCurrentDateAndTime(): Date {
-    return new Date(Date.UTC(new Date().getUTCFullYear(), new Date().getUTCMonth(), new Date().getUTCDate()));
+    return new Date(Date.UTC(new Date().getUTCFullYear(), new Date().getUTCMonth(), new Date().getUTCDate(), new Date().getUTCHours(), new Date().getUTCMinutes()));
 }
 
 export function getCurrentDate(): Date {
-    return new Date(Date.UTC(new Date().getUTCFullYear(), new Date().getUTCMonth(), new Date().getUTCDate(), new Date().getUTCHours(), new Date().getUTCMinutes()));
+    return new Date(Date.UTC(new Date().getUTCFullYear(), new Date().getUTCMonth(), new Date().getUTCDate()));
 }
 
 
@@ -108,6 +108,7 @@ export function yesterday(): Date {
 
 export function isMoreThan24Hours(date1: Date, date2: Date): boolean {
     let difference = date2.getTime() - date1.getTime();
+    console.log(difference)
     return difference >= 24 * 60 * 60 * 1000;
 }
 
