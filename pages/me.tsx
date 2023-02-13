@@ -17,7 +17,6 @@ export default function MePage() {
     signIn("google")
     return
   }
-  console.log(data)
   return (
     <Layout>
       {
@@ -86,7 +85,7 @@ export default function MePage() {
   )
 }
 
-function PartnerRequest(partner: Partner) {
+export function PartnerRequest(partner: Partner) {
   const accept = useMutation<any, AxiosError<any, any>>(
     () => axios.put(`/api/user/request`).then(res => res.data),
   )
@@ -139,7 +138,7 @@ function PartnerRequest(partner: Partner) {
 }
 
 
-function PartnerSent(partner: Partner) {
+export function PartnerSent(partner: Partner) {
   const reject = useMutation<any, AxiosError<any, any>>(
     () => axios.delete(`/api/user/request`).then(res => res.data),
   )
@@ -177,7 +176,7 @@ function PartnerSent(partner: Partner) {
   )
 }
 
-function PartnerBox(partner: Partner) {
+export function PartnerBox(partner: Partner) {
   const [open, setOpen] = useState(false)
   const stop = useMutation<any, AxiosError<any, any>>(
     () => axios.post(`/api/stop`).then(res => res.data),
@@ -188,7 +187,7 @@ function PartnerBox(partner: Partner) {
     )
   }
   return (
-    <div className="w-[min(100%,400px)] flex flex-col items-center gap-6">
+    <div className="w-[min(100%,400px)] flex flex-col items-center">
       {
         open ? <ConfirmDangerAction heading="Stop answering daily questions?"
           message="Clicking confirm will stopped you and your partner from getting daily questions, this action can not be undone"

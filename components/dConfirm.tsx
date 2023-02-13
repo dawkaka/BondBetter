@@ -1,6 +1,8 @@
 export default function ConfirmDangerAction({ heading, message, action, close }: { heading: string, message: string, action: () => void, close: () => void }) {
     return (
-        <div className="fixed top-0 bottom-0 left-0 flex justify-center items-center right-0 z-50 text-gray-900">
+        <div
+            className="fixed top-0 left-0 right-0 flex flex-col items-center justify-center z-50 bg-[rgba(0,0,0,0.1)] h-full w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 md:h-full"
+        >
             <div className="flex px-4 py-8 sm:px-8 w-[min(80%,500px)] flex-col gap-4 items-center bg-white rounded-lg shadow">
                 <div className="flex flex-col items-center sm:flex-row">
                     <div className="rounded-full border border-gray-300 p-3 flex items-center justify-center w-16 h-16 flex-shrink-0">

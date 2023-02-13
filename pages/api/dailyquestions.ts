@@ -19,16 +19,16 @@ export default async function dailyQuestoinsHandler(req: NextApiRequest, res: Ne
                     return res.status(404).json({ message: "Something went wrong" })
                 }
                 if (!user.coupleID) {
-                    let t = user.sendRequest ? { t: user.sendRequest, m: "SendRequest" } : user.recievedRequest ? { t: user.recievedRequest, m: "receivedRequest" } : undefined
+                    let t = user.sendRequest ? { t: user.sendRequest, m: "Sent" } : user.recievedRequest ? { t: user.recievedRequest, m: "Received" } : undefined
                     let partner
                     if (t) {
                         partner = await prisma.user.findUnique({ where: { email: t.t } })
                     }
-                    return res.status(401).json({ type: t?.m, partner })
+                    return res.status(401).json({ type: t?.m || "None", partner })
                 }
                 const couple = await prisma.couple.findUnique({ where: { id: user.coupleID } })
                 if (!couple) {
-                    return res.status(401).json({ message: "You need a partner to answer daily questions with." })
+                    return res.status(404).json({ message: "Something went wrong" })
                 }
 
                 const now = getCurrentDateAndTime()
