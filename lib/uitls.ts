@@ -85,6 +85,12 @@ export function getCurrentDate(): Date {
     return new Date(Date.UTC(new Date().getUTCFullYear(), new Date().getUTCMonth(), new Date().getUTCDate()));
 }
 
+export function mergeNowAndStartTime(d: Date): Date {
+    const now = new Date();
+    const date = new Date(now.getFullYear(), now.getMonth(), now.getDate(), d.getUTCHours(), d.getUTCMinutes(), d.getUTCSeconds(), d.getUTCMilliseconds());
+    return date;
+}
+
 
 export function yesterday(): Date {
     let now = new Date();
@@ -93,7 +99,6 @@ export function yesterday(): Date {
     let date = now.getUTCDate();
     let hour = now.getUTCHours();
     let minute = now.getUTCMinutes();
-
     if (date === 1) {
         month -= 1;
         if (month < 0) {
@@ -102,13 +107,11 @@ export function yesterday(): Date {
         }
         date = new Date(Date.UTC(year, month + 1, 0)).getUTCDate();
     }
-
     return new Date(Date.UTC(year, month, date - 1, hour, minute));
 }
 
 export function isMoreThan24Hours(date1: Date, date2: Date): boolean {
     let difference = date2.getTime() - date1.getTime();
-    console.log(difference)
     return difference >= 24 * 60 * 60 * 1000;
 }
 
@@ -117,22 +120,27 @@ export function parseDailyAnswers(userID: string, coupleID: number, answeredQues
     const answers: DailyAnswer[] = []
     const errs: string[][] = []
     const today = getCurrentDate()
+    let hasErrors = false
 
     for (let item of answeredQuestions) {
         let err = []
-
-        if (!item.answer || !item.questionID) {
-            err.push("answer body is incomplete, missing answer or question id")
+        if (item.id === undefined) {
+            hasErrors = true
+            err.push("answer body is incomplete, missing question id")
         } else if (item.answer.length > 256) {
+            hasErrors = true
             err.push("Answer can not be longer than 256 characters")
-        } else if (typeof item.questionID !== "number") {
+        } else if (typeof item.id !== "number") {
+            hasErrors = true
             err.push("Wrong questions id format")
         } else {
-            const a: DailyAnswer = { questionID: item.questonID as number, answer: item.answer.trim() as string, userID, coupleID, day: today }
+            const a: DailyAnswer = { questionID: item.id, answer: item.answer.trim() ? item.answer.trim() : "--NO ANSWER--", userID, coupleID, day: today }
             answers.push(a)
         }
         errs.push(err)
     }
-
-    return [errs, answeredQuestions]
+    if (hasErrors) {
+        return [errs, answers]
+    }
+    return [[], answers]
 }

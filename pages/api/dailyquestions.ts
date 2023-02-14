@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from "next"
 import { getServerSession } from "next-auth"
 import prisma from "../../lib/prismadb"
-import { generateLink, getCurrentDate, getCurrentDateAndTime, isMoreThan24Hours, parseDailyAnswers } from "../../lib/uitls"
+import { getCurrentDateAndTime, isMoreThan24Hours, mergeNowAndStartTime, parseDailyAnswers } from "../../lib/uitls"
 import { authOptions } from "./auth/[...nextauth]"
 
 
@@ -62,22 +62,22 @@ export default async function dailyQuestoinsHandler(req: NextApiRequest, res: Ne
                 if (!user) {
                     return res.status(404).json({ message: "Something went wrong" })
                 }
-                if (!user.coupleID || !user.partnerID) {
+                if (!user.coupleID) {
                     return res.status(401).json({ message: "You need a partner to answer daily questions with." })
                 }
                 const couple = await prisma.couple.findUnique({ where: { id: user.coupleID } })
                 if (!couple) {
                     return res.status(401).json({ message: "You need a partner to answer daily questions with." })
                 }
+                const sTime = mergeNowAndStartTime(couple.startDate)
                 const now = getCurrentDateAndTime()
-                if (user.lastAnswered && !isMoreThan24Hours(now, user.lastAnswered)) {
+                if (user.lastAnswered && !isMoreThan24Hours(user.lastAnswered, now)) {
                     return res.status(401).json({ message: "Can't not get answer questions now, try again later." })
                 }
-                const answeredQuestions = req.body
+                const answeredQuestions = req.body.answers
                 if (!Array.isArray(answeredQuestions)) {
                     return res.status(400).json({ message: "Something wrong with this request" })
                 }
-
                 if (answeredQuestions.length !== 5) {
                     return res.status(400).json({ message: "Answer five questions only, all are questions are required" })
                 }
@@ -85,9 +85,14 @@ export default async function dailyQuestoinsHandler(req: NextApiRequest, res: Ne
                 if (errs.length > 0) {
                     return res.status(400).json({ type: "answerErrors", errors: errs })
                 }
-                const result = await prisma.coupleAnswer.createMany({ data: answers })
-                res.json(result)
+
+                const r = await prisma.$transaction([
+                    prisma.coupleAnswer.createMany({ data: answers }),
+                    prisma.user.update({ where: { id: user.id }, data: { lastAnswered: sTime } })
+                ])
+                return res.json(r)
             } catch (error) {
+                console.log(error)
                 res.status(500).json({ message: "Something went wrong" })
             }
             break;

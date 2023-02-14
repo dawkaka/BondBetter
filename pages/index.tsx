@@ -1,6 +1,6 @@
-import axios, { AxiosError } from "axios"
+import axios, { Axios, AxiosError, AxiosResponse } from "axios"
 import React, { useState } from "react"
-import { useQuery } from "react-query"
+import { useMutation, useQuery } from "react-query"
 import Container from "../components/container"
 import Layout from "../components/layout"
 import { Loading } from "../components/loading"
@@ -12,9 +12,8 @@ export default function IndexPage() {
     queryFn: () => axios.get("/api/dailyquestions").then(res => res.data),
     retry: 1
   })
-  console.log(data)
+
   if (isError) {
-    console.log(error)
     if (error.response?.status === 401) {
       const type = error.response?.data.type
       switch (type) {
@@ -44,10 +43,19 @@ export default function IndexPage() {
 
 const Quiz = ({ questions }: { questions: { question: string }[] }) => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+
   const [answers, setAnswers] = useState<{ id: number, answer: string }[]>(new Array(questions.length).fill("").map((_, ind) => {
-    return { id: ind, answer: "--No Answer--" }
+    return { id: ind, answer: "" }
   }));
 
+  const answerMutation = useMutation<AxiosResponse, AxiosError<any, any>, { id: number, answer: string }[]>(
+    (answers) => axios.post("/api/dailyquestions", { answers }).then(res => res.data),
+    {
+      onSettled: () => {
+        console.log("Here")
+      }
+    }
+  )
   const handleAnswerChange = (e: any) => {
     const curr = answers
     curr[currentQuestionIndex].answer = e.target.value
@@ -69,9 +77,9 @@ const Quiz = ({ questions }: { questions: { question: string }[] }) => {
           <div className="w-full mt-[10vh] p-4 sm:p-10 flex justify-between items-center">
             <div className="flex gap-1">
               {
-                answers.map(a => {
+                answers.map((a, ind) => {
                   return (
-                    <div className={`w-3 h-3 rounded-full ${a.answer === "--No Answer--" || a.answer === "" ? "bg-red-500" : "bg-green-500"}`}></div>
+                    <div key={ind} className={`w-3 h-3 rounded-full ${a.answer === "" ? "bg-red-500" : "bg-green-500"}`}></div>
                   )
                 })
               }
@@ -87,7 +95,7 @@ const Quiz = ({ questions }: { questions: { question: string }[] }) => {
                 autoFocus
                 rows={1}
                 className="bg-transparent border-b px-3 py-2 focus:outline-none text-white text-lg"
-                value={answers[currentQuestionIndex].answer !== "--No Answer--" ? answers[currentQuestionIndex].answer : ""}
+                value={answers[currentQuestionIndex].answer}
                 onChange={handleAnswerChange}
               >
               </textarea>
@@ -110,9 +118,15 @@ const Quiz = ({ questions }: { questions: { question: string }[] }) => {
                   >
                     Next
                   </button>
-                ) : (
-                  <button className="bg-green-500 text-white shadow px-6 py-2 rounded-full">Submit</button>
-                )}
+                ) : !answerMutation.isLoading ? (
+                  <button
+                    onClick={() => answerMutation.mutate(answers)}
+                    className="bg-green-500 text-white shadow px-6 py-2 rounded-full"
+                  >Submit</button>
+                )
+                  :
+                  <Loading />
+                }
               </div>
             </div>
           </div>
