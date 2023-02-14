@@ -1,6 +1,7 @@
 import axios, { AxiosError } from "axios"
 import React, { useState } from "react"
 import { useQuery } from "react-query"
+import Container from "../components/container"
 import Layout from "../components/layout"
 import { Loading } from "../components/loading"
 import RequestModal from "../components/sendRequestModal"
@@ -11,7 +12,6 @@ export default function IndexPage() {
     queryFn: () => axios.get("/api/dailyquestions").then(res => res.data),
     retry: 1
   })
-
   console.log(data)
   if (isError) {
     console.log(error)
@@ -34,9 +34,77 @@ export default function IndexPage() {
       {
         isLoading && <Loading />
       }
+      {
+        isSuccess && <Quiz questions={data} />
+      }
     </Layout>
   )
 }
+
+
+const Quiz = ({ questions }: { questions: { question: string }[] }) => {
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+  const [answers, setAnswers] = useState<any>({});
+
+  const handleAnswerChange = (e: any) => {
+    setAnswers({ ...answers, [currentQuestionIndex]: e.target.value });
+  };
+
+  const handlePrevButtonClick = () => {
+    setCurrentQuestionIndex(currentQuestionIndex - 1);
+  };
+
+  const handleNextButtonClick = () => {
+    setCurrentQuestionIndex(currentQuestionIndex + 1);
+  };
+
+  return (
+    <div className="w-full h-full flex flex-col items-center bg-purple-700">
+      <Container>
+        <div className="w-[min(100%,550px)] my-auto flex flex-col items-center">
+          <div className="w-full flex rounded">
+            <div className="w-full rounded p-4 sm:p-10 flex flex-col gap-10">
+              <h3 className="text-2xl text-white font-bold">
+                {questions[currentQuestionIndex].question}
+              </h3>
+              <textarea
+                rows={1}
+                className="bg-transparent border-b px-3 py-2 focus:outline-none text-white text-lg"
+                value={answers[currentQuestionIndex] || ""}
+                onChange={handleAnswerChange}
+              >
+              </textarea>
+              <div className="flex justify-between items-center">
+                {currentQuestionIndex > 0 ? (
+                  <button
+                    className="border border-purple-400 text-white px-6 py-2 rounded-full"
+                    onClick={handlePrevButtonClick}
+                  >
+                    Prev
+                  </button>
+                )
+                  :
+                  <p>{' '}</p>
+                }
+                {currentQuestionIndex < questions.length - 1 ? (
+                  <button
+                    className="bg-purple-400 text-white shadow px-6 py-2 rounded-full"
+                    onClick={handleNextButtonClick}
+                  >
+                    Next
+                  </button>
+                ) : (
+                  <button className="bg-green-500 text-white shadow px-6 py-2 rounded-full">Submit</button>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+      </Container>
+    </div>
+  );
+};
+
 
 function Sent({ children }: { children: React.ReactNode }) {
   return (
