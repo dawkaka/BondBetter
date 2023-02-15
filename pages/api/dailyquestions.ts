@@ -41,7 +41,6 @@ export default async function dailyQuestoinsHandler(req: NextApiRequest, res: Ne
                         id: {
                             notIn: await prisma.coupleAnswer.findMany({
                                 select: { questionID: true },
-                                where: {}
                             }).then(answers => answers.map(answer => answer.questionID))
                         }
                     },
