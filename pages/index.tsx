@@ -1,5 +1,5 @@
 import axios, { Axios, AxiosError, AxiosResponse } from "axios"
-import React, { useState } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import { useMutation, useQuery } from "react-query"
 import Container from "../components/container"
 import Layout from "../components/layout"
@@ -23,6 +23,8 @@ export default function IndexPage() {
           return <Received><PartnerRequest {...error.response?.data.partner} /></Received>
         case "Sent":
           return <Sent><PartnerSent {...error.response?.data.partner} /></Sent>
+        case "Answered":
+          return <Answered  {...error.response?.data} />
         default:
           break;
       }
@@ -36,6 +38,40 @@ export default function IndexPage() {
       {
         isSuccess && <Quiz questions={data} />
       }
+    </Layout>
+  )
+}
+
+function Answered({ next }: { next: string }) {
+  const [timer, setTime] = useState("--:--:--")
+  let interval = useRef<NodeJS.Timer>()
+  useEffect(() => {
+    if (next) {
+      if (interval.current) {
+        clearInterval(interval.current)
+      }
+      interval.current = setInterval(() => {
+        const diff = new Date(next).getTime() - Date.now()
+        const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+        setTime(`${hours < 10 ? `0${hours}` : hours}:${minutes < 10 ? `0${minutes}` : minutes}:${seconds < 10 ? `0${seconds}` : seconds}`)
+      }, 1000)
+    }
+    return () => {
+      clearInterval(interval.current)
+    }
+  }, [next])
+  return (
+    <Layout>
+      <div className="w-full h-full flex flex-col items-center bg-purple-100 overflow-auto">
+        <Container>
+          <div className="w-[min(100%,550px)] mt-[20vh] flex flex-col items-center gap-10">
+            <h3 className="text-2xl text-gray-500 text-center max-w-sm">Next questions in</h3>
+            <p className="text-5xl text-green-500">{timer}</p>
+          </div>
+        </Container>
+      </div>
     </Layout>
   )
 }

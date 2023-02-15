@@ -33,7 +33,7 @@ export default async function dailyQuestoinsHandler(req: NextApiRequest, res: Ne
 
                 const now = getCurrentDateAndTime()
                 if (user.lastAnswered && !isMoreThan24Hours(user.lastAnswered, now)) {
-                    return res.status(401).json({ type: "Answered", partner: null })
+                    return res.status(401).json({ type: "Answered", last: user.lastAnswered, next: new Date(user.lastAnswered).setDate(user.lastAnswered.getDate() + 1), partner: null })
                 }
 
                 const questions = await prisma.questionBank.findMany({
@@ -88,7 +88,7 @@ export default async function dailyQuestoinsHandler(req: NextApiRequest, res: Ne
 
                 const r = await prisma.$transaction([
                     prisma.coupleAnswer.createMany({ data: answers }),
-                    prisma.user.update({ where: { id: user.id }, data: { lastAnswered: sTime } })
+                    prisma.user.update({ where: { id: user.id }, data: { lastAnswered: sTime, timeOfLastAnswered: now, currentStreak: { increment: 1 } } })
                 ])
                 return res.json(r)
             } catch (error) {
