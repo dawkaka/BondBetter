@@ -11,28 +11,29 @@ datasource db {
 }
 
 model User {
-  id                 String    @id @default(cuid())
+  id                 String         @id @default(cuid())
   name               String
-  email              String    @unique
+  email              String         @unique
   emailVerified      DateTime?
-  createdAt          DateTime  @default(now())
-  updatedAt          DateTime  @updatedAt
+  createdAt          DateTime       @default(now())
+  updatedAt          DateTime       @updatedAt
   image              String?
   currentLinkID      String?
-  currentLinkLabel   String?   @db.VarChar(69)
+  currentLinkLabel   String?        @db.VarChar(69)
   questionsLinks     Json?
   questions          Json?
-  couple             Couple?   @relation(fields: [coupleID], references: [id])
+  couple             Couple?        @relation(fields: [coupleID], references: [id])
   coupleID           Int?
   partnerID          String?
   recievedRequest    String?
   sendRequest        String?
-  currentStreak      Int       @default(0)
-  highestStreak      Int       @default(0)
+  currentStreak      Int            @default(0)
+  highestStreak      Int            @default(0)
   lastAnswered       DateTime?
   timeOfLastAnswered DateTime? //Used for notifications
   accounts           Account[]
   sessions           Session[]
+  CoupleAnswer       CoupleAnswer[]
 }
 
 model Couple {
@@ -45,12 +46,14 @@ model Couple {
 }
 
 model CoupleAnswer {
-  id         Int      @id @default(autoincrement())
+  id         Int          @id @default(autoincrement())
   coupleID   Int
   questionID Int
   answer     String
-  time       DateTime @default(now())
+  time       DateTime     @default(now())
   day        DateTime
+  question   QuestionBank @relation(fields: [questionID], references: [id])
+  user       User?        @relation(fields: [userID], references: [id])
   userID     String
 
   @@unique([id, userID])
@@ -66,9 +69,10 @@ model CustomAnswer {
 }
 
 model QuestionBank {
-  id        Int      @id @default(autoincrement())
-  question  String
-  createdAt DateTime @default(now())
+  id           Int            @id @default(autoincrement())
+  question     String
+  createdAt    DateTime       @default(now())
+  CoupleAnswer CoupleAnswer[]
 }
 
 model Account {
