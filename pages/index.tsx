@@ -1,16 +1,17 @@
 import gsap from "gsap";
 import { useEffect } from "react"
+import { ProfileIcon } from "../components/header";
 
 export default function LandingePage() {
     return (
         <div>
             <header className="fixed top-4 z-10 w-full flex items-center justify-center py-3 px-3">
                 <nav className="container flex items-center justify-between">
-                    <h3 className="font-extrabold text-4xl text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-pink-600">
+                    <h1 className="font-extrabold text-4xl text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-pink-600">
                         <span className="">
                             Logo
                         </span>
-                    </h3>
+                    </h1>
                     <button className="px-8 py-2 rounded-full text-white font-bold bg-gradient-to-r from-amber-400 to-pink-600">Sign in</button>
                 </nav>
 
@@ -56,7 +57,6 @@ export default function LandingePage() {
                         Answer daily questions with your partner, and also create custom questions and receive responses to them.
                     </h3>
                 </section>
-
                 <QuestionsDemo />
 
             </main >
@@ -66,57 +66,118 @@ export default function LandingePage() {
 
 function QuestionsDemo() {
     useEffect(() => {
-        var tl = gsap.timeline({ repeat: -1 });
-        //sequenced one-after-the-other
+
+        const tl = gsap.timeline({ repeat: -1 });
         tl.to(".q-1", { duration: 1, y: 0, opacity: 1 })
-            .to(".q-1", { duration: 1, delay: 2, y: -20, opacity: 0 })
+            .to(".q-1", { duration: 1, delay: 2, y: 0, opacity: 0 })
             .to(".q-2", { duration: 1, y: 0, opacity: 1 })
-            .to(".q-2", { duration: 1, delay: 2, y: -20, opacity: 0 })
+            .to(".q-2", { duration: 1, delay: 2, y: 0, opacity: 0 })
             .to(".q-3", { duration: 1, y: 0, opacity: 1 })
-            .to(".q-3", { duration: 1, delay: 2, y: -20, opacity: 0 })
+            .to(".q-3", { duration: 1, delay: 2, y: 0, opacity: 0 })
             .to(".q-4", { duration: 1, y: 0, opacity: 1 })
-            .to(".q-4", { duration: 1, delay: 2, y: -20, opacity: 0 });
+            .to(".q-4", { duration: 1, delay: 2, y: 0, opacity: 0 });
+
+        const mid = (window.outerWidth / 2) - 80
+        const c1 = gsap.timeline({ repeat: -1 })
+        c1.to(".c1", { duration: 1, x: mid, opacity: 1 })
+            .to(".c1", { duration: 1, delay: 2, x: mid, scale: 0 })
+            .to(".c1", { duration: 1, delay: 7, x: mid, opacity: 0 })
+
+        const c2 = gsap.timeline({ repeat: -1 })
+        c2.to(".c2", { duration: 1, x: 0 - mid, opacity: 1 })
+            .to(".c2", { duration: 1, delay: 2, x: 0 - mid, scale: 0 })
+            .to(".c2", { duration: 1, delay: 7, x: 0 - mid, opacity: 0 })
+
+        const i1 = gsap.timeline({ repeat: -1, })
+        i1.to(".i1", { duration: 1, x: mid, delay: 4, opacity: 1 })
+            .to(".i1", { duration: 1, delay: 3, x: mid, })
+            .to(".i1", { duration: 1, delay: 2, x: mid, scale: 0 })
+
+
+        const i2 = gsap.timeline({ repeat: -1 })
+        i2.to(".i2", { duration: 1, x: 0 - mid, delay: 4, opacity: 1 })
+            .to(".i2", { duration: 1, delay: 3, rotateX: 180 })
+            .to(".i2", { duration: 1, delay: 2, rotateX: 180, scale: 0 })
+
+
+
+        const tlHeader = gsap.timeline({ repeat: -1 })
+        tlHeader.to("#simi", { duration: 1, y: 0 })
+            .to("#simi", { duration: 1, delay: 2, y: -50 })
+            .to("#diff", { duration: 1, y: 0 })
+            .to("#diff", { duration: 1, delay: 2, y: -50 })
+            .to("#comp", { duration: 1, y: 0 })
+            .to("#comp", { duration: 1, delay: 2, y: -50 })
+
         return () => {
             tl.kill()
+            c1.kill()
+            c2.kill()
+            i1.kill()
+            i2.kill()
         }
     }, [])
 
     return (
-        <section className="w-full flex flex-col items-center bg-purple-500">
-            <div className="w-full container grid grid-cols-2">
-                <div className="p-16">
-                    <h4 className="text-left text-white text-2xl font-bold">You</h4>
-                    <div className="w-full h-[200px] relative mt-16 overflow-y-hidden rounded my-auto flex flex-col justify-end items-center gap-10">
-                        <Q title="What is one thing you've always wanted to try but haven't tried yet?" id="q-1" />
-                        <Q title="What is one thing you've always wanted to try but haven't tried yet?" id="q-2" />
-                        <Q title="What is one thing you've always wanted to try but haven't tried yet?" id="q-3" />
-                        <Q title="What is one thing you've always wanted to try but haven't tried yet?" id="q-4" />
-                        <textarea
-                            placeholder="Type answer"
-                            rows={1}
-                            className="w-[80%] self-start bg-transparent border-b px-3 py-1 focus:outline-none text-white text-lg"
-                        >
-                        </textarea>
+        <section className="w-full">
+            <div className="w-full flex flex-col items-center ">
+                <div className="w-full container grid grid-cols-2 gap-8 bg-purple-500 px-16 rounded">
+                    <div className="py-16 flex flex-col">
+                        <div className="self-start w-fit gap-1 flex flex-col items-center">
+                            <div className="h-8 w-8 text-purple-300">
+                                {ProfileIcon()}
+                            </div>
+                            <h4 className="text-white font-bold">You</h4>
+                        </div>
+                        <div className="w-full h-[200px] relative mt-16 overflow-y-hidden rounded my-auto flex flex-col justify-end items-center gap-10">
+                            <Q title="What is one thing you've always wanted to try but haven't tried yet?" id="q-1" />
+                            <Q title="What is one thing you've always wanted to try but haven't tried yet?" id="q-2" />
+                            <Q title="What is one thing you've always wanted to try but haven't tried yet?" id="q-3" />
+                            <Q title="What is one thing you've always wanted to try but haven't tried yet?" id="q-4" />
+                            <textarea
+                                placeholder="Type answer"
+                                rows={1}
+                                className="w-[80%] self-start bg-transparent border-b px-3 py-1 focus:outline-none text-white text-lg"
+                            >
+                            </textarea>
+                        </div>
                     </div>
-                </div>
-                <div className="p-16 text-right">
-                    <h4 className="text-right text-white text-2xl font-bold">Your Partner</h4>
-                    <div className="w-full h-[200px] relative mt-16 overflow-y-hidden rounded my-auto flex flex-col justify-end items-center gap-10">
-                        <Q title="What is one thing you've always wanted to try but haven't tried yet?" id="q-1" />
-                        <Q title="What is one thing you've always wanted to try but haven't tried yet?" id="q-2" />
-                        <Q title="What is one thing you've always wanted to try but haven't tried yet?" id="q-3" />
-                        <Q title="What is one thing you've always wanted to try but haven't tried yet?" id="q-4" />
+                    <div className="py-16 text-right flex flex-col">
+                        <div className="self-end w-fit flex flex-col gap-1 items-center">
+                            <div className="h-8 w-8 text-purple-300">
+                                {ProfileIcon()}
+                            </div>
+                            <h4 className="text-white font-bold">Partner</h4>
+                        </div>
+                        <div className="w-full h-[200px] relative mt-16 overflow-y-hidden rounded my-auto flex flex-col justify-end items-center gap-10">
+                            <Q title="What is one thing you've always wanted to try but haven't tried yet?" id="q-1" />
+                            <Q title="What is one thing you've always wanted to try but haven't tried yet?" id="q-2" />
+                            <Q title="What is one thing you've always wanted to try but haven't tried yet?" id="q-3" />
+                            <Q title="What is one thing you've always wanted to try but haven't tried yet?" id="q-4" />
 
-                        <textarea
-                            placeholder="Type answer"
-                            rows={1}
-                            className="w-[80%] bg-transparent border-b px-3 py-1 self-end focus:outline-none text-white text-lg"
-                        >
-                        </textarea>
+                            <textarea
+                                placeholder="Type answer"
+                                rows={1}
+                                className="w-[80%] bg-transparent border-b px-3 py-1 self-end focus:outline-none text-white text-lg"
+                            >
+                            </textarea>
+                        </div>
                     </div>
+                </div >
+            </div>
+            <div className="relative mt-16 h-[100px]">
+                <div className="h-[50px] relative overflow-hidden mb-10">
+                    <p id="simi" className="absolute translate-y-[-50px] left-[50%] translate-x-[-50%] text-4xl text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-pink-600 font-semibold">Discover your similarities</p>
+                    <p id="diff" className="absolute translate-y-[-50px] left-[50%] translate-x-[-50%] text-4xl text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-pink-600 font-semibold">Learn your differences</p>
+                    <p id="comp" className="absolute translate-y-[-50px] left-[50%] translate-x-[-50%] text-4xl text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-pink-600 font-semibold">And make compromises</p>
                 </div>
-            </div >
-        </section>
+                <img src="/c1.svg" alt="" className="c1 absolute left-0 opacity-0" />
+                <img src="/c2.svg" alt="" className="c2 absolute right-0 opacity-0" />
+                <img src="/i2.svg" alt="" className="i1 absolute opacity-0" />
+                <img src="/i1.svg" alt="" className="i2 absolute right-0 opacity-0" />
+            </div>
+
+        </section >
     )
 }
 
