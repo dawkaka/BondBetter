@@ -41,7 +41,7 @@ export default function LandingePage() {
 
                     <div className="m-auto bg-white py-16 rounded lg: max-w-5xl hero-container">
                         <div className="mx-auto max-w-xl text-center lg:max-w-4xl">
-                            <h1 className="text-5xl font-bold tracking-tight text-gray-900 sm:text-6xl xl:text-6xl">Learn Five New Things About Your Partner Every Day</h1>
+                            <h1 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-6xl xl:text-6xl">Learn Five New Things About Your Partner Every Day</h1>
                             <h2 className="mt-4 text-lg font-normal leading-7 text-gray-700 sm:text-xl lg:mx-auto lg:max-w-3xl xl:text-2xl xl:leading-9">
                                 Answer five questions daily with your partner  every day to help you know each other better.
                             </h2>
@@ -59,8 +59,12 @@ export default function LandingePage() {
                 </section>
                 <QuestionsDemo />
 
-            </main >
-        </div >
+                <section className="py-32">
+                    <h3 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-4xl xl:text-4xl">Create Custom Questions</h3>
+                </section>
+
+            </main>
+        </div>
     )
 }
 
@@ -173,9 +177,9 @@ function QuestionsDemo() {
             </div>
             <div className="relative mt-16 shadow-lg">
                 <div className="h-[50px] relative overflow-hidden mb-10">
-                    <p id="simi" className="absolute translate-y-[-50px] left-[50%] translate-x-[-50%] text-4xl text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-pink-600 font-semibold">Discover your similarities</p>
-                    <p id="diff" className="absolute translate-y-[-50px] left-[50%] translate-x-[-50%] text-4xl text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-pink-600 font-semibold">Learn your differences</p>
-                    <p id="comp" className="absolute translate-y-[-50px] left-[50%] translate-x-[-50%] text-4xl text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-pink-600 font-semibold">And make compromises</p>
+                    <p id="simi" className="absolute translate-y-[-50px] left-[50%] translate-x-[-50%] w-fit text-xl sm:text-4xl text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-pink-600 font-semibold">Discover your similarities</p>
+                    <p id="diff" className="absolute translate-y-[-50px] left-[50%] translate-x-[-50%] w-fit  text-xl sm:text-4xl text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-pink-600 font-semibold">Learn your differences</p>
+                    <p id="comp" className="absolute translate-y-[-50px] left-[50%] translate-x-[-50%] w-fit text-xl sm:text-4xl text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-pink-600 font-semibold">And make compromises</p>
                 </div>
                 <div ref={comRef} className="mx-auto relative h-[250px] max-w-3xl">
                     <img src="/c1.svg" alt="" className="c1 absolute left-0 opacity-0" />
