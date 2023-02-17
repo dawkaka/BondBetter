@@ -1,5 +1,5 @@
 import gsap from "gsap";
-import { useEffect } from "react"
+import { useEffect, useRef } from "react"
 import { ProfileIcon } from "../components/header";
 
 export default function LandingePage() {
@@ -65,6 +65,9 @@ export default function LandingePage() {
 }
 
 function QuestionsDemo() {
+
+    const comRef = useRef(null)
+
     useEffect(() => {
 
         const tl = gsap.timeline({ repeat: -1 });
@@ -77,27 +80,30 @@ function QuestionsDemo() {
             .to(".q-4", { duration: 1, y: 0, opacity: 1 })
             .to(".q-4", { duration: 1, delay: 2, y: 0, opacity: 0 });
 
-        const mid = (window.outerWidth / 2) - 80
+        let wid = window.getComputedStyle(comRef.current!).width
+        wid = wid.substring(0, wid.length - 2)
+        const mid = (parseInt(wid) / 2) - 70
+        const mid2 = (parseInt(wid) / 2) - 75
         const c1 = gsap.timeline({ repeat: -1 })
         c1.to(".c1", { duration: 1, x: mid, opacity: 1 })
             .to(".c1", { duration: 1, delay: 2, x: mid, scale: 0 })
-            .to(".c1", { duration: 1, delay: 7, x: mid, opacity: 0 })
+            .to(".c1", { duration: 1, delay: 7 })
 
         const c2 = gsap.timeline({ repeat: -1 })
         c2.to(".c2", { duration: 1, x: 0 - mid, opacity: 1 })
             .to(".c2", { duration: 1, delay: 2, x: 0 - mid, scale: 0 })
-            .to(".c2", { duration: 1, delay: 7, x: 0 - mid, opacity: 0 })
+            .to(".c2", { duration: 1, delay: 7 })
 
         const i1 = gsap.timeline({ repeat: -1, })
-        i1.to(".i1", { duration: 1, x: mid, delay: 4, opacity: 1 })
-            .to(".i1", { duration: 1, delay: 3, x: mid, })
-            .to(".i1", { duration: 1, delay: 2, x: mid, scale: 0 })
+        i1.to(".i1", { duration: 1, x: mid2, delay: 4, opacity: 1 })
+            .to(".i1", { duration: 1, delay: 3 })
+            .to(".i1", { duration: 1, delay: 2, scale: 0 })
 
 
         const i2 = gsap.timeline({ repeat: -1 })
-        i2.to(".i2", { duration: 1, x: 0 - mid, delay: 4, opacity: 1 })
+        i2.to(".i2", { duration: 1, x: 0 - mid2, delay: 4, opacity: 1 })
             .to(".i2", { duration: 1, delay: 3, rotateX: 180 })
-            .to(".i2", { duration: 1, delay: 2, rotateX: 180, scale: 0 })
+            .to(".i2", { duration: 1, delay: 2, scale: 0 })
 
 
 
@@ -121,7 +127,7 @@ function QuestionsDemo() {
     return (
         <section className="w-full">
             <div className="w-full flex flex-col items-center ">
-                <div className="w-full container grid grid-cols-2 gap-8 bg-purple-500 px-16 rounded">
+                <div className="w-full container grid grid-cols-2 gap-8 bg-purple-500  shadow-lg px-16 rounded-lg">
                     <div className="py-16 flex flex-col">
                         <div className="self-start w-fit gap-1 flex flex-col items-center">
                             <div className="h-8 w-8 text-purple-300">
@@ -165,16 +171,18 @@ function QuestionsDemo() {
                     </div>
                 </div >
             </div>
-            <div className="relative mt-16 h-[100px]">
+            <div className="relative mt-16 shadow-lg">
                 <div className="h-[50px] relative overflow-hidden mb-10">
                     <p id="simi" className="absolute translate-y-[-50px] left-[50%] translate-x-[-50%] text-4xl text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-pink-600 font-semibold">Discover your similarities</p>
                     <p id="diff" className="absolute translate-y-[-50px] left-[50%] translate-x-[-50%] text-4xl text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-pink-600 font-semibold">Learn your differences</p>
                     <p id="comp" className="absolute translate-y-[-50px] left-[50%] translate-x-[-50%] text-4xl text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-pink-600 font-semibold">And make compromises</p>
                 </div>
-                <img src="/c1.svg" alt="" className="c1 absolute left-0 opacity-0" />
-                <img src="/c2.svg" alt="" className="c2 absolute right-0 opacity-0" />
-                <img src="/i2.svg" alt="" className="i1 absolute opacity-0" />
-                <img src="/i1.svg" alt="" className="i2 absolute right-0 opacity-0" />
+                <div ref={comRef} className="mx-auto relative h-[250px] max-w-3xl">
+                    <img src="/c1.svg" alt="" className="c1 absolute left-0 opacity-0" />
+                    <img src="/c2.svg" alt="" className="c2 absolute right-0 opacity-0" />
+                    <img src="/i2.svg" alt="" className="i1 absolute opacity-0" />
+                    <img src="/i1.svg" alt="" className="i2 absolute right-0 opacity-0" />
+                </div>
             </div>
 
         </section >
@@ -184,7 +192,7 @@ function QuestionsDemo() {
 
 function Q({ title, id }: { title: string, id: string }) {
     return (
-        <h3 id={id} className={`${id} absolute top-0 text-2xl text-white translate-y-[200px] opacity-0`}>
+        <h3 id={id} className={`${id} absolute top-0 text-2xl font-bold text-white translate-y-[200px] opacity-0`}>
             {title}
         </h3>
     )
