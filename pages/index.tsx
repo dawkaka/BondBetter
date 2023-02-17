@@ -1,3 +1,6 @@
+import gsap from "gsap";
+import { useEffect } from "react"
+
 export default function LandingePage() {
     return (
         <div>
@@ -12,7 +15,7 @@ export default function LandingePage() {
                 </nav>
 
             </header>
-            <main className="flex flex-col items-center">
+            <main className="flex flex-col items-center w-full pb-[200px]">
                 <section className="relative pt-40 mx-auto w-full px-4 sm:px-6 lg:px-8 min-h-screen overflow-hidden">
                     <div className="absolute top-0 z-[-1] left-[50%] w-[300px] translate-x-[-50%] h-[300px]  bg-no-repeat bg-[url('/stripes.png')]">
                     </div>
@@ -43,7 +46,7 @@ export default function LandingePage() {
                             </h2>
                         </div>
                         <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-center lg:mt-10">
-                            <a href="/#showcase" className="inline-flex h-12 items-center justify-center rounded-xl border border-gray-300 px-6 py-2.5 text-base font-semibold text-gray-700 transition-all duration-200 hover:border-gray-500 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2" role="button">Get started</a>
+                            <a href="/#showcase" className="inline-flex h-12 items-center justify-center rounded-xl border border-gray-300 px-6 py-2.5 text-base text-gray-700 transition-all duration-200 hover:border-gray-500 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2" role="button">Get started</a>
                         </div>
                     </div>
                 </section>
@@ -54,7 +57,74 @@ export default function LandingePage() {
                     </h3>
                 </section>
 
+                <QuestionsDemo />
+
             </main >
         </div >
+    )
+}
+
+function QuestionsDemo() {
+    useEffect(() => {
+        var tl = gsap.timeline({ repeat: -1 });
+        //sequenced one-after-the-other
+        tl.to(".q-1", { duration: 1, y: 0, opacity: 1 })
+            .to(".q-1", { duration: 1, delay: 2, y: -20, opacity: 0 })
+            .to(".q-2", { duration: 1, y: 0, opacity: 1 })
+            .to(".q-2", { duration: 1, delay: 2, y: -20, opacity: 0 })
+            .to(".q-3", { duration: 1, y: 0, opacity: 1 })
+            .to(".q-3", { duration: 1, delay: 2, y: -20, opacity: 0 })
+            .to(".q-4", { duration: 1, y: 0, opacity: 1 })
+            .to(".q-4", { duration: 1, delay: 2, y: -20, opacity: 0 });
+        return () => {
+            tl.kill()
+        }
+    }, [])
+
+    return (
+        <section className="w-full flex flex-col items-center bg-purple-500">
+            <div className="w-full container grid grid-cols-2">
+                <div className="p-16">
+                    <h4 className="text-left text-white text-2xl font-bold">You</h4>
+                    <div className="w-full h-[200px] relative mt-16 overflow-y-hidden rounded my-auto flex flex-col justify-end items-center gap-10">
+                        <Q title="What is one thing you've always wanted to try but haven't tried yet?" id="q-1" />
+                        <Q title="What is one thing you've always wanted to try but haven't tried yet?" id="q-2" />
+                        <Q title="What is one thing you've always wanted to try but haven't tried yet?" id="q-3" />
+                        <Q title="What is one thing you've always wanted to try but haven't tried yet?" id="q-4" />
+                        <textarea
+                            placeholder="Type answer"
+                            rows={1}
+                            className="w-[80%] self-start bg-transparent border-b px-3 py-1 focus:outline-none text-white text-lg"
+                        >
+                        </textarea>
+                    </div>
+                </div>
+                <div className="p-16 text-right">
+                    <h4 className="text-right text-white text-2xl font-bold">Your Partner</h4>
+                    <div className="w-full h-[200px] relative mt-16 overflow-y-hidden rounded my-auto flex flex-col justify-end items-center gap-10">
+                        <Q title="What is one thing you've always wanted to try but haven't tried yet?" id="q-1" />
+                        <Q title="What is one thing you've always wanted to try but haven't tried yet?" id="q-2" />
+                        <Q title="What is one thing you've always wanted to try but haven't tried yet?" id="q-3" />
+                        <Q title="What is one thing you've always wanted to try but haven't tried yet?" id="q-4" />
+
+                        <textarea
+                            placeholder="Type answer"
+                            rows={1}
+                            className="w-[80%] bg-transparent border-b px-3 py-1 self-end focus:outline-none text-white text-lg"
+                        >
+                        </textarea>
+                    </div>
+                </div>
+            </div >
+        </section>
+    )
+}
+
+
+function Q({ title, id }: { title: string, id: string }) {
+    return (
+        <h3 id={id} className={`${id} absolute top-0 text-2xl text-white translate-y-[200px] opacity-0`}>
+            {title}
+        </h3>
     )
 }
