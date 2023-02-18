@@ -61,12 +61,102 @@ export default function LandingePage() {
                 </section>
                 <QuestionsDemo />
                 <CustomDemo />
-
+                <ResponseDemo />
             </main>
         </div>
     )
 }
 
+function ResponseDemo() {
+    return (
+        <section className="my-8 md:my-24 w-full flex flex-col items-center">
+            <div className="container relative  w-full">
+                <div className="w-full grid gap-x-16 gap-y-8 lg:grid-cols-2">
+                    <div className="order-last md:order-first w-full">
+                        <div className="relative h-[500px] overflow-hidden w-full rounded-2xl bg-purple-500 sm:mt-6 lg:mt-0">
+                            <div className="absolute top-16 left-[50%] translate-x-[-50%] bg-white w-[90%] sm:w-[70%] lg:w-[80%] h-[500px] p-4 rounded-2xl">
+                                <button
+                                    className="pb-3 border-b border-purple-500 w-full flex  items-center justify-between"
+                                >
+                                    <span className="text-gray-700 font-bold self-center">Monica darling</span>
+                                    <div className="flex gap-5">
+                                        <span
+                                            className={`bg-red-100 text-red-500 rounded-full px-3 py-1 shadow`}
+                                            onClick={(e) => e.stopPropagation()}
+                                        >delete</span>
+                                        <span className="rounded-full px-3 py-1 shadow">close</span>
+                                    </div>
+                                </button>
+                                <div className="mt-8 mb-4">
+                                    <div className="flex gap-3 mb-3 items-start">
+                                        <h3 className="text-lg font-medium text-gray-700">Q1.</h3>
+                                        <p className="text-lg font-medium text-gray-700">Do you sleep with the lights on or off?</p>
+                                    </div>
+                                    <p className="border-l border-purple-500 border-l-[3px] px-2 ml-10 text-gray-500">off</p>
+                                </div>
+                                <div className="my-4">
+                                    <div className="flex gap-3 mb-3 items-start">
+                                        <h3 className="text-lg font-medium text-gray-700">Q2.</h3>
+                                        <p className="text-lg font-medium text-gray-700">Ghanaian jollof or Nigerian jollof?</p>
+                                    </div>
+                                    <p className="border-l border-purple-500 border-l-[3px] px-2 ml-10 text-gray-500">Naija jollof for life!</p>
+                                </div>
+                                <div className="my-4">
+                                    <div className="flex gap-3 mb-3 items-start">
+                                        <h3 className="text-lg font-medium text-gray-700">Q3.</h3>
+                                        <p className="text-lg font-medium text-gray-700">Do you sleep with the lights on or off?</p>
+                                    </div>
+                                    <p className="border-l border-purple-500 border-l-[3px] px-2 ml-10 text-gray-500">off</p>
+                                </div>
+                                <div className="my-4">
+                                    <div className="flex gap-3 mb-3 items-start">
+                                        <h3 className="text-lg font-medium text-gray-700">Q4.</h3>
+                                        <p className="text-lg font-medium text-gray-700">Do you sleep with the lights on or off?</p>
+                                    </div>
+                                    <p className="border-l border-purple-500 border-l-[3px] px-2 ml-10 text-gray-500">off</p>
+                                </div>
+                                <div className="my-4">
+                                    <div className="flex gap-3 mb-3 items-start">
+                                        <h3 className="text-lg font-medium text-gray-700">Q5.</h3>
+                                        <p className="text-lg font-medium text-gray-700">Do you sleep with the lights on or off?</p>
+                                    </div>
+                                    <p className="border-l border-purple-500 border-l-[3px] px-2 ml-10 text-gray-500">off</p>
+                                </div>
+                                <div className="my-4">
+                                    <div className="flex gap-3 mb-3 items-start">
+                                        <h3 className="text-lg font-medium text-gray-700">Q6.</h3>
+                                        <p className="text-lg font-medium text-gray-700">Do you sleep with the lights on or off?</p>
+                                    </div>
+                                    <p className="border-l border-purple-500 border-l-[3px] px-2 ml-10 text-gray-500">off</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="max-w-2xl px-4 sm:px-6 lg:mx-0 lg:max-w-none lg:py-16 lg:px-0">
+                        <div>
+                            <h4 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-4xl xl:text-4xl">Receive reponses</h4>
+                            <div className="mt-4 text-gray-700 text-lg ">
+                                <p>
+                                    All responses from your custom questions in one place!
+                                </p>
+                                <ul className="mt-4">
+                                    <li><p>Receive responses</p></li>
+                                    <li><p>Grouped by label</p></li>
+                                    <li><p>View responses anytime</p></li>
+
+                                </ul>
+                            </div>
+                            <div className="mt-10 flex gap-2">
+                                <a className="px-8 py-2 rounded-full text-white font-bold bg-gradient-to-r from-amber-400 to-pink-600 shadow-lg" href="https://app.senja.io/signup">Get started</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    )
+}
 
 function CustomDemo() {
     return (
