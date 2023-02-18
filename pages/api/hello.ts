@@ -17,7 +17,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         return res.status(404).json({ message: "User not found" })
     }
     let responses = 0
-    let answers = 0
+    let answered = 0
     let partner = null
 
     if (Array.isArray(user.questionsLinks)) {
@@ -26,10 +26,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     if (user.sendRequest || user.recievedRequest) {
         let t = user.sendRequest ? user.sendRequest : user.recievedRequest ? user.recievedRequest : undefined
-        answers = await prisma.coupleAnswer.count({ where: { userID: user.id } })
+        answered = await prisma.coupleAnswer.count({ where: { userID: user.id, coupleID: user.coupleID || undefined } })
         partner = await prisma.user.findUnique({ where: { email: t }, select: { name: true, image: true, email: true } })
     }
-    const { name, image, email, sendRequest, recievedRequest } = user
+    const { name, image, email, sendRequest, recievedRequest, currentStreak } = user
 
-    res.json({ name, email, image, streak: user.currentStreak, responses, answers, partner, sendRequest, recievedRequest, hasPartner: !!user.coupleID })
+    res.json({ name, email, image, currentStreak, responses, answered, partner, sendRequest, recievedRequest, hasPartner: !!user.coupleID })
 }

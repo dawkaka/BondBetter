@@ -17,6 +17,7 @@ export default function MePage() {
     signIn("google")
     return
   }
+  console.log(data)
   return (
     <Layout>
       {
@@ -66,9 +67,9 @@ export default function MePage() {
           <div className="flex flex-wrap py-8 gap-16 justify-center">
             {
               data ? <>
-                <ProfileStat count={data.currentStreak || 0} label={"Current streak"} bg="bg-amber-500" />
-                <ProfileStat count={data.answered || 0} label={"Q. answered"} bg="bg-purple-500" />
-                <ProfileStat count={data.responses || 0} label={"Q. responses"} bg="bg-green-500" />
+                <ProfileStat count={data.currentStreak} label={"Current streak"} bg="bg-amber-500" />
+                <ProfileStat count={data.answered} label={"Q. answered"} bg="bg-purple-500" />
+                <ProfileStat count={data.responses} label={"Q. responses"} bg="bg-green-500" />
               </> : null
             }
             {
