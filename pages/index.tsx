@@ -1,6 +1,8 @@
 import gsap from "gsap";
 import { useEffect, useRef } from "react"
+import DisplayQuestion from "../components/DisplayQuestion";
 import { ProfileIcon } from "../components/header";
+import { Option } from "./create-questions";
 
 export default function LandingePage() {
     return (
@@ -53,18 +55,119 @@ export default function LandingePage() {
                 </section>
 
                 <section className="max-w-8xl bg-white py-32 px-4">
-                    <h3 className="text-4xl text-gray-700 max-w-3xl text-center">
-                        Answer daily questions with your partner, and also create custom questions and receive responses to them.
+                    <h3 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-4xl xl:text-4xl">
+                        Answer daily questions with your partner.
                     </h3>
                 </section>
                 <QuestionsDemo />
-
-                <section className="py-32">
-                    <h3 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-4xl xl:text-4xl">Create Custom Questions</h3>
-                </section>
+                <CustomDemo />
 
             </main>
         </div>
+    )
+}
+
+
+function CustomDemo() {
+    return (
+        <section className="py-4 sm:py-8 w-full flex flex-col items-center">
+            <div className="container relative my-16 w-full sm:my-24">
+                <div className="w-full grid gap-x-16 gap-y-8 lg:grid-cols-2">
+                    <div className="max-w-2xl px-4 sm:px-6 lg:mx-0 lg:max-w-none lg:py-16 lg:px-0">
+                        <div>
+                            <h4 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-4xl xl:text-4xl">Create up to 25 custom questions</h4>
+                            <div className="mt-4 text-gray-700 text-lg ">
+                                <p>
+                                    Easily create custom questions you want to know about your partner and send them a link to receive their respons
+                                </p>
+                                <ul className="mt-4">
+                                    <li><p>Create questions</p></li>
+                                    <li><p>Generate link with label <small>eg. name of the person</small></p></li>
+                                    <li><p>Receive responses</p></li>
+                                </ul>
+                            </div>
+                            <div className="mt-10 flex gap-2">
+                                <a className="px-8 py-2 rounded-full text-white font-bold bg-gradient-to-r from-amber-400 to-pink-600 shadow-lg" href="https://app.senja.io/signup">Get started</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="mx-0 sm:mx-0 w-full">
+                        <div className="relative h-[500px] overflow-hidden w-full rounded-2xl bg-purple-500 sm:mt-6 lg:mt-0">
+                            <div className="absolute top-16 left-[50%] translate-x-[-50%] bg-white w-[90%] sm:w-[70%] lg:w-[80%] h-[500px] p-4 rounded-2xl">
+                                <div className="flex flex-col gap-5 pb-8 border-b">
+                                    <div className="flex flex-col gap-2">
+                                        <div className="flex justify-between items-center">
+                                            <label htmlFor="message" className="block mb-2 font-medium text-gray-900 dark:text-white">Q1.</label>
+                                            <button
+                                                className="rounded-full bg-[var(--primary-lighter)] p-1"
+                                                title="remove question"
+                                            >
+                                                <svg height="20px" width="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier">
+                                                        <path d="M16 12H8M12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21Z"
+                                                            stroke="var(--primary-dark)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                        >
+                                                        </path>
+                                                    </g>
+                                                </svg>
+                                            </button>
+                                        </div >
+                                        <textarea
+                                            id="message" rows={1}
+                                            className="block p-2.5 w-full text-gray-600 border rounded-lg outline-none focus:border-[var(--primary)]"
+                                            value="What is the name of the go"
+                                            readOnly
+                                            placeholder="Write your question here...">
+                                        </textarea>
+                                    </div >
+                                    <div className="px-2 w-full flex flex-col gap-2">
+                                        <label className="self-start text-sm text-[var(--accents-6)]" title="allow respondents to enter their own answer">
+                                            <input type="checkbox" className="self-start accent-[var(--primary-darker)] mr-2 "
+                                                checked
+                                                readOnly
+                                            />
+                                            Cutom answer
+                                        </label>
+                                        <Option option="" remove={() => { }} onChange={(str: string) => { }} />
+                                        <Option option="" remove={() => { }} onChange={(str: string) => { }} />
+                                        <button
+                                            className="rounded-full mt-3 bg-[var(--primary-lighter)] px-4 py-2  self-start flex items-center gap-2 shadow"
+                                        >
+                                            <svg width="18px" height="18px" viewBox="0 0 24 24" fill="var(--primary-darker)" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
+                                                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier">
+                                                    <path
+                                                        fill="var(--primary-dark)"
+                                                        d="M13.5 3C13.5 2.44772 13.0523 2 12.5 2H11.5C10.9477 2 10.5 2.44772 10.5 3V10.5H3C2.44772 10.5 2 10.9477 2 11.5V12.5C2 13.0523 2.44772 13.5 3 13.5H10.5V21C10.5 21.5523 10.9477 22 11.5 22H12.5C13.0523 22 13.5 21.5523 13.5 21V13.5H21C21.5523 13.5 22 13.0523 22 12.5V11.5C22 10.9477 21.5523 10.5 21 10.5H13.5V3Z"
+                                                    >
+                                                    </path>
+                                                </g>
+                                            </svg>
+                                            <span className="text-[var(--primary-dark)] text-sm">Add option</span>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div className="mt-8 flex justify-end">
+                                    <button
+                                        className="rounded-full bg-[var(--primary-darker)] px-4 py-2 shadow mb-10 self-start flex items-center gap-2"
+                                    >
+                                        <svg width="18px" height="18px" viewBox="0 0 24 24" fill="var(--primary-darker)" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
+                                            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier">
+                                                <path
+                                                    fill="white"
+                                                    d="M13.5 3C13.5 2.44772 13.0523 2 12.5 2H11.5C10.9477 2 10.5 2.44772 10.5 3V10.5H3C2.44772 10.5 2 10.9477 2 11.5V12.5C2 13.0523 2.44772 13.5 3 13.5H10.5V21C10.5 21.5523 10.9477 22 11.5 22H12.5C13.0523 22 13.5 21.5523 13.5 21V13.5H21C21.5523 13.5 22 13.0523 22 12.5V11.5C22 10.9477 21.5523 10.5 21 10.5H13.5V3Z"
+                                                >
+                                                </path>
+                                            </g>
+                                        </svg>
+                                        <span className="text-white">Add Question</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     )
 }
 
@@ -129,7 +232,7 @@ function QuestionsDemo() {
     }, [])
 
     return (
-        <section className="w-full">
+        <section className="w-full border-b">
             <div className="w-full flex flex-col items-center ">
                 <div className="w-full container grid grid-cols-2 gap-8 bg-purple-500  shadow-lg px-16 rounded-lg">
                     <div className="py-16 flex flex-col">
@@ -175,7 +278,7 @@ function QuestionsDemo() {
                     </div>
                 </div >
             </div>
-            <div className="relative mt-16 shadow-lg">
+            <div className="relative mt-16">
                 <div className="h-[50px] relative overflow-hidden mb-10">
                     <p id="simi" className="absolute translate-y-[-50px] left-[50%] translate-x-[-50%] w-fit text-xl sm:text-4xl text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-pink-600 font-semibold">Discover your similarities</p>
                     <p id="diff" className="absolute translate-y-[-50px] left-[50%] translate-x-[-50%] w-fit  text-xl sm:text-4xl text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-pink-600 font-semibold">Learn your differences</p>

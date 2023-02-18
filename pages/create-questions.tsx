@@ -261,7 +261,7 @@ function Question({ hasInput, question, options, deleted, num }: CreateQuestion 
     )
 }
 
-function Option({ option, onChange, remove }: { option: string, onChange: (val: string) => void, remove: () => void }) {
+export function Option({ option, onChange, remove }: { option: string, onChange: (val: string) => void, remove: () => void }) {
     return (
         <div className="w-full flex gap-1 items-center">
             <input
