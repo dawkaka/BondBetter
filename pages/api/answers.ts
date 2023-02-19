@@ -51,7 +51,7 @@ export default async function requestHandler(req: NextApiRequest, res: NextApiRe
             let filtered = Object.values(ans).filter(v => {
                 return v.user !== undefined
             })
-            res.json({ filtered, count: filtered.length })
+            res.json(filtered)
             break;
         default:
             break;
