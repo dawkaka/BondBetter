@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from "next"
 import { getServerSession } from "next-auth"
 import prisma from "../../lib/prismadb"
-import { getCurrentDateAndTime, isMoreThan24Hours, mergeNowAndStartTime, parseDailyAnswers } from "../../lib/uitls"
+import { getCurrentDateAndTime, isMoreThan24Hours, nextQuestionsTime, parseDailyAnswers } from "../../lib/uitls"
 import { authOptions } from "./auth/[...nextauth]"
 
 
@@ -31,10 +31,10 @@ export default async function dailyQuestoinsHandler(req: NextApiRequest, res: Ne
                     return res.status(404).json({ message: "Something went wrong" })
                 }
                 const now = getCurrentDateAndTime()
-                if (user.lastAnswered && !isMoreThan24Hours(user.lastAnswered, now)) {
-                    return res.status(401).json({ type: "Answered", last: user.lastAnswered, next: new Date(user.lastAnswered).setDate(user.lastAnswered.getDate() + 1), partner: null })
-                }
 
+                if (user.lastAnswered && !isMoreThan24Hours(user.lastAnswered, now)) {
+                    return res.status(401).json({ type: "Answered", last: user.lastAnswered, next: user.lastAnswered, partner: null })
+                }
                 const partner = await prisma.user.findUnique({ where: { id: user.partnerID! } })
                 if (!partner) {
                     return res.status(404).json({ message: "Something went wrong, try again." })
@@ -90,7 +90,7 @@ export default async function dailyQuestoinsHandler(req: NextApiRequest, res: Ne
                 if (!couple) {
                     return res.status(401).json({ message: "You need a partner to answer daily questions with." })
                 }
-                const sTime = mergeNowAndStartTime(couple.startDate)
+                const sTime = nextQuestionsTime(couple.startDate)
                 const now = getCurrentDateAndTime()
                 if (user.lastAnswered && !isMoreThan24Hours(user.lastAnswered, now)) {
                     return res.status(401).json({ message: "Can't not get answer questions now, try again later." })
