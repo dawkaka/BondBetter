@@ -111,8 +111,41 @@ export function yesterday(): Date {
 }
 
 export function isMoreThan24Hours(date1: Date, date2: Date): boolean {
-    let difference = date2.getTime() - date1.getTime();
-    return difference >= 24 * 60 * 60 * 1000;
+    const y2 = date2.getUTCFullYear()
+    const m2 = date2.getUTCMonth()
+    const d2 = date2.getUTCDate()
+    const h2 = date2.getUTCHours()
+    const min2 = date2.getUTCMinutes()
+    const s2 = date2.getUTCSeconds()
+
+    const y1 = date1.getUTCFullYear()
+    const m1 = date1.getUTCMonth()
+    const d1 = date1.getUTCDate()
+    const h1 = date1.getUTCHours()
+    const min1 = date1.getUTCMinutes()
+    const s1 = date2.getUTCSeconds()
+
+    if (y2 > y1) {
+        return true
+    }
+    if (m2 > m1) {
+        return true
+    }
+    if (d2 > d1) {
+        return true
+    }
+    if (y2 === y1 && m2 === m1 && d2 === d1) {
+        if (h2 > h1) {
+            return true
+        }
+        if (min2 > min1) {
+            return true
+        }
+        if (s2 > s1) {
+            return true
+        }
+    }
+    return false
 }
 
 

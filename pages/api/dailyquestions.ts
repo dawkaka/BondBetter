@@ -39,7 +39,6 @@ export default async function dailyQuestoinsHandler(req: NextApiRequest, res: Ne
                 if (!partner) {
                     return res.status(404).json({ message: "Something went wrong, try again." })
                 }
-
                 //Partner already answered, show questions partner answered
                 if (partner.lastAnswered && !isMoreThan24Hours(partner.lastAnswered, now)) {
                     const questions = await prisma.questionBank.findMany({
