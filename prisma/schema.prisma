@@ -29,7 +29,7 @@ model User {
   sendRequest        String?
   currentStreak      Int            @default(0)
   highestStreak      Int            @default(0)
-  lastAnswered       DateTime?
+  nextQuestionsTime  DateTime?
   timeOfLastAnswered DateTime? //Used for notifications
   accounts           Account[]
   sessions           Session[]

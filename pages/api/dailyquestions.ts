@@ -14,7 +14,7 @@ export default async function dailyQuestoinsHandler(req: NextApiRequest, res: Ne
     switch (method) {
         case 'GET':
             try {
-                const user = await prisma.user.findUnique({ where: { email: session.user.email! }, select: { sendRequest: true, recievedRequest: true, coupleID: true, partnerID: true, lastAnswered: true } })
+                const user = await prisma.user.findUnique({ where: { email: session.user.email! }, select: { sendRequest: true, recievedRequest: true, coupleID: true, partnerID: true, nextQuestionsTime: true } })
                 if (!user) {
                     return res.status(404).json({ message: "Something went wrong" })
                 }
@@ -32,15 +32,15 @@ export default async function dailyQuestoinsHandler(req: NextApiRequest, res: Ne
                 }
                 const now = getCurrentDateAndTime()
 
-                if (user.lastAnswered && !isMoreThan24Hours(user.lastAnswered, now)) {
-                    return res.status(401).json({ type: "Answered", last: user.lastAnswered, next: user.lastAnswered, partner: null })
+                if (user.nextQuestionsTime && !isMoreThan24Hours(user.nextQuestionsTime, now)) {
+                    return res.status(401).json({ type: "Answered", next: user.nextQuestionsTime })
                 }
                 const partner = await prisma.user.findUnique({ where: { id: user.partnerID! } })
                 if (!partner) {
                     return res.status(404).json({ message: "Something went wrong, try again." })
                 }
                 //Partner already answered, show questions partner answered
-                if (partner.lastAnswered && !isMoreThan24Hours(partner.lastAnswered, now)) {
+                if (partner.nextQuestionsTime && !isMoreThan24Hours(partner.nextQuestionsTime, now)) {
                     const questions = await prisma.questionBank.findMany({
                         where: {
                             id: {
@@ -78,7 +78,7 @@ export default async function dailyQuestoinsHandler(req: NextApiRequest, res: Ne
             try {
                 const user = await prisma.user.findUnique({
                     where: { email: session.user.email! },
-                    select: { id: true, coupleID: true, partnerID: true, lastAnswered: true }
+                    select: { id: true, coupleID: true, partnerID: true, nextQuestionsTime: true }
                 })
                 if (!user) {
                     return res.status(404).json({ message: "Something went wrong" })
@@ -92,7 +92,7 @@ export default async function dailyQuestoinsHandler(req: NextApiRequest, res: Ne
                 }
                 const sTime = nextQuestionsTime(couple.startDate)
                 const now = getCurrentDateAndTime()
-                if (user.lastAnswered && !isMoreThan24Hours(user.lastAnswered, now)) {
+                if (user.nextQuestionsTime && !isMoreThan24Hours(user.nextQuestionsTime, now)) {
                     return res.status(401).json({ message: "Can't not get answer questions now, try again later." })
                 }
                 const answeredQuestions = req.body.answers
@@ -109,7 +109,7 @@ export default async function dailyQuestoinsHandler(req: NextApiRequest, res: Ne
 
                 const r = await prisma.$transaction([
                     prisma.coupleAnswer.createMany({ data: answers }),
-                    prisma.user.update({ where: { id: user.id }, data: { lastAnswered: sTime, timeOfLastAnswered: now, currentStreak: { increment: 1 } } })
+                    prisma.user.update({ where: { id: user.id }, data: { nextQuestionsTime: sTime, timeOfLastAnswered: now, currentStreak: { increment: 1 } } })
                 ])
                 return res.json(r)
             } catch (error) {

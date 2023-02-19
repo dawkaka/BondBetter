@@ -59,8 +59,8 @@ export default async function requestHandler(req: NextApiRequest, res: NextApiRe
                 var yesterday = new Date(Date.UTC(new Date().getUTCFullYear(), new Date().getUTCMonth(), new Date().getUTCDate() - 1));
                 const couple = await prisma.$transaction(async (tx) => {
                     const cp = await tx.couple.create({ data: { initiated: partner.id, accepted: user.id } });
-                    await tx.user.update({ where: { email: user.email }, data: { partnerID: partner.id, lastAnswered: yesterday, coupleID: cp.id } });
-                    await tx.user.update({ where: { email: partner?.email }, data: { partnerID: user.id, lastAnswered: yesterday, coupleID: cp.id } });
+                    await tx.user.update({ where: { email: user.email }, data: { partnerID: partner.id, nextQuestionsTime: yesterday, coupleID: cp.id } });
+                    await tx.user.update({ where: { email: partner?.email }, data: { partnerID: user.id, nextQuestionsTime: yesterday, coupleID: cp.id } });
                     return cp
                 })
                 return res.json({ message: "Created successfully, you can now begin answering daily questions" })
