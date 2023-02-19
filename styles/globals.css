@@ -51,11 +51,11 @@ body {
 }
 
 .drop-down {
-    animation: drop 5s linear infinite;
+    animation: drop 2s linear infinite;
 }
 
 .move-up {
-    animation: up 5s linear infinite;
+    animation: up 2s linear infinite;
 }
 
 @keyframes drop {
