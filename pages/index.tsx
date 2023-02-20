@@ -1,4 +1,5 @@
 import gsap from "gsap";
+import Link from "next/link";
 import { useEffect, useRef } from "react"
 import DisplayQuestion from "../components/DisplayQuestion";
 import { ProfileIcon } from "../components/header";
@@ -14,7 +15,7 @@ export default function LandingePage() {
                             Logo
                         </span>
                     </h1>
-                    <button className="px-8 py-2 rounded-full text-white font-bold bg-gradient-to-r from-amber-400 to-pink-600">Sign in</button>
+                    <Link href="signin" role="button" className="px-8 py-2 rounded-full text-white font-bold bg-gradient-to-r from-amber-400 to-pink-600">Sign in</Link>
                 </nav>
 
             </header>
@@ -49,7 +50,9 @@ export default function LandingePage() {
                             </h2>
                         </div>
                         <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-center lg:mt-10">
-                            <a href="/#showcase" className="inline-flex h-12 items-center justify-center rounded-xl border border-gray-300 px-6 py-2.5 text-base text-gray-700 transition-all duration-200 hover:border-gray-500 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2" role="button">Get started</a>
+                            <Link href="/#showcase"
+                                className="inline-flex rounded-full h-12 items-center justify-center border border-gray-300 px-6 py-2.5 text-base text-gray-700 transition-all duration-200 hover:border-gray-500 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2"
+                                role="button">Get started</Link>
                         </div>
                     </div>
                 </section>
@@ -136,7 +139,9 @@ function Answers() {
                                 </ul>
                             </div>
                             <div className="mt-10 flex gap-2">
-                                <a className="px-8 py-2 rounded-full text-white font-bold bg-gradient-to-r from-amber-400 to-pink-600 shadow-lg" href="https://app.senja.io/signup">Get started</a>
+                                <Link
+                                    className="px-8 py-2 rounded-full text-white font-bold bg-gradient-to-r from-amber-400 to-pink-600 shadow-lg"
+                                    href="/signup">Get started</Link>
                             </div>
                         </div>
                     </div>
@@ -226,7 +231,9 @@ function ResponseDemo() {
                                 </ul>
                             </div>
                             <div className="mt-10 flex gap-2">
-                                <a className="px-8 py-2 rounded-full text-white font-bold bg-gradient-to-r from-amber-400 to-pink-600 shadow-lg" href="https://app.senja.io/signup">Get started</a>
+                                <Link
+                                    className="px-8 py-2 rounded-full text-white font-bold bg-gradient-to-r from-amber-400 to-pink-600 shadow-lg"
+                                    href="/signup">Get started</Link>
                             </div>
                         </div>
                     </div>
@@ -255,7 +262,9 @@ function CustomDemo() {
                                 </ul>
                             </div>
                             <div className="mt-10 flex gap-2">
-                                <a className="px-8 py-2 rounded-full text-white font-bold bg-gradient-to-r from-amber-400 to-pink-600 shadow-lg" href="https://app.senja.io/signup">Get started</a>
+                                <Link
+                                    className="px-8 py-2 rounded-full text-white font-bold bg-gradient-to-r from-amber-400 to-pink-600 shadow-lg"
+                                    href="/signup">Get started</Link>
                             </div>
                         </div>
                     </div>
