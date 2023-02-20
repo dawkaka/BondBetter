@@ -24,7 +24,7 @@ function NavBar() {
         <nav ref={navRef} className="container flex max-w-4xl items-center justify-between rounded-full px-4 py-2">
             <h1 className="font-extrabold text-3xl text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-pink-600">
                 <span className="">
-                    Logo
+                    BondBetter
                 </span>
             </h1>
             <Link href="signin" role="button" className="px-8 py-2 rounded-full text-white font-bold bg-gradient-to-r from-amber-400 to-pink-600">Sign in</Link>
