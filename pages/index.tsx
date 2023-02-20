@@ -1,48 +1,67 @@
 import gsap from "gsap";
 import Link from "next/link";
 import { useEffect, useRef } from "react"
-import DisplayQuestion from "../components/DisplayQuestion";
 import { ProfileIcon } from "../components/header";
 import { Option } from "./create-questions";
+
+function NavBar() {
+    const navRef = useRef<HTMLElement>(null)
+    function scrollfunc() {
+        if (document.documentElement.scrollTop > 70) {
+            navRef.current!.classList.add("navbar")
+        } else {
+            navRef.current!.classList.remove("navbar")
+        }
+    }
+    useEffect(() => {
+        window.addEventListener("scroll", scrollfunc)
+        return () => {
+            window.removeEventListener("scroll", scrollfunc)
+        }
+    }, [])
+
+    return (
+        <nav ref={navRef} className="container flex max-w-4xl items-center justify-between rounded-full px-4 py-2">
+            <h1 className="font-extrabold text-3xl text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-pink-600">
+                <span className="">
+                    Logo
+                </span>
+            </h1>
+            <Link href="signin" role="button" className="px-8 py-2 rounded-full text-white font-bold bg-gradient-to-r from-amber-400 to-pink-600">Sign in</Link>
+        </nav>
+    )
+}
 
 export default function LandingePage() {
     return (
         <div>
-            <header className="fixed top-4 z-10 w-full flex items-center justify-center py-3 px-3">
-                <nav className="container flex items-center justify-between">
-                    <h1 className="font-extrabold text-4xl text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-pink-600">
-                        <span className="">
-                            Logo
-                        </span>
-                    </h1>
-                    <Link href="signin" role="button" className="px-8 py-2 rounded-full text-white font-bold bg-gradient-to-r from-amber-400 to-pink-600">Sign in</Link>
-                </nav>
-
+            <header className="fixed top-2; z-10 w-full flex items-center justify-center py-3 px-3">
+                <NavBar />
             </header>
             <main className="flex flex-col items-center w-full pb-[200px]">
-                <section className="relative pt-40 mx-auto w-full px-4 sm:px-6 lg:px-8 min-h-screen overflow-hidden">
-                    <div className="absolute top-0 z-[-1] left-[50%] w-[300px] translate-x-[-50%] h-[300px]  bg-no-repeat bg-[url('/stripes.png')]">
+                <section className="relative pt-40 mx-auto w-full px-4 sm:px-6 lg:px-8 min-h-screen overflow-hidden bg-[#fcf5eb]">
+                    <div className="absolute top-0 left-[50%] w-[300px] translate-x-[-50%] h-[300px]  bg-no-repeat bg-[url('/stripes.png')]">
                     </div>
-                    <div className="absolute top-[-300px] z-[-1] left-[50%] w-[300px] translate-x-[-50%] h-[300px] bg-gradient-to-b from-white to-pink-500 stripe-mask drop-down ">
-                    </div>
-
-                    <div className="absolute right-0  rotate-[270deg] z-[-1] top-[50%] w-[200px] translate-y-[-50%] h-[400px] bg-no-repeat bg-[url('/stripes.png')]">
-                    </div>
-                    <div className="absolute right-0  rotate-[270deg] z-[-1] top-[50%] w-[200px] translate-y-[-50%] h-[400px] bg-gradient-to-t from-white to-pink-500 stripe-mask move-left">
+                    <div className="absolute top-[-300px] left-[50%] w-[300px] translate-x-[-50%] h-[300px] bg-gradient-to-b from-white to-pink-500 stripe-mask drop-down ">
                     </div>
 
-                    <div className="absolute bottom-0 z-[-1] left-[50%] w-[300px] translate-x-[-50%] h-[300px]  bg-no-repeat bg-[url('/stripes.png')]">
+                    <div className="absolute right-0  rotate-[270deg] top-[50%] w-[200px] translate-y-[-50%] h-[400px] bg-no-repeat bg-[url('/stripes.png')]">
                     </div>
-                    <div className="absolute bottom-[-300px] z-[-1] left-[50%] w-[300px] translate-x-[-50%] h-[300px] bg-gradient-to-t from-white to-pink-500 stripe-mask move-up">
+                    <div className="absolute right-0  rotate-[270deg] top-[50%] w-[200px] translate-y-[-50%] h-[400px] bg-gradient-to-t from-white to-pink-500 stripe-mask move-left">
+                    </div>
+
+                    <div className="absolute bottom-0 left-[50%] w-[300px] translate-x-[-50%] h-[300px]  bg-no-repeat bg-[url('/stripes.png')]">
+                    </div>
+                    <div className="absolute bottom-[-300px] left-[50%] w-[300px] translate-x-[-50%] h-[300px] bg-gradient-to-t from-white to-pink-500 stripe-mask move-up">
                     </div>
 
 
-                    <div className="absolute left-0  rotate-90 z-[-1] top-[50%] w-[200px] translate-y-[-50%] h-[400px]  bg-no-repeat bg-[url('/stripes.png')]">
+                    <div className="absolute left-0  rotate-90 top-[50%] w-[200px] translate-y-[-50%] h-[400px]  bg-no-repeat bg-[url('/stripes.png')]">
                     </div>
-                    <div className="absolute left-0  rotate-90 z-[-1] top-[50%] w-[200px] translate-y-[-50%] h-[400px]  bg-gradient-to-t from-white to-pink-500 stripe-mask move-right">
+                    <div className="absolute left-0  rotate-90 top-[50%] w-[200px] translate-y-[-50%] h-[400px]  bg-gradient-to-t from-white to-pink-500 stripe-mask move-right">
                     </div>
 
-                    <div className="m-auto bg-white py-16 rounded lg: max-w-5xl hero-container">
+                    <div className="m-auto bg-[#fcf5eb] py-16 rounded lg: max-w-5xl z-10 hero-container">
                         <div className="w-full mx-auto max-w-xl text-center lg:max-w-4xl">
                             <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl md:text-6xl xl:text-7xl">Learn Five New Things About Your Partner Daily</h1>
                             <h2 className="mt-4 text-lg font-normal leading-7 text-gray-700 sm:text-xl lg:mx-auto lg:max-w-3xl xl:text-2xl xl:leading-9">
@@ -245,7 +264,7 @@ function ResponseDemo() {
 
 function CustomDemo() {
     return (
-        <section className="py-4 sm:py-8 w-full flex flex-col items-center">
+        <section className="py-4 sm:py-8 w-full bg-[#fcf5eb] flex flex-col items-center">
             <div className="container relative  w-full sm:my-24">
                 <div className="w-full grid gap-x-16 gap-y-8 lg:grid-cols-2">
                     <div className="max-w-2xl px-4 sm:px-6 lg:mx-0 lg:max-w-none lg:py-16 lg:px-0">

@@ -39,6 +39,11 @@ body {
     height: 100%;
 }
 
+.navbar {
+    background-color: rgba(252, 245, 235, .8);
+    backdrop-filter: blur(4px);
+    transition: background-color .3s cubic-bezier(.42, .00, .58, 1.00);
+}
 
 .stripe-mask {
     -webkit-mask-image: url(/stripes.png);
@@ -46,8 +51,9 @@ body {
 }
 
 .hero-container {
-    -webkit-box-shadow: 0 0 50px 30px white;
-    box-shadow: 0 0 50px 30px white
+    -webkit-box-shadow: 0 0 50px 30px #fcf5eb;
+    box-shadow: 0 0 50px 30px #fcf5eb;
+    isolation: isolate;
 }
 
 .drop-down {
