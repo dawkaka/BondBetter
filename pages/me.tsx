@@ -17,7 +17,6 @@ export default function MePage() {
     signIn("google")
     return
   }
-  console.log(data)
   return (
     <Layout>
       {
@@ -32,7 +31,6 @@ export default function MePage() {
               <p>{data?.email}</p>
             </div>
           </div>
-
           {
             data?.sendRequest && !data.hasPartner ? <PartnerSent {...data.partner!} /> : null
           }
@@ -60,16 +58,15 @@ export default function MePage() {
 
             ) : null
           }
-
         </div>
         <div className="py-8">
           <h3 className="font-extrabold text-2xl text-center">Statistics</h3>
           <div className="flex flex-wrap py-8 gap-16 justify-center">
             {
               data ? <>
-                <ProfileStat count={data.currentStreak} label={"Current streak"} bg="bg-amber-500" />
-                <ProfileStat count={data.answered} label={"Q. answered"} bg="bg-purple-500" />
-                <ProfileStat count={data.responses} label={"Q. responses"} bg="bg-green-500" />
+                <ProfileStat count={data.currentStreak} label={"Current streak"} bg="bg-green-500" fg="bg-green-100" />
+                <ProfileStat count={data.answered} label={"Q. answered"} bg="bg-purple-500" fg="bg-purple-100" />
+                <ProfileStat count={data.responses} label={"Q. responses"} bg="bg-amber-500" fg="bg-amber-100" />
               </> : null
             }
             {
@@ -221,11 +218,14 @@ export function PartnerBox(partner: Partner) {
   )
 }
 
-function ProfileStat({ count, label, bg }: { count: number, label: string, bg: string }) {
+function ProfileStat({ count, label, bg, fg }: { count: number, label: string, bg: string, fg: string }) {
   return (
     <div className="flex flex-col gap-3 items-center">
-      <div className={`flex items-center justify-center w-24 h-24 rounded-full ${bg}`}>
-        <p className="text-white font-semibold text-xl">{count}</p>
+      <div className={`p-4 rounded-full ${fg}`}>
+        <div className={`flex items-center justify-center w-20 h-20 rounded-full ${bg}`}>
+          <p className="text-white font-semibold text-xl">{count}</p>
+        </div>
+
       </div>
       <p className="font-bold text-[var(--accents-7)]">{label}</p>
     </div>

@@ -100,6 +100,7 @@ const Quiz = ({ questions }: { questions: { question: string, id: number }[] }) 
     }
   )
   const handleAnswerChange = (e: any) => {
+    if (e.target.value > 280) return
     const curr = answers
     curr[currentQuestionIndex].answer = e.target.value
     setAnswers([...curr]);
