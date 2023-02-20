@@ -1,4 +1,5 @@
 import gsap, { SteppedEase } from "gsap";
+import { signIn } from "next-auth/react";
 import Link from "next/link";
 import { useEffect, useRef } from "react"
 import { ProfileIcon } from "../components/header";
@@ -27,7 +28,7 @@ function NavBar() {
                     BondBetter
                 </span>
             </h1>
-            <Link href="signin" role="button" className="px-8 py-2 rounded-full text-white font-bold bg-gradient-to-r from-amber-400 to-pink-600">Sign in</Link>
+            <SigninButton title="Sign in" />
         </nav>
     )
 }
@@ -72,11 +73,6 @@ export default function LandingePage() {
                                 Answer five questions daily with your partner  every day to help you know each other better.
                             </h2>
                         </div>
-                        <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-center lg:mt-10">
-                            <Link href="/#showcase"
-                                className="inline-flex rounded-full h-12 items-center justify-center border border-gray-300 px-6 py-2.5 text-base text-gray-700 transition-all duration-200 hover:border-gray-500 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2"
-                                role="button">Get started</Link>
-                        </div>
                     </div>
                 </section>
 
@@ -94,6 +90,14 @@ export default function LandingePage() {
 
             </main>
         </div>
+    )
+}
+
+function SigninButton({ title }: { title: string }) {
+    return (
+        <button onClick={() => signIn("google")} role="button" className="px-8 py-2 rounded-full shadow text-white font-bold bg-gradient-to-r from-amber-400 to-pink-600">
+            {title}
+        </button>
     )
 }
 
@@ -158,9 +162,7 @@ function Answers() {
                                 </p>
                             </div>
                             <div className="mt-10 flex gap-2">
-                                <Link
-                                    className="px-8 py-2 rounded-full text-white font-bold bg-gradient-to-r from-amber-400 to-pink-600 shadow-lg"
-                                    href="/signup">Get started</Link>
+                                <SigninButton title="Get started" />
                             </div>
                         </div>
                     </div>
@@ -229,9 +231,7 @@ function ResponseDemo() {
                                 </p>
                             </div>
                             <div className="mt-10 flex gap-2">
-                                <Link
-                                    className="px-8 py-2 rounded-full text-white font-bold bg-gradient-to-r from-amber-400 to-pink-600 shadow-lg"
-                                    href="/signup">Get started</Link>
+                                <SigninButton title="Get started" />
                             </div>
                         </div>
                     </div>
@@ -256,9 +256,8 @@ function CustomDemo() {
                                 </p>
                             </div>
                             <div className="mt-10 flex gap-2">
-                                <Link
-                                    className="px-8 py-2 rounded-full text-white font-bold bg-gradient-to-r from-amber-400 to-pink-600 shadow-lg"
-                                    href="/signup">Get started</Link>
+                                <SigninButton title="Get started" />
+
                             </div>
                         </div>
                     </div>
