@@ -41,7 +41,7 @@ export default function RespondPage() {
                             <span
                                 className="font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-pink-600"
                             >
-                                {' '} Logo
+                                {' '} BondBetter
                             </span>
                         </h3>
                         {

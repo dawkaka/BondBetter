@@ -19,7 +19,7 @@ model User {
   updatedAt          DateTime       @updatedAt
   image              String?
   currentLinkID      String?
-  currentLinkLabel   String?        @db.VarChar(69)
+  currentLinkLabel   String?        @db.VarChar(50)
   questionsLinks     Json?
   questions          Json?
   couple             Couple?        @relation(fields: [coupleID], references: [id])
@@ -62,8 +62,8 @@ model CoupleAnswer {
 model CustomAnswer {
   id             Int     @id @default(autoincrement())
   questionLinkID String
-  question       String  @db.VarChar(256)
-  answer         String  @db.VarChar(256)
+  question       String  @db.VarChar(280)
+  answer         String  @db.VarChar(280)
   questionBy     String
   userId         String?
 }

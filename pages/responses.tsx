@@ -89,12 +89,11 @@ function Response({ label, linkID }: { label: string, linkID: string }) {
 function ResponseBody({ question, answer, ind }: { question: string, answer: string, ind: number }) {
 
   return (
-    <div className="mb-8">
+    <div className="mb-4">
       <div className="flex gap-3 mb-3 items-start">
-        <h3 className="text-lg font-medium text-gray-600">Q{ind + 1}.</h3>
-        <p className="text-lg font-medium text-gray-600"> {question}</p>
+        <p className="font-bold text-gray-800"> {question}</p>
       </div>
-      <p className="border-l border-purple-500 border-l-4 px-2 ml-10 text-gray-500">{answer}</p>
+      <p className="border-l rounded border-green-500 border-l-4 px-2 text-gray-700">{answer}</p>
     </div>
   )
 }
