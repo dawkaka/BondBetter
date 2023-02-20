@@ -42,8 +42,8 @@ export default function LandingePage() {
                     </div>
 
                     <div className="m-auto bg-white py-16 rounded lg: max-w-5xl hero-container">
-                        <div className="mx-auto max-w-xl text-center lg:max-w-4xl">
-                            <h1 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-6xl xl:text-6xl">Learn Five New Things About Your Partner Every Day</h1>
+                        <div className="w-full mx-auto max-w-xl text-center lg:max-w-4xl">
+                            <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl md:text-6xl xl:text-7xl">Learn Five New Things About Your Partner Daily</h1>
                             <h2 className="mt-4 text-lg font-normal leading-7 text-gray-700 sm:text-xl lg:mx-auto lg:max-w-3xl xl:text-2xl xl:leading-9">
                                 Answer five questions daily with your partner  every day to help you know each other better.
                             </h2>
@@ -54,8 +54,8 @@ export default function LandingePage() {
                     </div>
                 </section>
 
-                <section className="max-w-8xl bg-white py-32 px-4">
-                    <h3 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-4xl xl:text-4xl">
+                <section className="max-w-8xl bg-white  mt-32 mb-8 px-4">
+                    <h3 className="text-3xl text-center font-bold tracking-tight text-gray-900 sm:text-4xl xl:text-4xl">
                         Answer daily questions with your partner.
                     </h3>
                 </section>
@@ -402,7 +402,7 @@ function QuestionsDemo() {
     return (
         <section className="w-full border-b">
             <div className="w-full flex flex-col items-center ">
-                <div className="w-full container grid grid-cols-2 gap-8 bg-purple-500  shadow-lg px-16 rounded-lg">
+                <div className="w-full container grid grid-cols-2 gap-8 bg-purple-500  shadow-lg px-4 md:px-16 rounded-lg">
                     <div className="py-16 flex flex-col">
                         <div className="self-start w-fit gap-1 flex flex-col items-center">
                             <div className="h-8 w-8 text-purple-300">
