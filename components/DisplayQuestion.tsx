@@ -15,6 +15,10 @@ export default function DisplayQuestion({ question, hasInput, options, num, upda
             }
         }
         if (typeof ind === "string") {
+            if (ind.length > 280) {
+                inputRef.current!.value = answer
+                return
+            }
             ans = ind
         }
         if (ans !== "" && updateAnswer) {
@@ -57,7 +61,9 @@ export default function DisplayQuestion({ question, hasInput, options, num, upda
                             placeholder="Type answer"
                             ref={inputRef}
                             rows={1}
-                            onChange={(e) => handleAnswer(e.target.value)}
+                            onChange={(e) => {
+                                handleAnswer(e.target.value)
+                            }}
                             className={`${answer === inputRef.current?.value ? "border rounded-full px-5 border-green-400" :
                                 ""}
                             block mt-5 bg-transparent p-2  border-b w-full 
