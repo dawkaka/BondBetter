@@ -7,7 +7,6 @@ import { authOptions } from "./auth/[...nextauth]"
 
 export default async function requestHandler(req: NextApiRequest, res: NextApiResponse) {
     const { method, query } = req
-    console.log(query)
     const session = await getServerSession(req, res, authOptions)
     if (!session || !session.user) {
         return res.status(401).json({ message: "Login required" })

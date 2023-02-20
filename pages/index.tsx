@@ -59,11 +59,90 @@ export default function LandingePage() {
                         Answer daily questions with your partner.
                     </h3>
                 </section>
-                <QuestionsDemo />
-                <CustomDemo />
-                <ResponseDemo />
+                <div className="w-full flex flex-col gap-8">
+                    <QuestionsDemo />
+                    <Answers />
+                    <CustomDemo />
+                    <ResponseDemo />
+                </div>
+
             </main>
         </div>
+    )
+}
+
+function Answers() {
+    return (
+        <section className="my-8 md:my-24 w-full flex flex-col items-center">
+            <div className="container relative  w-full">
+                <div className="w-full grid gap-x-16 gap-y-8 lg:grid-cols-2">
+                    <div className="order-last lg:order-first w-full">
+                        <div className="relative h-[500px] overflow-hidden w-full rounded-2xl bg-purple-500 sm:mt-6 lg:mt-0">
+                            <div className="absolute top-16 left-[50%] translate-x-[-50%] bg-white w-[90%] sm:w-[70%] lg:w-[80%] h-[500px] p-4 rounded-2xl">
+                                <div className="text-left mb-6 mt-4">
+                                    <h3 className="text-gray-800 font-bold mb-2">What is the most spontanious thing you've ever done?</h3>
+                                    <div className="border-l rounded border-l-4 p-0 pl-2 border-purple-500 mb-4">
+                                        <span className="text-sm text-purple-500 font-bold">You</span>
+                                        <p className="text-gray-600">Learned spanish for no reason at all</p>
+                                    </div>
+
+                                    <div className="border-l rounded border-l-4 p-0 pl-2 border-green-500 mb-2">
+                                        <span className="text-sm text-green-500 font-bold">Partner's name</span>
+                                        <p className="text-gray-600">Took a trip to paris!</p>
+                                    </div>
+
+                                </div>
+                                <div className="text-left mb-6 mt-4">
+                                    <h3 className="text-gray-800 font-bold mb-2">What is the most spontanious thing you've ever done?</h3>
+                                    <div className="border-l rounded border-l-4 p-0 pl-2 border-purple-500 mb-4">
+                                        <span className="text-sm text-purple-500 font-bold">You</span>
+                                        <p className="text-gray-600">Learned spanish for no reason at all</p>
+                                    </div>
+
+                                    <div className="border-l rounded border-l-4 p-0 pl-2 border-green-500 mb-2">
+                                        <span className="text-sm text-green-500 font-bold">Partner's name</span>
+                                        <p className="text-gray-600">Took a trip to paris!</p>
+                                    </div>
+
+                                </div>
+                                <div className="text-left mb-6 mt-4">
+                                    <h3 className="text-gray-800 font-bold mb-2">What is the most spontanious thing you've ever done?</h3>
+                                    <div className="border-l rounded border-l-4 p-0 pl-2 border-purple-500 mb-4">
+                                        <span className="text-sm text-purple-500 font-bold">You</span>
+                                        <p className="text-gray-600">Learned spanish for no reason at all</p>
+                                    </div>
+
+                                    <div className="border-l rounded border-l-4 p-0 pl-2 border-green-500 mb-2">
+                                        <span className="text-sm text-green-500 font-bold">Partner's name</span>
+                                        <p className="text-gray-600">Took a trip to paris!</p>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="max-w-2xl px-4 sm:px-6 lg:mx-0 lg:max-w-none lg:py-16 lg:px-0">
+                        <div>
+                            <h4 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-4xl xl:text-4xl">View your partner's answers</h4>
+                            <div className="mt-4 text-gray-700 text-lg ">
+                                <p>
+                                    See answers provided by you and your partner's to help you learn more about them, for questions your partner doesn't answer they won't also see your answer.
+                                </p>
+                                <ul className="mt-4">
+                                    <li><p>Receive responses</p></li>
+                                    <li><p>Grouped by label</p></li>
+                                    <li><p>View responses anytime</p></li>
+
+                                </ul>
+                            </div>
+                            <div className="mt-10 flex gap-2">
+                                <a className="px-8 py-2 rounded-full text-white font-bold bg-gradient-to-r from-amber-400 to-pink-600 shadow-lg" href="https://app.senja.io/signup">Get started</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     )
 }
 
@@ -72,7 +151,7 @@ function ResponseDemo() {
         <section className="my-8 md:my-24 w-full flex flex-col items-center">
             <div className="container relative  w-full">
                 <div className="w-full grid gap-x-16 gap-y-8 lg:grid-cols-2">
-                    <div className="order-last md:order-first w-full">
+                    <div className="order-last lg:order-first w-full">
                         <div className="relative h-[500px] overflow-hidden w-full rounded-2xl bg-purple-500 sm:mt-6 lg:mt-0">
                             <div className="absolute top-16 left-[50%] translate-x-[-50%] bg-white w-[90%] sm:w-[70%] lg:w-[80%] h-[500px] p-4 rounded-2xl">
                                 <button
@@ -89,43 +168,43 @@ function ResponseDemo() {
                                 </button>
                                 <div className="mt-8 mb-4">
                                     <div className="flex gap-3 mb-3 items-start">
-                                        <h3 className="text-lg font-medium text-gray-700">Q1.</h3>
-                                        <p className="text-lg font-medium text-gray-700">Do you sleep with the lights on or off?</p>
+                                        <h3 className="text-gray-800 font-bold">Q1.</h3>
+                                        <p className="text-gray-800 font-bold">Do you sleep with the lights on or off?</p>
                                     </div>
                                     <p className="border-l border-purple-500 border-l-[3px] px-2 ml-10 text-gray-500">off</p>
                                 </div>
                                 <div className="my-4">
                                     <div className="flex gap-3 mb-3 items-start">
-                                        <h3 className="text-lg font-medium text-gray-700">Q2.</h3>
-                                        <p className="text-lg font-medium text-gray-700">Ghanaian jollof or Nigerian jollof?</p>
+                                        <h3 className="text-gray-800 font-bold">Q2.</h3>
+                                        <p className="text-gray-800 font-bold">Ghanaian jollof or Nigerian jollof?</p>
                                     </div>
                                     <p className="border-l border-purple-500 border-l-[3px] px-2 ml-10 text-gray-500">Naija jollof for life!</p>
                                 </div>
                                 <div className="my-4">
                                     <div className="flex gap-3 mb-3 items-start">
-                                        <h3 className="text-lg font-medium text-gray-700">Q3.</h3>
-                                        <p className="text-lg font-medium text-gray-700">Do you sleep with the lights on or off?</p>
+                                        <h3 className="text-gray-800 font-bold">Q3.</h3>
+                                        <p className="text-gray-800 font-bold mb-2">Do you sleep with the lights on or off?</p>
                                     </div>
                                     <p className="border-l border-purple-500 border-l-[3px] px-2 ml-10 text-gray-500">off</p>
                                 </div>
                                 <div className="my-4">
                                     <div className="flex gap-3 mb-3 items-start">
-                                        <h3 className="text-lg font-medium text-gray-700">Q4.</h3>
-                                        <p className="text-lg font-medium text-gray-700">Do you sleep with the lights on or off?</p>
+                                        <h3 className="text-gray-800 font-bold">Q4.</h3>
+                                        <p className="text-gray-800 font-bold">Do you sleep with the lights on or off?</p>
                                     </div>
                                     <p className="border-l border-purple-500 border-l-[3px] px-2 ml-10 text-gray-500">off</p>
                                 </div>
                                 <div className="my-4">
                                     <div className="flex gap-3 mb-3 items-start">
-                                        <h3 className="text-lg font-medium text-gray-700">Q5.</h3>
-                                        <p className="text-lg font-medium text-gray-700">Do you sleep with the lights on or off?</p>
+                                        <h3 className="text-gray-800 font-bold">Q5.</h3>
+                                        <p className="text-gray-800 font-bold">Do you sleep with the lights on or off?</p>
                                     </div>
                                     <p className="border-l border-purple-500 border-l-[3px] px-2 ml-10 text-gray-500">off</p>
                                 </div>
                                 <div className="my-4">
                                     <div className="flex gap-3 mb-3 items-start">
-                                        <h3 className="text-lg font-medium text-gray-700">Q6.</h3>
-                                        <p className="text-lg font-medium text-gray-700">Do you sleep with the lights on or off?</p>
+                                        <h3 className="text-gray-800 font-bold">Q6.</h3>
+                                        <p className="text-gray-800 font-bold">Do you sleep with the lights on or off?</p>
                                     </div>
                                     <p className="border-l border-purple-500 border-l-[3px] px-2 ml-10 text-gray-500">off</p>
                                 </div>
@@ -154,14 +233,13 @@ function ResponseDemo() {
                 </div>
             </div>
         </section>
-
     )
 }
 
 function CustomDemo() {
     return (
         <section className="py-4 sm:py-8 w-full flex flex-col items-center">
-            <div className="container relative my-16 w-full sm:my-24">
+            <div className="container relative  w-full sm:my-24">
                 <div className="w-full grid gap-x-16 gap-y-8 lg:grid-cols-2">
                     <div className="max-w-2xl px-4 sm:px-6 lg:mx-0 lg:max-w-none lg:py-16 lg:px-0">
                         <div>
