@@ -105,42 +105,42 @@ function Answers() {
                     <div className="order-last lg:order-first w-full">
                         <div className="relative h-[500px] overflow-hidden w-full rounded-2xl bg-purple-500 sm:mt-6 lg:mt-0">
                             <div className="absolute top-16 left-[50%] translate-x-[-50%] bg-white w-[90%] sm:w-[70%] lg:w-[80%] h-[500px] p-4 rounded-2xl">
-                                <div className="text-left mb-6 mt-4">
-                                    <h3 className="text-gray-800 font-bold mb-2">What is the most spontanious thing you've ever done?</h3>
-                                    <div className="border-l rounded border-l-4 p-0 pl-2 border-purple-500 mb-4">
+                                <div className="text-left mb-4 mt-4">
+                                    <h3 className="text-gray-800 font-bold mb-2">What is a book, movie, or TV show that had a significant impact on you?</h3>
+                                    <div className="border-l rounded border-l-4 p-0 pl-2 border-purple-500 mb-2">
                                         <span className="text-sm text-purple-500 font-bold">You</span>
-                                        <p className="text-gray-600">Learned spanish for no reason at all</p>
+                                        <p className="text-gray-600">Harry potter</p>
                                     </div>
 
                                     <div className="border-l rounded border-l-4 p-0 pl-2 border-green-500 mb-2">
                                         <span className="text-sm text-green-500 font-bold">Partner's name</span>
-                                        <p className="text-gray-600">Took a trip to paris!</p>
+                                        <p className="text-gray-600">F.R.I.E.N.D.S</p>
                                     </div>
 
                                 </div>
-                                <div className="text-left mb-6 mt-4">
-                                    <h3 className="text-gray-800 font-bold mb-2">What is the most spontanious thing you've ever done?</h3>
-                                    <div className="border-l rounded border-l-4 p-0 pl-2 border-purple-500 mb-4">
+                                <div className="text-left mb-4 mt-4">
+                                    <h3 className="text-gray-800 font-bold mb-2">What is a personal accomplishment that you are most proud of?</h3>
+                                    <div className="border-l rounded border-l-4 p-0 pl-2 border-purple-500 mb-2">
                                         <span className="text-sm text-purple-500 font-bold">You</span>
-                                        <p className="text-gray-600">Learned spanish for no reason at all</p>
+                                        <p className="text-gray-600">Learning another language (spanish)</p>
                                     </div>
 
                                     <div className="border-l rounded border-l-4 p-0 pl-2 border-green-500 mb-2">
                                         <span className="text-sm text-green-500 font-bold">Partner's name</span>
-                                        <p className="text-gray-600">Took a trip to paris!</p>
+                                        <p className="text-gray-600">Graduating from college!</p>
                                     </div>
 
                                 </div>
-                                <div className="text-left mb-6 mt-4">
-                                    <h3 className="text-gray-800 font-bold mb-2">What is the most spontanious thing you've ever done?</h3>
-                                    <div className="border-l rounded border-l-4 p-0 pl-2 border-purple-500 mb-4">
+                                <div className="text-left mb-4 mt-4">
+                                    <h3 className="text-gray-800 font-bold mb-2">What is a place you have always wanted to visit but haven't?</h3>
+                                    <div className="border-l rounded border-l-4 p-0 pl-2 border-purple-500 mb-2">
                                         <span className="text-sm text-purple-500 font-bold">You</span>
-                                        <p className="text-gray-600">Learned spanish for no reason at all</p>
+                                        <p className="text-gray-600">There are a few. Milan, Lagos and Barcelona</p>
                                     </div>
 
                                     <div className="border-l rounded border-l-4 p-0 pl-2 border-green-500 mb-2">
                                         <span className="text-sm text-green-500 font-bold">Partner's name</span>
-                                        <p className="text-gray-600">Took a trip to paris!</p>
+                                        <p className="text-gray-600">Barcelona 100%</p>
                                     </div>
 
                                 </div>
@@ -152,14 +152,10 @@ function Answers() {
                             <h4 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-4xl xl:text-4xl">View your partner's answers</h4>
                             <div className="mt-4 text-gray-700 text-lg ">
                                 <p>
-                                    See answers provided by you and your partner's to help you learn more about them, for questions your partner doesn't answer they won't also see your answer.
+                                    By reviewing both your and your partner's answers, you can gain a deeper understanding of each other.
+                                    Keep in mind that if your partner chooses not to answer a particular question,
+                                    they won't be able to see your answer to that question either.
                                 </p>
-                                <ul className="mt-4">
-                                    <li><p>Receive responses</p></li>
-                                    <li><p>Grouped by label</p></li>
-                                    <li><p>View responses anytime</p></li>
-
-                                </ul>
                             </div>
                             <div className="mt-10 flex gap-2">
                                 <Link
@@ -196,45 +192,29 @@ function ResponseDemo() {
                                 </button>
                                 <div className="mt-8 mb-4">
                                     <div className="flex gap-3 mb-3 items-start">
-                                        <h3 className="text-gray-800 font-bold">Q1.</h3>
-                                        <p className="text-gray-800 font-bold">Do you sleep with the lights on or off?</p>
+                                        <p className="text-gray-800 font-bold">What's your favorite childhood memory?</p>
                                     </div>
-                                    <p className="border-l border-purple-500 border-l-[3px] px-2 ml-10 text-gray-500">off</p>
+                                    <p className="border-l border-green-500 rounded border-l-4 px-2 text-gray-700">Our first family trip to Paris</p>
                                 </div>
                                 <div className="my-4">
                                     <div className="flex gap-3 mb-3 items-start">
-                                        <h3 className="text-gray-800 font-bold">Q2.</h3>
-                                        <p className="text-gray-800 font-bold">Ghanaian jollof or Nigerian jollof?</p>
+                                        <p className="text-gray-800 font-bold">What are your hobbies and interests outside of work?</p>
                                     </div>
-                                    <p className="border-l border-purple-500 border-l-[3px] px-2 ml-10 text-gray-500">Naija jollof for life!</p>
+                                    <p className="border-l border-green-500 rounded border-l-4 px-2 text-gray-700">
+                                        I like to learn new things, like history, a new language etc. been reading about evolution lately
+                                    </p>
                                 </div>
                                 <div className="my-4">
                                     <div className="flex gap-3 mb-3 items-start">
-                                        <h3 className="text-gray-800 font-bold">Q3.</h3>
-                                        <p className="text-gray-800 font-bold mb-2">Do you sleep with the lights on or off?</p>
+                                        <p className="text-gray-800 font-bold">What's one skill you have that many people don't know about knows about?</p>
                                     </div>
-                                    <p className="border-l border-purple-500 border-l-[3px] px-2 ml-10 text-gray-500">off</p>
+                                    <p className="border-l border-green-500 rounded border-l-4 px-2 text-gray-700">I'm good with my feet, hands and mouth!</p>
                                 </div>
                                 <div className="my-4">
                                     <div className="flex gap-3 mb-3 items-start">
-                                        <h3 className="text-gray-800 font-bold">Q4.</h3>
-                                        <p className="text-gray-800 font-bold">Do you sleep with the lights on or off?</p>
+                                        <p className="text-gray-800 font-bold">Do you prefer books or movies?</p>
                                     </div>
-                                    <p className="border-l border-purple-500 border-l-[3px] px-2 ml-10 text-gray-500">off</p>
-                                </div>
-                                <div className="my-4">
-                                    <div className="flex gap-3 mb-3 items-start">
-                                        <h3 className="text-gray-800 font-bold">Q5.</h3>
-                                        <p className="text-gray-800 font-bold">Do you sleep with the lights on or off?</p>
-                                    </div>
-                                    <p className="border-l border-purple-500 border-l-[3px] px-2 ml-10 text-gray-500">off</p>
-                                </div>
-                                <div className="my-4">
-                                    <div className="flex gap-3 mb-3 items-start">
-                                        <h3 className="text-gray-800 font-bold">Q6.</h3>
-                                        <p className="text-gray-800 font-bold">Do you sleep with the lights on or off?</p>
-                                    </div>
-                                    <p className="border-l border-purple-500 border-l-[3px] px-2 ml-10 text-gray-500">off</p>
+                                    <p className="border-l border-green-500 rounded border-l-4 px-2 text-gray-700">I prefer movies, they seem faster.</p>
                                 </div>
                             </div>
                         </div>
@@ -244,14 +224,9 @@ function ResponseDemo() {
                             <h4 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-4xl xl:text-4xl">Receive reponses</h4>
                             <div className="mt-4 text-gray-700 text-lg ">
                                 <p>
-                                    All responses from your custom questions in one place!
+                                    You can conveniently access all the responses to your personalized questions in a single location,
+                                    making it easy to review and analyze the reponses you have received.
                                 </p>
-                                <ul className="mt-4">
-                                    <li><p>Receive responses</p></li>
-                                    <li><p>Grouped by label</p></li>
-                                    <li><p>View responses anytime</p></li>
-
-                                </ul>
                             </div>
                             <div className="mt-10 flex gap-2">
                                 <Link
@@ -276,13 +251,9 @@ function CustomDemo() {
                             <h4 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-4xl xl:text-4xl">Create up to 25 custom questions</h4>
                             <div className="mt-4 text-gray-700 text-lg ">
                                 <p>
-                                    Easily create custom questions you want to know about your partner and send them a link to receive their respons
+                                    You can effortlessly generate customized questions that you're curious to know about
+                                    your partner or someone you just started talking wtih and share a link with them to gather their responses.
                                 </p>
-                                <ul className="mt-4">
-                                    <li><p>Create questions</p></li>
-                                    <li><p>Generate link with label <small>eg. name of the person</small></p></li>
-                                    <li><p>Receive responses</p></li>
-                                </ul>
                             </div>
                             <div className="mt-10 flex gap-2">
                                 <Link
@@ -458,11 +429,11 @@ function QuestionsDemo() {
                         </div>
                         <div className="w-full h-[200px] sm:h-[170px] relative mt-16 overflow-y-hidden rounded my-auto flex flex-col justify-end gap-10">
                             <Q title="Do you sleep with the lights on of off?" id="q-1" />
-                            <Q title="Would you cooks or do the dishes?" id="q-2" />
+                            <Q title="Would rather you cook or do the dishes?" id="q-2" />
                             <div className="relative w-full sm:w-[80%] h-8 self-start  text-left bg-transparent font-bold border-b px-3 py-1 focus:outline-none text-white text-lg">
                                 <p className="a1 absolute top-0  opacity-0 left-0 overflow-hidden">With the lights off</p>
-                                <p className="a2 absolute top-0 opacity-0 left-0 overflow-hidden">No I don't like Neither</p>
-                                <p className="a3 absolute top-0 opacity-0 left-0 overflow-hidden">Don't mind doing the dishes</p>
+                                <p className="a2 absolute top-0 opacity-0 left-0 overflow-hidden">I hate both</p>
+                                <p className="a3 absolute top-0 opacity-0 left-0 overflow-hidden">I'll consider doing the dishes</p>
                             </div>
                         </div>
                     </div>
@@ -478,7 +449,7 @@ function QuestionsDemo() {
                             <Q title="Would you cooks or do the dishes?" id="q-2" />
                             <div className="relative w-full sm:w-[80%] h-8 text-left border-b px-3 py-1 self-end text-white text-lg font-bold" >
                                 <p className="a1 absolute top-0 opacity-0 left-0 overflow-hidden">I prefer the lights off!</p>
-                                <p className="a2 absolute top-0 opacity-0 left-0 overflow-hidden">Neighther</p>
+                                <p className="a2 absolute top-0 opacity-0 left-0 overflow-hidden">Neither</p>
                                 <p className="a3 absolute top-0 opacity-0 left-0 overflow-hidden">I can manage cooking</p>
                             </div>
                         </div>
