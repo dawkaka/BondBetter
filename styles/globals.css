@@ -58,13 +58,17 @@ body {
     animation: up 2s linear infinite;
 }
 
+.move-right {
+    animation: rght 2s linear infinite;
+}
+
+.move-left {
+    animation: lft 2s linear infinite;
+}
+
 @keyframes drop {
     0% {
         top: -300px
-    }
-
-    40% {
-        top: 300px
     }
 
     100% {
@@ -77,16 +81,33 @@ body {
         bottom: -300px
     }
 
-    40% {
-        bottom: 300px
-    }
 
     100% {
         bottom: 300px
     }
 }
 
+@keyframes rght {
+    0% {
+        left: -400px
+    }
 
+
+    100% {
+        left: 400px
+    }
+}
+
+@keyframes lft {
+    0% {
+        right: -400px
+    }
+
+
+    100% {
+        right: 400px
+    }
+}
 
 
 .checkanime {
