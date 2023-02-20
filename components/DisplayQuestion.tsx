@@ -32,6 +32,9 @@ export default function DisplayQuestion({ question, hasInput, options, num, upda
             <form className="px-5 mt-5 flex flex-col gap-2 w-max-content">
                 {
                     options.map((o, ind) => {
+                        if (o.trim().length === 0) {
+                            return null
+                        }
                         return (
                             <div className={`${answer === o ? selectedClass : "text-gray-600"} flex items-center border border rounded-full w-fit-content overflow-hidden`} key={o}>
                                 <input type="radio" name="answer" className="ml-5 h-5 w-5 accent-amber-600"

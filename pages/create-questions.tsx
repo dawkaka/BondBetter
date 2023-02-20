@@ -131,6 +131,7 @@ function Question({ hasInput, question, options, deleted, num }: CreateQuestion 
         updateQuestions([...q.slice(0, num - 1), target, ...q.slice(num)])
     }
     function updateQuestion(question: string) {
+        if (question.length > 280) return
         const target = { ...q[num - 1] }
         target.question = question
         updateQuestions([...q.slice(0, num - 1), target, ...q.slice(num)])
@@ -141,6 +142,7 @@ function Question({ hasInput, question, options, deleted, num }: CreateQuestion 
         updateQuestions([...q.slice(0, num - 1), target, ...q.slice(num)])
     }
     function optionChange(opIndex: number, newValue: string) {
+        if (newValue.length >= 100) return
         const target = { ...q[num - 1] }
         target.options[opIndex] = newValue
         updateQuestions([...q.slice(0, num - 1), target, ...q.slice(num)])

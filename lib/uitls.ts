@@ -27,9 +27,9 @@ export function validateQuestions(questions: any[]): QuestionsErrors {
 }
 
 export function isValidQuestion(q: CreateQuestion) {
-    if (q.question.length === 0 || q.question.length > 250 || q.deleted) false
+    if (q.question.length === 0 || q.question.length > 280 || q.deleted) false
     if (q.options.length < 2 && !q.hasInput) false
-    const flOp = q.options.filter(op => op.length > 0 && op.length <= 50)
+    const flOp = q.options.filter(op => op.length > 0 && op.length <= 100)
     if (flOp.length < 2 && !q.hasInput) {
         return false
     }
