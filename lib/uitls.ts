@@ -27,12 +27,11 @@ export function validateQuestions(questions: any[]): QuestionsErrors {
 }
 
 export function isValidQuestion(q: CreateQuestion) {
-    if (q.question.length === 0 || q.question.length > 69 || q.deleted) false
+    if (q.question.length === 0 || q.question.length > 250 || q.deleted) false
     if (q.options.length < 2 && !q.hasInput) false
-    for (let p of q.options) {
-        if (p.length === 0 || p.length > 30) {
-            return false
-        }
+    const flOp = q.options.filter(op => op.length > 0 && op.length <= 50)
+    if (flOp.length < 2 && !q.hasInput) {
+        return false
     }
     return true
 }

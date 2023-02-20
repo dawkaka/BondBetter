@@ -83,16 +83,16 @@ export default function ServerSidePage({ session }: { session: Session }) {
           </button>
           <Link href="/create-questions">
             <button
-              className="whitespace-nowrap overflow-hidden rounded-full w-full mt-3 bg-blue-100 px-4 py-2  self-start flex items-center justify-center gap-2 shadow"
+              className="whitespace-nowrap overflow-hidden rounded-full w-full mt-3 bg-amber-100 px-4 py-2  self-start flex items-center justify-center gap-2 shadow"
             >
-              <svg width="18px" height="18px" className="shrink-0 fill-blue-500" viewBox="0 0 1920 1920" xmlns="http://www.w3.org/2000/svg" transform="matrix(-1, 0, 0, 1, 0, 0)">
+              <svg width="18px" height="18px" className="shrink-0 fill-amber-500" viewBox="0 0 1920 1920" xmlns="http://www.w3.org/2000/svg" transform="matrix(-1, 0, 0, 1, 0, 0)">
                 <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                 <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier">
                   <path d="m1392.7 1700.332-44.782-44.781 307.872-307.872 44.781 44.782 77.248 385.12-385.12-77.249Zm-104.117-332.501L596.711 675.959l79.487-79.487 691.872 691.872-79.487 79.487ZM282.123 589.755 128.745 436.38c-10.075-10.076-16.793-24.63-16.793-39.184 0-15.673 6.718-29.108 16.793-40.303L357.13 128.508c11.196-10.076 24.63-16.793 40.303-16.793 14.554 0 29.108 6.717 39.184 16.793l153.376 153.376-307.872 307.872Zm1521.446 747.848L747.849 281.883 516.104 49.02c-63.813-62.693-174.647-62.693-237.341 0L49.259 278.525C17.913 309.872 0 352.414 0 397.195c0 44.782 17.913 87.324 49.26 118.67L282.121 747.61l1055.72 1055.72L1920 1919.761l-116.431-582.158Z" fill-rule="evenodd">
                   </path>
                 </g>
               </svg>
-              <span className="text-blue-500 text-sm whitespace-nowrap overflow-hidden">Edit</span>
+              <span className="text-amber-500 text-sm whitespace-nowrap overflow-hidden">Edit</span>
             </button>
           </Link>
           <button
