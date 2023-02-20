@@ -17,7 +17,6 @@ export default function LinkModal({ close }: { close: () => void }) {
             }
         }
     )
-
     const deleteLinkMutation = useMutation<AxiosResponse, AxiosError<any, any>>(
         () => axios.delete("/api/link"),
         {
@@ -31,8 +30,6 @@ export default function LinkModal({ close }: { close: () => void }) {
             }
         }
     )
-
-
 
     useEffect(() => {
         if (data) {
@@ -113,12 +110,30 @@ function SocialShare({ linkID, label }: { linkID: string, label: string }) {
             console.error('Failed to copy link: ', err)
         }
     }
+
+    const shareOnFacebook = () => {
+        const shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${linkURL}`;
+        window.open(shareUrl, "_blank");
+    };
+
+    const shareOnTwitter = () => {
+        const shareText = "Check out this website!";
+        const shareUrl = `https://twitter.com/intent/tweet?text=${shareText}&url=${linkURL}`;
+        window.open(shareUrl, "_blank");
+    };
+
+    const shareOnWhatsApp = () => {
+        const shareText = "Check out this website!";
+        const shareUrl = `whatsapp://send?text=${shareText}%20${linkURL}`;
+        window.location.href = shareUrl;
+    };
     return (
         <div className="my-4">
-            <p className="text-sm">Share <strong>{label}</strong> link via</p>
+            <p className="text-sm">Copy and share link: <strong>{label}</strong></p>
 
-            <div className="flex justify-around my-4">
+            {/* <div className="flex justify-around my-4">
                 <div
+                    onClick={shareOnFacebook}
                     className="border hover:bg-[#1877f2] w-12 h-12 fill-[#1877f2] hover:fill-white border-blue-200 rounded-full flex items-center justify-center shadow-xl hover:shadow-blue-500/50 cursor-pointer"
                 >
                     <svg
@@ -133,6 +148,7 @@ function SocialShare({ linkID, label }: { linkID: string, label: string }) {
                     </svg>
                 </div>
                 <div
+                    onClick={shareOnTwitter}
                     className="border hover:bg-[#1d9bf0] w-12 h-12 fill-[#1d9bf0] hover:fill-white border-blue-200 rounded-full flex items-center justify-center shadow-xl hover:shadow-sky-500/50 cursor-pointer"
                 >
                     <svg
@@ -166,6 +182,7 @@ function SocialShare({ linkID, label }: { linkID: string, label: string }) {
                 </div>
 
                 <div
+                    onClick={shareOnWhatsApp}
                     className="border hover:bg-[#25D366] w-12 h-12 fill-[#25D366] hover:fill-white border-green-200 rounded-full flex items-center justify-center shadow-xl hover:shadow-green-500/50 cursor-pointer"
                 >
                     <svg
@@ -196,9 +213,8 @@ function SocialShare({ linkID, label }: { linkID: string, label: string }) {
                         ></path>
                     </svg>
                 </div>
-            </div>
+            </div> */}
 
-            <p className="text-sm">Or copy link</p>
             <div className="border-2 border-gray-200 flex justify-between items-center mt-4 py-2">
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
