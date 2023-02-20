@@ -1,4 +1,4 @@
-import gsap from "gsap";
+import gsap, { SteppedEase } from "gsap";
 import Link from "next/link";
 import { useEffect, useRef } from "react"
 import { ProfileIcon } from "../components/header";
@@ -35,7 +35,7 @@ function NavBar() {
 export default function LandingePage() {
 
     useEffect(() => {
-        gsap.fromTo("#hero-content", { y: 300, opacity: 0 }, { y: 0, opacity: 1, duration: 1 })
+        gsap.fromTo("#hero-content", { y: 300, opacity: 0 }, { y: 0, opacity: 1, duration: .5 })
     }, [])
     return (
         <div>
@@ -80,7 +80,7 @@ export default function LandingePage() {
                     </div>
                 </section>
 
-                <section className="max-w-8xl bg-white  mt-32 mb-8 px-4">
+                <section className="max-w-8xl bg-white  mt-32 mb-8 sm:mb-16 px-4">
                     <h3 className="text-3xl text-center font-bold tracking-tight text-gray-900 sm:text-4xl xl:text-4xl">
                         Answer daily questions with your partner.
                     </h3>
@@ -381,11 +381,7 @@ function QuestionsDemo() {
         tl.to(".q-1", { duration: 1, y: 0, opacity: 1 })
             .to(".q-1", { duration: 1, delay: 2, y: 0, opacity: 0 })
             .to(".q-2", { duration: 1, y: 0, opacity: 1 })
-            .to(".q-2", { duration: 1, delay: 2, y: 0, opacity: 0 })
-            .to(".q-3", { duration: 1, y: 0, opacity: 1 })
-            .to(".q-3", { duration: 1, delay: 2, y: 0, opacity: 0 })
-            .to(".q-4", { duration: 1, y: 0, opacity: 1 })
-            .to(".q-4", { duration: 1, delay: 2, y: 0, opacity: 0 });
+            .to(".q-2", { duration: 1, delay: 6, y: 0, opacity: 0 })
 
         let wid = window.getComputedStyle(comRef.current!).width
         wid = wid.substring(0, wid.length - 2)
@@ -420,8 +416,6 @@ function QuestionsDemo() {
             .to(".i2", { duration: 0, color: "green" })
             .to(".i2", { duration: 1, delay: 1, scale: 0 })
 
-
-
         const tlHeader = gsap.timeline({ repeat: -1 })
         tlHeader.to("#simi", { duration: 1, y: 0 })
             .to("#simi", { duration: 1, delay: 2, y: -50 })
@@ -429,6 +423,18 @@ function QuestionsDemo() {
             .to("#diff", { duration: 1, delay: 2, y: -50 })
             .to("#comp", { duration: 1, y: 0 })
             .to("#comp", { duration: 1, delay: 2, y: -50 })
+
+
+        const type = gsap.timeline({ repeat: -1 })
+        type.fromTo(".a1", { delay: 1, width: 0, opacity: 1, duration: 2 }, { duration: 2, width: "100%", ease: SteppedEase.config(37) })
+            .to(".a1", { opacity: 0, delay: 1, duration: 1 })
+            .fromTo(".a2", { delay: 10, width: 0, opacity: 1, duration: 2 }, { duration: 2, width: "100%", ease: SteppedEase.config(37) })
+            .to(".a2", { delay: 0, duration: 1, width: 0 })
+            .fromTo(".a3", { delay: 5, width: 0, opacity: 1, duration: 2 }, { duration: 2, width: "100%", ease: SteppedEase.config(37) })
+            .to(".a3", { opacity: 0, delay: 2, duration: 1 })
+
+
+
 
         return () => {
             tl.kill()
@@ -442,7 +448,7 @@ function QuestionsDemo() {
     return (
         <section className="w-full border-b">
             <div className="w-full flex flex-col items-center ">
-                <div className="w-full container grid grid-cols-2 gap-8 bg-purple-500  shadow-lg px-4 md:px-16 rounded-lg">
+                <div className="w-[min(100vw,900px)] grid grid-cols-2 gap-8 bg-purple-500 px-4 md:px-16 md:rounded-lg">
                     <div className="py-16 flex flex-col">
                         <div className="self-start w-fit gap-1 flex flex-col items-center">
                             <div className="h-8 w-8 text-purple-300">
@@ -450,17 +456,14 @@ function QuestionsDemo() {
                             </div>
                             <h4 className="text-white font-bold">You</h4>
                         </div>
-                        <div className="w-full h-[200px] relative mt-16 overflow-y-hidden rounded my-auto flex flex-col justify-end items-center gap-10">
-                            <Q title="What is one thing you've always wanted to try but haven't tried yet?" id="q-1" />
-                            <Q title="What is one thing you've always wanted to try but haven't tried yet?" id="q-2" />
-                            <Q title="What is one thing you've always wanted to try but haven't tried yet?" id="q-3" />
-                            <Q title="What is one thing you've always wanted to try but haven't tried yet?" id="q-4" />
-                            <textarea
-                                placeholder="Type answer"
-                                rows={1}
-                                className="w-[80%] self-start bg-transparent border-b px-3 py-1 focus:outline-none text-white text-lg"
-                            >
-                            </textarea>
+                        <div className="w-full h-[200px] sm:h-[170px] relative mt-16 overflow-y-hidden rounded my-auto flex flex-col justify-end gap-10">
+                            <Q title="Do you sleep with the lights on of off?" id="q-1" />
+                            <Q title="Would you cooks or do the dishes?" id="q-2" />
+                            <div className="relative w-full sm:w-[80%] h-8 self-start  text-left bg-transparent font-bold border-b px-3 py-1 focus:outline-none text-white text-lg">
+                                <p className="a1 absolute top-0  opacity-0 left-0 overflow-hidden">With the lights off</p>
+                                <p className="a2 absolute top-0 opacity-0 left-0 overflow-hidden">No I don't like Neither</p>
+                                <p className="a3 absolute top-0 opacity-0 left-0 overflow-hidden">Don't mind doing the dishes</p>
+                            </div>
                         </div>
                     </div>
                     <div className="py-16 text-right flex flex-col">
@@ -470,18 +473,14 @@ function QuestionsDemo() {
                             </div>
                             <h4 className="text-white font-bold">Partner</h4>
                         </div>
-                        <div className="w-full h-[200px] relative mt-16 overflow-y-hidden rounded my-auto flex flex-col justify-end items-center gap-10">
-                            <Q title="What is one thing you've always wanted to try but haven't tried yet?" id="q-1" />
-                            <Q title="What is one thing you've always wanted to try but haven't tried yet?" id="q-2" />
-                            <Q title="What is one thing you've always wanted to try but haven't tried yet?" id="q-3" />
-                            <Q title="What is one thing you've always wanted to try but haven't tried yet?" id="q-4" />
-
-                            <textarea
-                                placeholder="Type answer"
-                                rows={1}
-                                className="w-[80%] bg-transparent border-b px-3 py-1 self-end focus:outline-none text-white text-lg"
-                            >
-                            </textarea>
+                        <div className="w-full h-[200px] sm:h-[170px] relative mt-16 overflow-y-hidden rounded my-auto flex flex-col items-end justify-end gap-10">
+                            <Q title="Do you sleep with the lights on of off?" id="q-1" />
+                            <Q title="Would you cooks or do the dishes?" id="q-2" />
+                            <div className="relative w-full sm:w-[80%] h-8 text-left border-b px-3 py-1 self-end text-white text-lg font-bold" >
+                                <p className="a1 absolute top-0 opacity-0 left-0 overflow-hidden">I prefer the lights off!</p>
+                                <p className="a2 absolute top-0 opacity-0 left-0 overflow-hidden">Neighther</p>
+                                <p className="a3 absolute top-0 opacity-0 left-0 overflow-hidden">I can manage cooking</p>
+                            </div>
                         </div>
                     </div>
                 </div >
