@@ -34,7 +34,7 @@ export default async function questionsHandler(req: NextApiRequest, res: NextApi
                     return res.status(404).json({ message: "user not found" })
                 }
                 if (user.currentLinkID) {
-                    return res.status(403).json({ message: "Do create or edit questoins, you must delete generated link" })
+                    return res.status(403).json({ message: "To create or edit questoins, you must delete generated link" })
                 }
                 if (!Array.isArray(req.body)) {
                     return res.status(400).json({ message: "The request body must be an array of questions" });
@@ -51,8 +51,9 @@ export default async function questionsHandler(req: NextApiRequest, res: NextApi
                     data: { questions: req.body },
                 });
                 return res.status(200).json(userQuestions);
-            } catch (error: any) {
-                return res.status(400).json({ error: error.message });
+            } catch (error) {
+                console.log(error)
+                return res.status(400).json({ message: "Something went wrong" });
             }
         default:
             res.setHeader('Allow', ['GET', 'PUT'])

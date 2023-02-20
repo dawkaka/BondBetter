@@ -2,12 +2,12 @@ import { CreateQuestion, DailyAnswer, QandA, Question } from "../types";
 
 type QuestionsErrors = string[][]
 
-export function validateQuestions(questions: any[]): QuestionsErrors {
+export function validateQuestions(questions: CreateQuestion[]): QuestionsErrors {
     const errors: QuestionsErrors = new Array(questions.length).fill([]).map(() => [])
     let hasError = false
     for (let i = 0; i < questions.length; i++) {
         const question = questions[i];
-        if (!question.question || typeof question.question !== "string" || question.question.length > 256) {
+        if (!question.question || typeof question.question !== "string" || question.question.length > 280) {
             hasError = true
             errors[i].push("Each question must be a string not greater than 256 characters")
         }
@@ -18,6 +18,11 @@ export function validateQuestions(questions: any[]): QuestionsErrors {
         if (question.options.length > 4) {
             hasError = true
             errors[i].push("Too many options")
+        }
+        const flOp = question.options.filter(op => op.length > 0 && op.length <= 100)
+        if (flOp.length < 2 && !question.hasInput) {
+            hasError = true
+            errors[i].push("Each question must have an answer type")
         }
     }
     if (hasError) {
