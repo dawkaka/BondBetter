@@ -2,38 +2,39 @@ import Link from "next/link"
 import { signIn, signOut, useSession } from "next-auth/react"
 import styles from "./header.module.css"
 import { useRouter } from "next/router"
+import { useQuery } from "react-query"
+import axios from "axios"
 
 // The approach used in this component shows how to build a sign in and sign out
 // component that works on pages which support both client and server side
 // rendering, and avoids any flash incorrect content on initial page load.
 export default function Header() {
-  const { data: session, status } = useSession()
-  const loading = status === "loading"
-
+  const { data } = useQuery("startup", () => axios.get("/api/startup").then(res => res.data))
   return (
     <header className="fixed top-0 z-10 bg-white w-full flex items-center justify-center px-3 border-b">
       <nav className="w-full flex items-center justify-center">
         <ul className="flex justify-between w-[min(100%,500px)] py-3 items-center">
-          <NavLink href="/home" label="Home" icon={HomeIcon()} />
-          <NavLink href="/client" label="Answers" icon={AnswerSVG()} />
-          <NavLink href="/custom-questions" label="Custom Questions" icon={CreateQuestionIcon()} />
-          <NavLink href="/responses" label="Custom Q asnwers" icon={ResponsesIcon()} />
-          <NavLink href="/me" label="Profile" icon={ProfileIcon()} />
+          <NavLink href="/home" label="Home" icon={HomeIcon()} notif={false} />
+          <NavLink href="/client" label="Answers" icon={AnswerSVG()} notif={false} />
+          <NavLink href="/custom-questions" label="Custom Questions" icon={CreateQuestionIcon()} notif={false} />
+          <NavLink href="/responses" label="Custom Q asnwers" icon={ResponsesIcon()} notif={data?.response || false} />
+          <NavLink href="/me" label="Profile" icon={ProfileIcon()} notif={data?.request || false} />
         </ul>
       </nav>
     </header>
   )
 }
 
-function NavLink({ href, label, icon }: { href: string, label: string, icon: JSX.Element }) {
+function NavLink({ href, label, icon, notif }: { href: string, label: string, icon: JSX.Element, notif: Boolean }) {
   const active = useRouter().pathname === href
   return (
-    <li className="flex items-center justify-center hover:bg-[var(--primary-lighter)] h-[35px] w-[35px] rounded-full"
+    <li className="relative flex items-center justify-center hover:bg-[var(--primary-lighter)] h-[35px] w-[35px] rounded-full"
       style={{
         backgroundColor: active ? "var(--primary-lighter)" : "",
         color: active ? "var(--primary-dark)" : "var(--accents-7)",
       }}
     >
+      {notif && <span className="top-0 right-0 absolute h-2 w-2 rounded-full bg-red-500"></span>}
       <Link href={href} title={label} className="w-full h-full p-2">{icon}</Link>
     </li>
   )

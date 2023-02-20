@@ -1,6 +1,6 @@
 import axios, { AxiosError } from "axios"
-import { useState } from "react"
-import { useQuery } from "react-query"
+import { useEffect, useState } from "react"
+import { useMutation, useQuery } from "react-query"
 import Container from "../components/container"
 import { Error, InvalidLink } from "../components/errors"
 import Layout from "../components/layout"
@@ -11,6 +11,10 @@ export default function ResponsesPage() {
     queryFn: () => axios.get("/api/user/links").then(res => res.data),
     queryKey: "responses"
   })
+  const mut = useMutation({ mutationFn: () => axios.delete("/api/startup?target=response"), onSuccess: () => console.log("hiiiiiiiiiiiiiiiiiiiiiiiiiiiii") })
+  useEffect(() => {
+    mut.mutate()
+  }, [])
   return (
     <Layout>
       <div className="bg-white w-full flex flex-col items-center py-3 px-2">

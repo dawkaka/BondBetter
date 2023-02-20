@@ -22,6 +22,7 @@ model User {
   currentLinkLabel   String?        @db.VarChar(50)
   questionsLinks     Json?
   questions          Json?
+  notifications      Json?
   couple             Couple?        @relation(fields: [coupleID], references: [id])
   coupleID           Int?
   partnerID          String?

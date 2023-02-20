@@ -40,3 +40,9 @@ export interface CreateQuestion {
     options: string[],
 }
 
+
+export interface Notifs {
+    response: Boolean,
+    request: Boolean
+}
+

@@ -4,7 +4,7 @@ import { useMutation, useQuery } from 'react-query'
 import axios, { AxiosError, AxiosResponse } from 'axios'
 import { Partner, Stats } from "../types"
 import RequestModal from "../components/sendRequestModal"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Loading } from "../components/loading"
 import { Error } from "../components/errors"
 import { CheckMark } from "../components/checkmark"
@@ -17,6 +17,11 @@ export default function MePage() {
     signIn("google")
     return
   }
+  const mut = useMutation({ mutationFn: () => axios.delete("/api/startup?target=request") })
+  useEffect(() => {
+    mut.mutate()
+  }, [])
+
   return (
     <Layout>
       {

@@ -2,6 +2,7 @@
 import type { NextApiRequest, NextApiResponse } from "next"
 import { getServerSession } from "next-auth"
 import prisma from "../../../lib/prismadb"
+import { Notifs } from "../../../types"
 import { authOptions } from "../auth/[...nextauth]"
 
 
@@ -56,11 +57,26 @@ export default async function requestHandler(req: NextApiRequest, res: NextApiRe
                 if (!partner) {
                     return res.status(400).json({ message: "Something went wrong" })
                 }
+
+                let notif = partner.notifications as any
+                if (!notif) {
+                    notif = { response: false, request: true }
+                } else {
+                    notif.request = true
+                }
                 var yesterday = new Date(Date.UTC(new Date().getUTCFullYear(), new Date().getUTCMonth(), new Date().getUTCDate() - 1));
-                const couple = await prisma.$transaction(async (tx) => {
+                await prisma.$transaction(async (tx) => {
                     const cp = await tx.couple.create({ data: { initiated: partner.id, accepted: user.id } });
                     await tx.user.update({ where: { email: user.email }, data: { partnerID: partner.id, nextQuestionsTime: yesterday, coupleID: cp.id } });
-                    await tx.user.update({ where: { email: partner?.email }, data: { partnerID: user.id, nextQuestionsTime: yesterday, coupleID: cp.id } });
+                    await tx.user.update({
+                        where: { email: partner?.email },
+                        data: {
+                            partnerID: user.id,
+                            nextQuestionsTime: yesterday,
+                            coupleID: cp.id,
+                            notifications: notif
+                        }
+                    });
                     return cp
                 })
                 return res.json({ message: "Created successfully, you can now begin answering daily questions" })

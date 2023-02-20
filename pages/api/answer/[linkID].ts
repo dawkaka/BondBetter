@@ -2,6 +2,7 @@ import type { NextApiRequest, NextApiResponse } from "next"
 import { getServerSession } from "next-auth"
 import prisma from "../../../lib/prismadb"
 import { mapQuestionsAndAnswers, validateAnswers } from "../../../lib/uitls"
+import { Notifs } from "../../../types"
 import { authOptions } from "../auth/[...nextauth]"
 
 export default async function AnswerHandler(req: NextApiRequest, res: NextApiResponse) {
@@ -39,21 +40,38 @@ export default async function AnswerHandler(req: NextApiRequest, res: NextApiRes
                     return res.status(400).json({ message: "Number of questions or number of answer don't match" })
                 }
                 let errs = validateAnswers(questions, answers)
-                console.log(answers)
+
                 if (errs.length > 0) {
                     return res.status(400).json(errs)
                 }
                 const mapedQandA = mapQuestionsAndAnswers(questions, answers, questionsOwner.id, linkID)
                 const answered = await prisma.customAnswer.createMany({ data: mapedQandA })
                 if (answered.count > 0) {
+                    let notif = questionsOwner.notifications as any
+                    if (!notif) {
+                        notif = { response: true, request: false }
+                    } else {
+                        notif.response = true
+                    }
+
                     const qLinks = Array.isArray(questionsOwner.questionsLinks) ? questionsOwner.questionsLinks : [] as any[]
                     const updatedLinks = [{ linkID: linkID, label: questionsOwner.currentLinkLabel }].concat(qLinks)
-                    await prisma.user.update({ where: { id: questionsOwner.id }, data: { currentLinkID: null, currentLinkLabel: null, questionsLinks: updatedLinks } })
+                    await prisma.user.update({
+                        where: { id: questionsOwner.id },
+                        data: {
+                            currentLinkID: null,
+                            currentLinkLabel: null,
+                            questionsLinks: updatedLinks,
+                            notifications: notif
+
+                        }
+                    })
                 }
-                return res.json(answered)
+                return res.json({ message: "Submited" })
 
             } catch (error) {
                 console.log(error)
+                return res.json({ message: "Something went wrong" })
             }
             break
         default:
