@@ -152,7 +152,7 @@ function BondBetter() {
             <div className="container w-full px-2 flex justify-center text-2xl sm:text-3xl md:text-4xl">
                 <p className="max-w-4xl text-center font-bold">The goal of BondBetter is literally the name, which is to help couples...</p>
             </div>
-            <h6 className="bond text-center h-[150px] text-white flex flex-col items-center justify-center bg-red-500 tracking-tight text-4xl sm:text-7xl md:text-9xl w-full
+            <h6 className="bond text-center h-[150px] flex flex-col items-center justify-center tracking-tight text-4xl sm:text-7xl md:text-9xl w-full
              font-bold translate-x-[100%]"
             >
                 BOND BETTER
