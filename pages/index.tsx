@@ -102,10 +102,11 @@ export default function LandingePage() {
 function BondBetter() {
 
     useEffect(() => {
+        const h = window.innerHeight
         const tl = gsap.timeline({
             scrollTrigger: {
                 trigger: ".bond",
-                start: "+=500px bottom",
+                start: `+=${h / 2}px bottom`,
                 end: "+=1500px",
                 scrub: true,
                 pin: true
@@ -115,8 +116,8 @@ function BondBetter() {
             .to(".bond", { scale: 70 })
     })
     return (
-        <section className="sec bg-[#fcf5eb] py-32 my-8 md:my-24 w-full h-[2000px] flex flex-col items-center overflow-hidden">
-            <div className="container w-full flex justify-center text-2xl sm:text-3xl md:text-4xl">
+        <section className="sec bg-[#fcf5eb] py-8 md:py-32 my-8 md:my-24 w-full h-[2000px] flex flex-col items-center overflow-hidden">
+            <div className="container w-full px-2 flex justify-center text-2xl sm:text-3xl md:text-4xl">
                 <p className="max-w-4xl text-center font-bold">The goal of BondBetter is literally the name, which is to help couples...</p>
             </div>
             <h6 className="bond text-center tracking-tight text-4xl sm:text-7xl md:text-9xl w-full font-bold translate-x-[100%]">BOND BETTER</h6>
@@ -277,7 +278,7 @@ function ResponseDemo() {
 
 function CustomDemo() {
     return (
-        <section className="py-4 sm:py-8 w-full bg-[#fcf5eb] flex flex-col items-center">
+        <section className="py-8 md:py-32 w-full bg-[#fcf5eb] flex flex-col items-center">
             <div className="container relative  w-full sm:my-24">
                 <div className="w-full grid gap-x-16 gap-y-8 lg:grid-cols-2">
                     <div className="max-w-2xl px-4 sm:px-6 lg:mx-0 lg:max-w-none lg:py-16 lg:px-0">
