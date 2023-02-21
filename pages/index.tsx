@@ -46,7 +46,7 @@ export default function LandingePage() {
             <header className="fixed top-2; z-10 w-full flex items-center justify-center py-3 px-3">
                 <NavBar />
             </header>
-            <main className="flex flex-col items-center w-full pb-[200px]">
+            <main className="flex flex-col items-center w-full">
                 <section className="relative pt-40 mx-auto w-full px-4 sm:px-6 lg:px-8 min-h-screen overflow-hidden bg-[#fcf5eb]">
                     <div className="absolute top-0 left-[50%] w-[300px] translate-x-[-50%] h-[300px]  bg-no-repeat bg-[url('/stripes.png')]">
                     </div>
@@ -90,6 +90,38 @@ export default function LandingePage() {
                     <CustomDemo />
                     <ResponseDemo />
                     <BondBetter />
+
+                    <section className="relative mx-auto w-full px-4 sm:px-6 lg:px-8 min-h-screen overflow-hidden bg-[#fcf5eb]">
+                        <div className="absolute top-0 left-[50%] w-[300px] translate-x-[-50%] h-[300px]  bg-no-repeat bg-[url('/stripes.png')]">
+                        </div>
+                        <div className="absolute top-[-300px] left-[50%] w-[300px] translate-x-[-50%] h-[300px] bg-gradient-to-b from-white to-pink-500 stripe-mask drop-down ">
+                        </div>
+
+                        <div className="absolute right-0  rotate-[270deg] top-[50%] w-[200px] translate-y-[-50%] h-[400px] bg-no-repeat bg-[url('/stripes.png')]">
+                        </div>
+                        <div className="absolute right-0  rotate-[270deg] top-[50%] w-[200px] translate-y-[-50%] h-[400px] bg-gradient-to-t from-white to-pink-500 stripe-mask move-left">
+                        </div>
+
+                        <div className="absolute bottom-0 left-[50%] w-[300px] translate-x-[-50%] h-[300px]  bg-no-repeat bg-[url('/stripes.png')]">
+                        </div>
+                        <div className="absolute bottom-[-300px] left-[50%] w-[300px] translate-x-[-50%] h-[300px] bg-gradient-to-t from-white to-pink-500 stripe-mask move-up">
+                        </div>
+
+
+                        <div className="absolute left-0  rotate-90 top-[50%] w-[200px] translate-y-[-50%] h-[400px]  bg-no-repeat bg-[url('/stripes.png')]">
+                        </div>
+                        <div className="absolute left-0  rotate-90 top-[50%] w-[200px] translate-y-[-50%] h-[400px]  bg-gradient-to-t from-white to-pink-500 stripe-mask move-right">
+                        </div>
+
+                        <div className="container absolute top-[50%] translate-y-[-50%] left-[50%] translate-x-[-50%] py-16 rounded lg:max-w-5xl z-10 hero-container">
+                            <div className="flex justify-center">
+                                <button onClick={() => signIn("google")} role="button"
+                                    className="px-8 py-2 text-3xl sm:text-5xl sm:px-32 sm:py-16 border border-2 border-black rounded-full">
+                                    Get Started Now!
+                                </button>
+                            </div>
+                        </div>
+                    </section>
                 </div>
 
 
@@ -106,8 +138,8 @@ function BondBetter() {
         const tl = gsap.timeline({
             scrollTrigger: {
                 trigger: ".bond",
-                start: `+=${h / 2}px bottom`,
-                end: "+=1500px",
+                start: `+=${(h / 2) + 75}px bottom`,
+                end: "+=1000px",
                 scrub: true,
                 pin: true
             }
@@ -116,17 +148,18 @@ function BondBetter() {
             .to(".bond", { scale: 70 })
     })
     return (
-        <section className="sec bg-[#fcf5eb] py-8 md:py-32 my-8 md:my-24 w-full h-[2000px] flex flex-col items-center overflow-hidden">
+        <section className="sec bg-[#fcf5eb] py-8 md:py-32 mt-8 md:mt-24 w-full h-[1500px] flex flex-col items-center overflow-hidden">
             <div className="container w-full px-2 flex justify-center text-2xl sm:text-3xl md:text-4xl">
                 <p className="max-w-4xl text-center font-bold">The goal of BondBetter is literally the name, which is to help couples...</p>
             </div>
-            <h6 className="bond text-center tracking-tight text-4xl sm:text-7xl md:text-9xl w-full font-bold translate-x-[100%]">BOND BETTER</h6>
+            <h6 className="bond text-center h-[150px] text-white flex flex-col items-center justify-center bg-red-500 tracking-tight text-4xl sm:text-7xl md:text-9xl w-full
+             font-bold translate-x-[100%]"
+            >
+                BOND BETTER
+            </h6>
         </section>
     )
 }
-
-
-
 
 function SigninButton({ title }: { title: string }) {
     return (
