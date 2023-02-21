@@ -1,7 +1,7 @@
 import { signIn, useSession } from "next-auth/react"
 import Layout from "../components/layout"
 import { useMutation, useQuery } from 'react-query'
-import axios, { AxiosError, AxiosResponse } from 'axios'
+import axios, { AxiosError } from 'axios'
 import { Partner, Stats } from "../types"
 import RequestModal from "../components/sendRequestModal"
 import { useEffect, useState } from "react"

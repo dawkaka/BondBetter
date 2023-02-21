@@ -1,9 +1,12 @@
 import gsap, { SteppedEase } from "gsap";
+import ScrollTrigger from "gsap/dist/ScrollTrigger";
 import { signIn } from "next-auth/react";
-import Link from "next/link";
 import { useEffect, useRef } from "react"
+
 import { ProfileIcon } from "../components/header";
 import { Option } from "./create-questions";
+
+gsap.registerPlugin(ScrollTrigger);
 
 function NavBar() {
     const navRef = useRef<HTMLElement>(null)
@@ -39,7 +42,7 @@ export default function LandingePage() {
         gsap.fromTo("#hero-content", { y: 300, opacity: 0 }, { y: 0, opacity: 1, duration: .5 })
     }, [])
     return (
-        <div>
+        <div className="">
             <header className="fixed top-2; z-10 w-full flex items-center justify-center py-3 px-3">
                 <NavBar />
             </header>
@@ -86,12 +89,43 @@ export default function LandingePage() {
                     <Answers />
                     <CustomDemo />
                     <ResponseDemo />
+                    <BondBetter />
                 </div>
+
 
             </main>
         </div>
     )
 }
+
+
+function BondBetter() {
+
+    useEffect(() => {
+        const tl = gsap.timeline({
+            scrollTrigger: {
+                trigger: ".bond",
+                start: "+=500px bottom",
+                end: "+=1500px",
+                scrub: true,
+                pin: true
+            }
+        })
+        tl.to(".bond", { x: 0 })
+            .to(".bond", { scale: 70 })
+    })
+    return (
+        <section className="sec bg-[#fcf5eb] py-32 my-8 md:my-24 w-full h-[2000px] flex flex-col items-center overflow-hidden">
+            <div className="container w-full flex justify-center text-2xl sm:text-3xl md:text-4xl">
+                <p className="max-w-4xl text-center font-bold">The goal of BondBetter is literally the name, which is to help couples...</p>
+            </div>
+            <h6 className="bond text-center tracking-tight text-4xl sm:text-7xl md:text-9xl w-full font-bold translate-x-[100%]">BOND BETTER</h6>
+        </section>
+    )
+}
+
+
+
 
 function SigninButton({ title }: { title: string }) {
     return (
