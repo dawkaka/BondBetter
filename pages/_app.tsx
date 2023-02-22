@@ -16,13 +16,12 @@ export default function App({
   return (
     <SessionProvider session={session}>
       <Head>
+        <title>Bond Better With Your Partner</title>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
         <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&display=swap" rel="stylesheet" />
 
         <link rel="icon" href="/favicon.ico" />
-        <title>Bond Better With Your Partner</title>
-
         <meta charSet="utf-8" />
         <meta httpEquiv="Content-Security-Policy" content="upgrade-insecure-requests" />
         <meta httpEquiv="content-type" content="text/html; charset=UTF-8" />
