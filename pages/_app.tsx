@@ -19,6 +19,35 @@ export default function App({
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
         <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&display=swap" rel="stylesheet" />
+
+        <link rel="icon" href="/favicon.ico" />
+        <title>Bond Better With Your Partner</title>
+
+        <meta charSet="utf-8" />
+        <meta httpEquiv="Content-Security-Policy" content="upgrade-insecure-requests" />
+        <meta httpEquiv="content-type" content="text/html; charset=UTF-8" />
+        <meta name="referrer" content="always" />
+        <meta httpEquiv="X-UA-Compatible" />
+        <meta name="twitter:label1" content="Bond Better" />
+        <meta name="twitter:domain" content="bondbetter.site" />
+        <meta name="twitter:card" content="summary_large_image" />
+
+        <meta name="description" content="Answer five questions daily with your partner to know each other better" />
+        <meta name="keywords" content="bond better, couple queries, couple questions, couples, love, romance, lovers, social media, soulmate, soulmates" />
+        <meta name="fragment" content="!" />
+        <meta name="robots" content="index,follow" />
+        <meta property="og:title" content="Bond better with your partner" />
+        <meta property="og:description" content="Learn five new things about your partner every day!" />
+        <meta property="og:image" content="https://www.bondbetter.site/og.png" />
+        <meta property="og:url" content="https://www.bondbetter.site" />
+
+        <meta name="twitter:title" content="Bond better with your partner" />
+        <meta name="twitter:data1" content="" />
+        <meta name="twitter:description" content="Learn five new things about your partner daily" />
+        <meta name="twitter:image:alt" content="Bond Better" />
+        <meta name="twitter:image" content="https://www.bondbetter.site/og.png" />
+        <meta name="twitter:image:src" content="https://www.bondbetter.site/og.png" />
+
       </Head>
       <QueryClientProvider client={queryClient}>
         <Provider>
