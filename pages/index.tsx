@@ -96,18 +96,23 @@ export default function LandingePage() {
                         </div>
                         <div className="absolute top-[-300px] left-[50%] w-[300px] translate-x-[-50%] h-[300px] bg-gradient-to-b from-white to-pink-500 stripe-mask drop-down ">
                         </div>
+
                         <div className="absolute right-0  rotate-[270deg] top-[50%] w-[200px] translate-y-[-50%] h-[400px] bg-no-repeat bg-[url('/stripes.png')]">
                         </div>
                         <div className="absolute right-0  rotate-[270deg] top-[50%] w-[200px] translate-y-[-50%] h-[400px] bg-gradient-to-t from-white to-pink-500 stripe-mask move-left">
                         </div>
+
                         <div className="absolute bottom-0 left-[50%] w-[300px] translate-x-[-50%] h-[300px]  bg-no-repeat bg-[url('/stripes.png')]">
                         </div>
                         <div className="absolute bottom-[-300px] left-[50%] w-[300px] translate-x-[-50%] h-[300px] bg-gradient-to-t from-white to-pink-500 stripe-mask move-up">
                         </div>
+
+
                         <div className="absolute left-0  rotate-90 top-[50%] w-[200px] translate-y-[-50%] h-[400px]  bg-no-repeat bg-[url('/stripes.png')]">
                         </div>
                         <div className="absolute left-0  rotate-90 top-[50%] w-[200px] translate-y-[-50%] h-[400px]  bg-gradient-to-t from-white to-pink-500 stripe-mask move-right">
                         </div>
+
                         <div className="container absolute top-[50%] translate-y-[-50%] left-[50%] translate-x-[-50%] py-16 rounded lg:max-w-5xl z-10 hero-container">
                             <div className="flex justify-center">
                                 <button onClick={() => signIn("google")} role="button"
