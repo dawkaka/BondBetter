@@ -35,7 +35,21 @@ export default function ResponsesPage() {
           isLoading && <Loading />
         }
         {
-          isError && <InvalidLink />
+          isError && <Error message="Something went wrong" />
+        }
+        {
+          data?.length === 0 && (
+            <div className="w-[min(100%,700px)] px-2 py-5 h-full">
+              <div className="flex flex-col items-center justify-center gap-8 pt-16">
+                <div className="flex flex-col items-center gap-2">
+                  <h4 className="font-bold text-3xl text-[var(--accents-8)] text-center">You have no responses</h4>
+                  <p className="max-w-[400px] text-center text-[var(--accents-6)]">
+                    Create new questions and share the link to anyone (eg. your partner, someone you are about to date etc.) and receive their responses
+                  </p>
+                </div>
+              </div>
+            </div>
+          )
         }
         {
           data?.map(item => <Response {...item} key={item.linkID} />)
