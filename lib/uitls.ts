@@ -2,6 +2,27 @@ import { CreateQuestion, DailyAnswer, QandA, Question } from "../types";
 
 type QuestionsErrors = string[][]
 
+
+export function randomizeQuests(ques: string): { id: number, question: string }[] {
+    let arr = ques.split("\n")
+    let rArr: string[] = []
+    const l = arr.length
+
+    while (rArr.length < l) {
+        let ind = Math.floor(Math.random() * arr.length)
+        rArr.push(arr[ind])
+        arr = arr.slice(0, ind).concat(arr.slice(ind + 1))
+    }
+
+
+    return rArr.map((q, ind) => {
+        return {
+            question: q,
+            id: ind
+        }
+    })
+}
+
 export function validateQuestions(questions: CreateQuestion[]): QuestionsErrors {
     const errors: QuestionsErrors = new Array(questions.length).fill([]).map(() => [])
     let hasError = false
