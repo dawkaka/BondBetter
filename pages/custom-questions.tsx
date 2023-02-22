@@ -68,7 +68,7 @@ export default function ServerSidePage({ session }: { session: Session }) {
         {
           openModal && <LinkModal close={() => setOpenModal(false)} />
         }
-        <div className="grid grid-cols-3 gap-5">
+        <div className="grid grid-cols-2 gap-5">
           <button
             onClick={() => setOpenModal(true)}
             className="rounded-full mt-3 bg-purple-100 px-4 py-2 self-start flex justify-center items-center gap-2 shadow"
@@ -95,17 +95,6 @@ export default function ServerSidePage({ session }: { session: Session }) {
               <span className="text-amber-500 text-sm whitespace-nowrap overflow-hidden">Edit</span>
             </button>
           </Link>
-          <button
-            className="rounded-full mt-3 bg-red-100 px-4 py-2  self-start flex justify-center items-center gap-2 shadow"
-          >
-            <svg width="18px" height="18px" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" className="shrink-0 fill-red-500"><g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-              <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier">
-                <path d="M352 192V95.936a32 32 0 0 1 32-32h256a32 32 0 0 1 32 32V192h256a32 32 0 1 1 0 64H96a32 32 0 0 1 0-64h256zm64 0h192v-64H416v64zM192 960a32 32 0 0 1-32-32V256h704v672a32 32 0 0 1-32 32H192zm224-192a32 32 0 0 0 32-32V416a32 32 0 0 0-64 0v320a32 32 0 0 0 32 32zm192 0a32 32 0 0 0 32-32V416a32 32 0 0 0-64 0v320a32 32 0 0 0 32 32z">
-                </path>
-              </g>
-            </svg>
-            <span className="text-red-500 text-sm whitespace-nowrap overflow-hidden">Delete all</span>
-          </button>
         </div>
         {
           isLoading && <Loading />

@@ -61,7 +61,7 @@ export default function ResponsesPage() {
 
 function Response({ label, linkID }: { label: string, linkID: string }) {
   const [open, setOpen] = useState(false)
-  const cls = open ? "text-amber-500 bg-amber-100" : "text-green-500 bg-green-100"
+  const cls = open ? "text-amber-500 bg-amber-100" : "text-purple-500 bg-purple-100"
 
   const { data, isLoading, isError, error } = useQuery<{ question: string, answer: string }[], AxiosError<any, any>>({
     queryFn: () => axios.get(`/api/answer/${linkID}`).then(res => res.data),
@@ -77,10 +77,10 @@ function Response({ label, linkID }: { label: string, linkID: string }) {
       >
         <span className="text-gray-700 font-bold self-center">{label}</span>
         <div className="flex gap-5">
-          <span
+          {/* <span
             className={`bg-red-100 text-red-500 rounded-full px-3 py-1 shadow`}
             onClick={(e) => e.stopPropagation()}
-          >delete</span>
+          >delete</span> */}
           <span className={`${cls} rounded-full px-3 py-1 shadow`}>{open ? "close" : "open"}</span>
         </div>
       </button>
