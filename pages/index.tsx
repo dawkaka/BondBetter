@@ -1,6 +1,7 @@
 import gsap, { SteppedEase } from "gsap";
 import ScrollTrigger from "gsap/dist/ScrollTrigger";
-import { signIn } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
+import { useRouter } from "next/router";
 import { useEffect, useRef } from "react"
 
 import { ProfileIcon } from "../components/header";
@@ -10,6 +11,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 function NavBar() {
     const navRef = useRef<HTMLElement>(null)
+    const router = useRouter()
     function scrollfunc() {
         if (document.documentElement.scrollTop > 70) {
             navRef.current!.classList.add("navbar")
@@ -23,6 +25,10 @@ function NavBar() {
             window.removeEventListener("scroll", scrollfunc)
         }
     }, [])
+    const { data, status } = useSession()
+    if (status === "authenticated") {
+        router.push("/home")
+    }
 
     return (
         <nav ref={navRef} className="container flex max-w-4xl items-center justify-between rounded-full px-4 py-2">
@@ -37,7 +43,6 @@ function NavBar() {
 }
 
 export default function LandingePage() {
-
     useEffect(() => {
         gsap.fromTo("#hero-content", { y: 300, opacity: 0 }, { y: 0, opacity: 1, duration: .5 })
     }, [])

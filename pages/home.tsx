@@ -181,7 +181,7 @@ const Quiz = ({ questions }: { questions: { question: string, id: number }[] }) 
 };
 
 
-function Sent({ children }: { children: React.ReactNode }) {
+export function Sent({ children }: { children: React.ReactNode }) {
   return (
     <Layout>
       <div className="px-4 mt-[10vh] flex flex-col items-center">
@@ -192,7 +192,7 @@ function Sent({ children }: { children: React.ReactNode }) {
   )
 }
 
-function Received({ children }: { children: React.ReactNode }) {
+export function Received({ children }: { children: React.ReactNode }) {
   return (
     <Layout>
       <div className="px-4 mt-[10vh] flex flex-col items-center">
@@ -203,7 +203,7 @@ function Received({ children }: { children: React.ReactNode }) {
   )
 }
 
-function AddPartner() {
+export function AddPartner() {
   const [open, setOpen] = useState(false)
 
   return (

@@ -15,7 +15,7 @@ export default function Header() {
       <nav className="w-full flex items-center justify-center">
         <ul className="flex justify-between w-[min(100%,500px)] py-3 items-center">
           <NavLink href="/home" label="Home" icon={HomeIcon()} notif={false} />
-          <NavLink href="/client" label="Answers" icon={AnswerSVG()} notif={false} />
+          <NavLink href="/answers" label="Answers" icon={AnswerSVG()} notif={false} />
           <NavLink href="/custom-questions" label="Custom Questions" icon={CreateQuestionIcon()} notif={false} />
           <NavLink href="/responses" label="Custom Q asnwers" icon={ResponsesIcon()} notif={data?.response || false} />
           <NavLink href="/me" label="Profile" icon={ProfileIcon()} notif={data?.request || false} />

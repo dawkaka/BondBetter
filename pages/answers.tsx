@@ -22,7 +22,6 @@ export default function ClientPage() {
     hasNextPage,
     isError,
     isFetching,
-    isLoading,
   } = useInfiniteQuery(["answers-daily"], fetchAnswers,
     {
       getNextPageParam: (lastPage) => {
@@ -40,6 +39,7 @@ export default function ClientPage() {
       answers = page.answers.concat(answers)
     }
   }
+
   return (
     <div className="w-full overflow-auto">
       <Layout>
@@ -52,6 +52,24 @@ export default function ClientPage() {
             {
               isError && <Error message={"Something went wrong"} />
             }
+            {
+              (
+                answers.length === 0 && !hasNextPage && !isFetching) && (
+                <div className="w-[min(100%,700px)] px-2 py-5 h-full">
+                  <div className="flex flex-col items-center justify-center gap-8 pt-16">
+                    <div className="flex flex-col items-center gap-2">
+                      <h4 className="font-bold text-3xl text-gray-900 text-center">No Answer yet!</h4>
+                      <p className="max-w-[400px] text-center text-[var(--accents-6)]">
+                        If you have a partner you're answering questions with, both your answers will appear here.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              )
+            }
+
+            {isFetching && <Loading />}
+
             {
               answers.map((d) => {
                 return (
