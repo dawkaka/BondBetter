@@ -13,14 +13,18 @@ import ConfirmDangerAction from "../components/dConfirm"
 export default function MePage() {
   const [open, setOpen] = useState(false)
   const { data, isLoading, isError, error } = useQuery<Stats, AxiosError<any, any>>({ queryFn: () => axios.get("/api/hello").then(res => res.data), queryKey: "userProfile", staleTime: Infinity })
-  if (!data && !isLoading) {
-    signIn("google")
-    return
-  }
   const mut = useMutation({ mutationFn: () => axios.delete("/api/startup?target=request") })
   useEffect(() => {
     mut.mutate()
   }, [])
+
+  if (isError) {
+    if (error.status === 401) {
+      signIn("google")
+      return
+    }
+  }
+
 
   return (
     <Layout>
@@ -78,7 +82,7 @@ export default function MePage() {
               isLoading && <Loading />
             }
             {
-              isError && <Error message={error.response?.data.message} />
+              isError && <Error message={error.response?.data.message || "Something went wrong"} />
             }
 
           </div>
