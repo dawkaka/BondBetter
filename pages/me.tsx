@@ -18,14 +18,6 @@ export default function MePage() {
     mut.mutate()
   }, [])
 
-  if (isError) {
-    if (error.status === 401) {
-      signIn("google")
-      return
-    }
-  }
-
-
   return (
     <Layout>
       {

@@ -9,6 +9,11 @@ import axios from "axios"
 // component that works on pages which support both client and server side
 // rendering, and avoids any flash incorrect content on initial page load.
 export default function Header() {
+  const { status } = useSession()
+  if (status === "unauthenticated") {
+    signIn("google")
+  }
+
   const { data } = useQuery("startup", () => axios.get("/api/startup").then(res => res.data))
   return (
     <header className="fixed top-0 z-10 bg-white w-full flex items-center justify-center px-3 border-b">
