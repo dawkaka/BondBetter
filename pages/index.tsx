@@ -168,7 +168,7 @@ function BondBetter() {
 
 function SigninButton({ title }: { title: string }) {
     return (
-        <button onClick={() => signIn()} role="button" className="px-8 py-2 rounded-full shadow text-white font-bold bg-gradient-to-r from-amber-400 to-pink-600">
+        <button onClick={() => signIn("google")} role="button" className="px-8 py-2 rounded-full shadow text-white font-bold bg-gradient-to-r from-amber-400 to-pink-600">
             {title}
         </button>
     )
