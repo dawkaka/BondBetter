@@ -1,4 +1,4 @@
-import { signIn, useSession } from "next-auth/react"
+import { signIn, signOut, useSession } from "next-auth/react"
 import Layout from "../components/layout"
 import { useMutation, useQuery } from 'react-query'
 import axios, { AxiosError } from 'axios'
@@ -38,6 +38,7 @@ export default function MePage() {
             <div className="flex flex-col items-center">
               <p className="font-bold text-2xl text-center">{data?.name}</p>
               <p>{data?.email}</p>
+              <button onClick={() => signOut()}>Sign out</button>
             </div>
           </div>
           {
