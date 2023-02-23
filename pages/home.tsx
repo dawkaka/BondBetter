@@ -98,11 +98,6 @@ const Quiz = ({ questions }: { questions: { question: string, id: number }[] }) 
 
   const answerMutation = useMutation<AxiosResponse, AxiosError<any, any>, { id: number, answer: string }[]>(
     (answers) => axios.post("/api/dailyquestions", { answers }).then(res => res.data),
-    {
-      onSettled: () => {
-        console.log("Here")
-      }
-    }
   )
   const handleAnswerChange = (e: any) => {
     if (e.target.value > 280) return

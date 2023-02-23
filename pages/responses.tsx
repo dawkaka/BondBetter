@@ -11,7 +11,7 @@ export default function ResponsesPage() {
     queryFn: () => axios.get("/api/user/links").then(res => res.data),
     queryKey: "responses"
   })
-  const mut = useMutation({ mutationFn: () => axios.delete("/api/startup?target=response"), onSuccess: () => console.log("hiiiiiiiiiiiiiiiiiiiiiiiiiiiii") })
+  const mut = useMutation({ mutationFn: () => axios.delete("/api/startup?target=response") })
   useEffect(() => {
     mut.mutate()
   }, [])

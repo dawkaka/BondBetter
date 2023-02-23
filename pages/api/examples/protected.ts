@@ -9,7 +9,6 @@ export default async function handler(
   res: NextApiResponse
 ) {
   const session = await getServerSession(req, res, authOptions)
-  console.log(session)
 
   if (session) {
     return res.send({

@@ -113,7 +113,6 @@ export default async function dailyQuestoinsHandler(req: NextApiRequest, res: Ne
                 ])
                 return res.json(r)
             } catch (error) {
-                console.log(error)
                 res.status(500).json({ message: "Something went wrong" })
             }
             break;
