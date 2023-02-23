@@ -9,8 +9,10 @@ import { Loading } from "../components/loading"
 import { Error } from "../components/errors"
 import { CheckMark } from "../components/checkmark"
 import ConfirmDangerAction from "../components/dConfirm"
+import { useRouter } from "next/router"
 
 export default function MePage() {
+  const router = useRouter()
   const [open, setOpen] = useState(false)
   const { data, isLoading, isError, error } = useQuery<Stats, AxiosError<any, any>>({ queryFn: () => axios.get("/api/hello").then(res => res.data), queryKey: "userProfile", staleTime: Infinity })
   const mut = useMutation({ mutationFn: () => axios.delete("/api/startup?target=request") })
@@ -30,7 +32,9 @@ export default function MePage() {
             <div className="flex flex-col items-center">
               <p className="font-bold text-2xl text-center">{data?.name}</p>
               <p>{data?.email}</p>
-              <button onClick={() => signOut()}>Sign out</button>
+              <button onClick={() => {
+                signOut()
+              }} className="text-sm text-red-500">Sign out</button>
             </div>
           </div>
           {
