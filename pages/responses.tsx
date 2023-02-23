@@ -17,20 +17,16 @@ export default function ResponsesPage() {
   }, [])
   return (
     <Layout>
-      <div className="bg-white w-full flex flex-col items-center py-3 px-2">
-        <Container>
-          <div className="w-full flex justify-between items-center">
-            <h3 className="font-bold text-2xl sm:text-3xl self-start">
-              <span
-                className="font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-pink-600"
-              >
-                {' '}  Responses
-              </span>
-            </h3>
-          </div>
-        </Container>
-      </div>
       <div className="w-[min(100%,700px)] px-2 py-5 pb-16 flex flex-col gap-8">
+        <div className="w-full flex justify-between items-center">
+          <h3 className="font-bold text-2xl sm:text-3xl self-start">
+            <span
+              className="font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-pink-600"
+            >
+              {' '}  Responses
+            </span>
+          </h3>
+        </div>
         {
           isLoading && <Loading />
         }
