@@ -24,6 +24,7 @@ export default function ClientPage() {
   } = useInfiniteQuery(["answers-daily"], fetchAnswers,
     {
       getNextPageParam: (lastPage) => {
+        console.log(lastPage)
         if (lastPage) {
           if (!lastPage.pagination || lastPage.pagination.end) {
             return undefined
@@ -45,7 +46,6 @@ export default function ClientPage() {
       <Layout>
         <Container>
           <div className="w-[min(100%,500px)] mt-4 px-2 sm:px-4">
-
             {
               hasNextPage ? <Loader loadMore={() => fetchNextPage()} hasNext={hasNextPage} isFetching={isFetching} /> : null
             }
@@ -58,7 +58,7 @@ export default function ClientPage() {
                 <div className="w-[min(100%,700px)] px-2 py-5 h-full">
                   <div className="flex flex-col items-center justify-center gap-8 pt-16">
                     <div className="flex flex-col items-center gap-2">
-                      <h4 className="font-bold text-3xl text-gray-900 text-center">No Answer yet!</h4>
+                      <h4 className="font-bold text-3xl text-gray-900 text-center">No Answers yet!</h4>
                       <p className="max-w-[400px] text-center text-[var(--accents-6)]">
                         If you have a partner you're answering questions with, both your answers will appear here.
                       </p>
@@ -67,9 +67,7 @@ export default function ClientPage() {
                 </div>
               )
             }
-
             {isFetching && <Loading />}
-
             {
               answers.map((d) => {
                 return (
