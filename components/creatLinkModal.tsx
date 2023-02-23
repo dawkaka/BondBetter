@@ -102,7 +102,7 @@ export default function LinkModal({ close }: { close: () => void }) {
 
 
 function SocialShare({ linkID, label }: { linkID: string, label: string }) {
-    const linkURL = `http://localhost:3000/respond/${linkID}`
+    const linkURL = `https://bondbetter.site/respond/${linkID}`
     async function copyLink() {
         try {
             await navigator.clipboard.writeText(linkURL)
