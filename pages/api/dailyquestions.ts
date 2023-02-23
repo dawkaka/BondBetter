@@ -24,7 +24,7 @@ export default async function dailyQuestoinsHandler(req: NextApiRequest, res: Ne
                     if (t) {
                         partner = await prisma.user.findUnique({ where: { email: t.t } })
                     }
-                    return res.status(401).json({ type: t?.m || "None", partner })
+                    return res.json({ type: t?.m || "None", partner })
                 }
                 const couple = await prisma.couple.findUnique({ where: { id: user.coupleID } })
                 if (!couple) {
@@ -33,7 +33,7 @@ export default async function dailyQuestoinsHandler(req: NextApiRequest, res: Ne
                 const now = getCurrentDateAndTime()
 
                 if (user.nextQuestionsTime && !isMoreThan24Hours(user.nextQuestionsTime, now)) {
-                    return res.status(401).json({ type: "Answered", next: user.nextQuestionsTime })
+                    return res.json({ type: "Answered", next: user.nextQuestionsTime })
                 }
                 const partner = await prisma.user.findUnique({ where: { id: user.partnerID! } })
                 if (!partner) {

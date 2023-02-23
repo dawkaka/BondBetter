@@ -2,6 +2,7 @@ import axios, { Axios, AxiosError, AxiosResponse } from "axios"
 import React, { useEffect, useMemo, useRef, useState } from "react"
 import { useMutation, useQuery } from "react-query"
 import Container from "../components/container"
+import { Error } from "../components/errors"
 import Layout from "../components/layout"
 import { Loading } from "../components/loading"
 import RequestModal from "../components/sendRequestModal"
@@ -13,25 +14,29 @@ export default function IndexPage() {
     retry: 1
   })
 
-  if (isError) {
-    if (error.response?.status === 401) {
-      const type = error.response?.data.type
-      switch (type) {
-        case "None":
-          return <AddPartner />
-        case "Received":
-          return <Received><PartnerRequest {...error.response?.data.partner} /></Received>
-        case "Sent":
-          return <Sent><PartnerSent {...error.response?.data.partner} /></Sent>
-        case "Answered":
-          return <Answered  {...error.response?.data} />
-        default:
-          break;
-      }
+
+
+  if (data && data.type) {
+    const type = data.type
+    switch (type) {
+      case "None":
+        return <AddPartner />
+      case "Received":
+        return <Received><PartnerRequest {...data.partner} /></Received>
+      case "Sent":
+        return <Sent><PartnerSent {...data.partner} /></Sent>
+      case "Answered":
+        return <Answered  {...data} />
+      default:
+        break;
     }
   }
+
   return (
     <Layout>
+      {
+        isError && <Error message={error.response?.data.message || "Something went wrong"} />
+      }
       {
         isLoading && <Loading />
       }
