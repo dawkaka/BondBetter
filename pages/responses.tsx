@@ -37,8 +37,9 @@ export default function ResponsesPage() {
         {
           isError && <Error message="Something went wrong" />
         }
+
         {
-          data?.length === 0 && (
+          (!isLoading && !isError && !data) && (
             <div className="w-[min(100%,700px)] px-2 py-5 h-full">
               <div className="flex flex-col items-center justify-center gap-8 pt-16">
                 <div className="flex flex-col items-center gap-2">
