@@ -6,7 +6,6 @@ import Layout from "../components/layout"
 import { Loader } from "../components/loader"
 import { Loading } from "../components/loading"
 
-
 interface Answer {
   question: string,
   user: { name: string, answer: string },
@@ -26,8 +25,9 @@ export default function ClientPage() {
     {
       getNextPageParam: (lastPage) => {
         if (lastPage) {
-          if (lastPage.pagination.end)
+          if (!lastPage.pagination || lastPage.pagination.end) {
             return undefined
+          }
         }
         return lastPage.pagination.next
       },
