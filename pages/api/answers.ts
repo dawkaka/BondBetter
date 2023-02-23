@@ -18,9 +18,11 @@ export default async function requestHandler(req: NextApiRequest, res: NextApiRe
             if (user === null) {
                 return res.status(404).json({ message: "Something went wrong" })
             }
+
             if (!user.coupleID) {
-                return res.json({ type: 'No Partner', message: 'Not a couple' })
+                return res.json({ answers: [], pagination: { end: true, next: 0 } })
             }
+
             const rawAns = await prisma.coupleAnswer.findMany({
                 orderBy: { time: "desc" },
                 skip: skip,

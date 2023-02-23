@@ -34,8 +34,6 @@ export default function ClientPage() {
       },
     })
 
-  console.log(data)
-
   let answers: Answer[] = []
   if (data && data.pages) {
     for (let page of data.pages) {
