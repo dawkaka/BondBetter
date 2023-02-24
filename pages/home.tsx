@@ -1,6 +1,6 @@
 import axios, { Axios, AxiosError, AxiosResponse } from "axios"
 import React, { useEffect, useMemo, useRef, useState } from "react"
-import { useMutation, useQuery } from "react-query"
+import { useMutation, useQuery, useQueryClient } from "react-query"
 import Container from "../components/container"
 import { Error } from "../components/errors"
 import Layout from "../components/layout"
@@ -84,6 +84,7 @@ function Answered({ next }: { next: string }) {
 
 const Quiz = ({ questions }: { questions: { question: string, id: number }[] }) => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+  const queryClient = useQueryClient()
   const init = useMemo(() => {
     let ans = []
     if (questions) {
@@ -98,6 +99,11 @@ const Quiz = ({ questions }: { questions: { question: string, id: number }[] }) 
 
   const answerMutation = useMutation<AxiosResponse, AxiosError<any, any>, { id: number, answer: string }[]>(
     (answers) => axios.post("/api/dailyquestions", { answers }).then(res => res.data),
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries()
+      }
+    }
   )
   const handleAnswerChange = (e: any) => {
     if (e.target.value > 280) return
@@ -113,6 +119,24 @@ const Quiz = ({ questions }: { questions: { question: string, id: number }[] }) 
   const handleNextButtonClick = () => {
     setCurrentQuestionIndex(currentQuestionIndex + 1);
   };
+
+  let answeredAll = useMemo(() => {
+    for (let ans of answers) {
+      if (ans.answer === "") {
+        return false
+      }
+    }
+    return true
+  }, [answers])
+
+  function sumbitAnswers() {
+    if (!answeredAll) {
+      alert("Answer all questions")
+      return
+    }
+    if (answerMutation.isLoading) return
+    answerMutation.mutate(answers)
+  }
 
   return (
     <div className="w-full h-full flex flex-col items-center bg-purple-700 overflow-auto">
@@ -162,14 +186,16 @@ const Quiz = ({ questions }: { questions: { question: string, id: number }[] }) 
                   >
                     Next
                   </button>
-                ) : !answerMutation.isLoading ? (
+                ) : (
                   <button
-                    onClick={() => answerMutation.mutate(answers)}
+                    onClick={sumbitAnswers}
+                    style={{ opacity: answeredAll ? 1 : 0.4 }}
+                    disabled={!answeredAll}
                     className="bg-green-500 text-white shadow px-6 py-2 rounded-full"
-                  >Submit</button>
+                  >
+                    {answerMutation.isLoading ? <Loading /> : "Submit"}
+                  </button>
                 )
-                  :
-                  <Loading />
                 }
               </div>
             </div>
