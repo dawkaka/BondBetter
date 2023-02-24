@@ -28,9 +28,24 @@ export default async function requestHandler(req: NextApiRequest, res: NextApiRe
                 skip: skip,
                 take: 10,
                 where: { coupleID: user.coupleID },
-                select: { user: { select: { name: true } }, question: { select: { question: true } }, answer: true, time: true, questionID: true, userID: true }
+                select: {
+                    user: { select: { name: true } },
+                    question: { select: { question: true } },
+                    answer: true, time: true, questionID: true, userID: true
+                }
             })
-            const answers = rawAns.filter(ans => ans.user !== null)
+            let nextPage = skip + 10
+            let qIds = new Set()
+            rawAns.forEach((ans) => {
+                qIds.add(ans.questionID)
+            })
+            let answers = []
+            if (qIds.size > 5) {
+                nextPage -= 5
+                answers = rawAns.slice(0, 5).filter(ans => ans.user !== null)
+            } else {
+                answers = rawAns.filter(ans => ans.user !== null)
+            }
 
             const ans = answers.reduce((acc, val) => {
                 if (!val.user) return acc
@@ -57,7 +72,7 @@ export default async function requestHandler(req: NextApiRequest, res: NextApiRe
             let filtered = Object.values(ans).filter(v => {
                 return v.user !== undefined
             })
-            res.json({ answers: filtered, pagination: { next: skip + 10, end: rawAns.length < 10 } })
+            res.json({ answers: filtered, pagination: { next: nextPage, end: rawAns.length < 10 } })
             break;
         default:
             break;
