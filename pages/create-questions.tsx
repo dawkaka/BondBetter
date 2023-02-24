@@ -47,12 +47,12 @@ export default function CreateQuestions() {
             <div className="fixed bg-white border-b w-full flex flex-col items-center py-3 px-2">
                 <Container>
                     <div className="w-full flex justify-between items-center">
-                        <h3 className="font-bold text-2xl sm:text-3xl self-start"><span className="hidden sm:inline">Create</span>
-                            <span
+                        <h3 className="font-bold text-2xl sm:text-3xl self-start"><span className="hidden sm:inline"></span>
+                            <Link href={"/home"}
                                 className="font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-pink-600"
                             >
-                                {' '}  Questions
-                            </span>
+                                {' '} BondBetter
+                            </Link>
                         </h3>
                         {
                             saved ? (
@@ -83,6 +83,7 @@ export default function CreateQuestions() {
             </div>
             <Container>
                 <div className="w-full mt-[80px] flex flex-col gap-10">
+                    <p className="text-lg text-center text-gray-700">Create up to 25 questions</p>
                     {
                         saveMutation.isSuccess && <CheckMark size={30} message={saveMutation.data.message} />
                     }

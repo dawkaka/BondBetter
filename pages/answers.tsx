@@ -38,7 +38,7 @@ export default function ClientPage() {
   if (data && data.pages) {
     for (let page of data.pages) {
       if (page.answers) {
-        answers = page.answers.concat(answers)
+        answers = answers.concat(page.answers)
       }
     }
   }
@@ -48,12 +48,6 @@ export default function ClientPage() {
       <Layout>
         <Container>
           <div className="w-[min(100%,500px)] mt-4 px-2 sm:px-4">
-            {
-              hasNextPage ? <Loader loadMore={() => fetchNextPage()} hasNext={hasNextPage} isFetching={isFetching} /> : null
-            }
-            {
-              isError && <Error message={"Something went wrong"} />
-            }
             {
               (
                 answers.length === 0 && !hasNextPage && !isFetching) && (
@@ -69,7 +63,6 @@ export default function ClientPage() {
                 </div>
               )
             }
-            {isFetching && <Loading />}
             {
               answers.map((d) => {
                 return (
@@ -90,6 +83,12 @@ export default function ClientPage() {
                   </div>
                 )
               })
+            }
+            {
+              hasNextPage ? <Loader loadMore={() => fetchNextPage()} hasNext={hasNextPage} isFetching={isFetching} /> : null
+            }
+            {
+              isError && <Error message={"Something went wrong"} />
             }
 
           </div>

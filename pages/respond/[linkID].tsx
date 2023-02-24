@@ -1,4 +1,5 @@
 import axios, { AxiosError } from "axios";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { useMutation, useQuery } from "react-query";
@@ -32,17 +33,18 @@ export default function RespondPage() {
     function answerChange(val: string, ind: number) {
         setAnswers(answers.map((a, i) => i === ind ? val : a))
     }
+
     return (
         <div className="w-full flex flex-col items-center">
             <div className="fixed bg-white border-b w-full flex flex-col items-center py-3 px-2">
                 <Container>
                     <div className="w-full flex justify-between items-center">
                         <h3 className="font-bold text-2xl sm:text-3xl self-start"><span className="hidden sm:inline"></span>
-                            <span
+                            <Link href={"/home"}
                                 className="font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-pink-600"
                             >
                                 {' '} BondBetter
-                            </span>
+                            </Link>
                         </h3>
                         {
                             answerMutation.isLoading ? <Loading /> : (

@@ -18,6 +18,13 @@ export default function Header() {
   const { data } = useQuery("startup", () => axios.get("/api/startup").then(res => res.data))
   return (
     <header className="fixed top-0 z-10 bg-white w-full flex items-center justify-center px-3 border-b">
+      <h3 className="absolute hidden text-xl left-4 top-[50%] translate-y-[-50%] md:block lg:font-bold text-2xl sm:text-3xl self-start">
+        <Link href={"/home"}
+          className="font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-pink-600"
+        >
+          {' '} BondBetter
+        </Link>
+      </h3>
       <nav className="w-full flex items-center justify-center">
         <ul className="flex justify-between w-[min(100%,500px)] py-3 items-center">
           <NavLink href="/home" label="Home" icon={HomeIcon()} notif={false} />
