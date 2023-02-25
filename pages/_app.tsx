@@ -23,6 +23,7 @@ export default function App({
         <meta httpEquiv="content-type" content="text/html; charset=UTF-8" />
         <meta name="referrer" content="always" />
         <meta httpEquiv="X-UA-Compatible" />
+        <link rel="canonical" href="https://wwww.bondbetter.site" />
         <meta name="twitter:label1" content="Bond Better" />
         <meta name="twitter:domain" content="bondbetter.site" />
         <meta name="twitter:card" content="summary_large_image" />
