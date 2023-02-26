@@ -28,9 +28,10 @@ export function validateQuestions(questions: CreateQuestion[]): QuestionsErrors 
     let hasError = false
     for (let i = 0; i < questions.length; i++) {
         const question = questions[i];
-        if (!question.question || typeof question.question !== "string" || question.question.length > 280) {
+        if (!question.question || question.question.trim() === "" || question.question.length > 280) {
             hasError = true
             errors[i].push("Each question must be a string not greater than 256 characters")
+            continue
         }
         if ((!Array.isArray(question.options) || question.options.length < 2) && !question.hasInput) {
             hasError = true
@@ -53,7 +54,7 @@ export function validateQuestions(questions: CreateQuestion[]): QuestionsErrors 
 }
 
 export function isValidQuestion(q: CreateQuestion) {
-    if (q.question.length === 0 || q.question.length > 280 || q.deleted) false
+    if (q.question.trim().length === 0 || q.question.length > 280 || q.deleted) false
     if (q.options.length < 2 && !q.hasInput) false
     const flOp = q.options.filter(op => op.length > 0 && op.length <= 100)
     if (flOp.length < 2 && !q.hasInput) {

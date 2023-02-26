@@ -3,8 +3,6 @@ import { authOptions } from "./api/auth/[...nextauth]"
 import { useAtom } from 'jotai'
 import Layout from "../components/layout"
 
-import type { GetServerSidePropsContext } from "next"
-import type { Session } from "next-auth"
 import Link from "next/link"
 import { QuestionsState } from "../jotai"
 import { useMemo, useState } from "react"

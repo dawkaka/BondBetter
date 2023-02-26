@@ -36,7 +36,7 @@ export default function DisplayQuestion({ question, hasInput, options, num, upda
             <form className="px-5 mt-5 flex flex-col gap-2 w-max-content">
                 {
                     options.map((o, ind) => {
-                        if (o.trim().length === 0) {
+                        if (o.trim() === "") {
                             return null
                         }
                         return (
