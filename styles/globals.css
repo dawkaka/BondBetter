@@ -39,61 +39,6 @@ body {
     height: 100%;
 }
 
-
-
-/* Clip text element */
-.clip-text {
-    font-size: 6em;
-    font-weight: bold;
-    line-height: 1;
-    position: relative;
-    display: inline-block;
-    margin: .25em;
-    padding: .5em .75em;
-    text-align: center;
-    /* Color fallback */
-    color: #fff;
-    -webkit-background-clip: text;
-
-    -webkit-text-fill-color: transparent;
-}
-
-.clip-text:before,
-.clip-text:after {
-    position: absolute;
-    content: '';
-}
-
-/* Background */
-.clip-text:before {
-    z-index: -2;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background-image: inherit;
-}
-
-/* Text Background (black zone) */
-.clip-text:after {
-    position: absolute;
-    z-index: -1;
-    top: .125em;
-    right: .125em;
-    bottom: .125em;
-    left: .125em;
-    background-color: #000;
-}
-
-.clip-text_one {
-    background-image: url(https://picsum.photos/480/200?random);
-}
-
-
-
-
-
-
 .navbar {
     background-color: rgba(252, 245, 235, .8);
     backdrop-filter: blur(4px);
@@ -111,6 +56,48 @@ body {
     box-shadow: 0 0 50px 30px #fcf5eb;
     isolation: isolate;
     background-color: #fcf5eb;
+}
+
+.progress-bar {
+    height: 5px;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: #ddd;
+    z-index: 999;
+}
+
+.progress-bar::before {
+    content: "";
+    height: 5px;
+    width: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: rgb(168 85 247);
+    -webkit-animation: progress 2s ease-in-out;
+    animation: progress 2s ease-in-out;
+}
+
+@-webkit-keyframes progress {
+    from {
+        width: 0%
+    }
+
+    to {
+        width: 100%
+    }
+}
+
+@keyframes progress {
+    from {
+        width: 0%
+    }
+
+    to {
+        width: 100%
+    }
 }
 
 .drop-down {

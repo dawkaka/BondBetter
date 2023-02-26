@@ -5,6 +5,8 @@ import type { AppProps } from "next/app"
 import type { Session } from "next-auth"
 import { Provider } from 'jotai'
 import Head from "next/head"
+import { Router } from "next/router"
+import { useEffect, useState } from "react"
 const queryClient = new QueryClient();
 
 // Use of the <SessionProvider> is mandatory to allow components that call
@@ -13,6 +15,43 @@ export default function App({
   Component,
   pageProps: { session, ...pageProps },
 }: AppProps<{ session: Session }>) {
+
+  const [loading, setLoading] = useState(false);
+  const [progress, setProgress] = useState(0)
+  let loadTimeout: NodeJS.Timeout
+  let timer: NodeJS.Timer
+
+  useEffect(() => {
+    const strt = new Date();
+    const start = () => {
+      loadTimeout = setTimeout(() => {
+        setLoading(true)
+        setProgress(0);
+        timer = setInterval(() => {
+          setProgress(Math.min((new Date().getMilliseconds() - strt.getMilliseconds()) / 2000, 0.9));
+        }, 10);
+      }, 100)
+
+    };
+
+    const end = () => {
+      clearTimeout(loadTimeout)
+      setLoading(false);
+      clearInterval(timer);
+      setProgress(1);
+    };
+
+    Router.events.on("routeChangeStart", start);
+    Router.events.on("routeChangeComplete", end);
+    Router.events.on("routeChangeError", end);
+    return () => {
+      Router.events.off("routeChangeStart", start);
+      Router.events.off("routeChangeComplete", end);
+      Router.events.off("routeChangeError", end);
+    };
+  }, []);
+
+
   return (
     <SessionProvider session={session}>
       <Head>
@@ -47,6 +86,13 @@ export default function App({
       </Head>
       <QueryClientProvider client={queryClient}>
         <Provider>
+          {
+            loading && (
+              <div className="progress-bar">
+                <div style={{ width: `${progress * 100}%` }} />
+              </div>
+            )
+          }
           <Component {...pageProps} />
         </Provider>
       </QueryClientProvider>
