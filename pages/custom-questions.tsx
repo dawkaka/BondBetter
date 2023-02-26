@@ -16,7 +16,7 @@ import LinkModal from "../components/creatLinkModal"
 import { Loading } from "../components/loading"
 import { Error } from "../components/errors"
 
-export default function ServerSidePage({ session }: { session: Session }) {
+export default function ServerSidePage() {
   const [questions, setQuestions] = useAtom(QuestionsState)
   const [openModal, setOpenModal] = useState(false)
   useMemo(() => {
@@ -114,11 +114,11 @@ export default function ServerSidePage({ session }: { session: Session }) {
   )
 }
 
-// Export the `session` prop to use sessions with Server Side Rendering
-export async function getServerSideProps(context: GetServerSidePropsContext) {
-  return {
-    props: {
-      session: await getServerSession(context.req, context.res, authOptions),
-    },
-  }
-}
+// // Export the `session` prop to use sessions with Server Side Rendering
+// export async function getServerSideProps(context: GetServerSidePropsContext) {
+//   return {
+//     props: {
+//       session: await getServerSession(context.req, context.res, authOptions),
+//     },
+//   }
+// }
