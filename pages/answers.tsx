@@ -24,7 +24,6 @@ export default function ClientPage() {
   } = useInfiniteQuery(["answers-daily"], fetchAnswers,
     {
       getNextPageParam: (lastPage) => {
-        console.log(lastPage)
         if (lastPage) {
           if (!lastPage.pagination || lastPage.pagination.end) {
             return undefined
