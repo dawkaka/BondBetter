@@ -107,6 +107,7 @@ export default async function dailyQuestoinsHandler(req: NextApiRequest, res: Ne
                     return res.status(400).json({ type: "answerErrors", errors: errs })
                 }
 
+                //currentStreak implementation is not correct.
                 const r = await prisma.$transaction([
                     prisma.coupleAnswer.createMany({ data: answers }),
                     prisma.user.update({ where: { id: user.id }, data: { nextQuestionsTime: sTime, timeOfLastAnswered: now, currentStreak: { increment: 1 } } })
